@@ -37,14 +37,15 @@
 <script src="{{ asset('asset/plugins/moment/moment.min.js') }}"></script>
 {{--  <script src="{{ asset('asset/plugins/daterangepicker/daterangepicker.js') }}"></script>  --}}
 <!-- Tempusdominus Bootstrap 4 -->
-{{--  <script src="{{ asset('asset/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>  --}}
+ {{-- <script src="{{ asset('asset/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
 <!-- Summernote -->
-{{--  <script src="{{ asset('asset/plugins/summernote/summernote-bs4.min.js') }}"></script>  --}}
+ {{-- <script src="{{ asset('asset/plugins/summernote/summernote-bs4.min.js') }}"></script> --}}
 <!-- overlayScrollbars -->
 <script src="{{ asset('asset/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('asset/plugins/datatables/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('asset/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('asset/plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('asset/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+
 
 <script src="{{ asset('asset/plugins/dist/js/adminlte.min.js') }}"></script>
 @yield('script')

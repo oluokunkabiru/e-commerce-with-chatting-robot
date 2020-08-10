@@ -13,6 +13,13 @@
             <div class="card-header">
               <h1 class="font-weight-bold text-center">Manage Category</h1>
             </div>
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong style="font-size:25px;">Success :{{session('success') }}</strong><br/>
+            </div>
+            @endif
+            
             @if($errors->any())
 
             <div class="alert alert-danger alert-dismissible fade show">

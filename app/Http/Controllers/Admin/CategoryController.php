@@ -21,7 +21,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->category =ucwords($request->input('category'));
         $category->save();
-        return redirect(route('category'));
+        return redirect()->back()->with('success', "New category add successfully");
 
     }
 

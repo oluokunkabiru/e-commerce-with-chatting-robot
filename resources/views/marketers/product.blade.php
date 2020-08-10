@@ -12,6 +12,13 @@
             <div class="card-header">
               <h1 class="font-weight-bold text-center">Manage Product</h1>
             </div>
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong style="font-size:25px;">Success :{{session('success') }}</strong><br/>
+            </div>
+            @endif
+            
             @if($errors->any())
 
             <div class="alert alert-danger alert-dismissible fade show">
@@ -29,19 +36,18 @@
               <table id="product" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                    <th>ID</th>
                    <th>Image</th>
                   <th>Name</th>
                   <th>Department </th>
                   <th>Old Price</th>
                   <th>New Price</th>
-
                   <th>Location</th>
                   <th>Quantity</th>
-                  <th></th>
-
+                  <th>Description</th>
                   <th>Date posted</th>
                   <th>Action</th>
+                  <th>Date Posted</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,16 +85,18 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                <th>ID</th>
-                  <th>Title</th>
-                  <th>Code </th>
-                  <th>Unit</th>
-                  <th>Description</th>
-                  <th>Department</th>
-                  <th>Level</th>
-                  <th>Logo</th>
-                  <th>Date of Approval</th>
-                  <th>Action</th>
+                    <th>ID</th>
+                    <th>Image</th>
+                   <th>Name</th>
+                   <th>Department </th>
+                   <th>Old Price</th>
+                   <th>New Price</th>
+                   <th>Location</th>
+                   <th>Quantity</th>
+                   <th>Description</th>
+                   <th>Date posted</th>
+                   <th>Action</th>
+                   <th>Date Posted</th>
                 </tr>
                 </tfoot>
               </table>
@@ -112,6 +120,7 @@
                 <form action="{{ route('marketerProduct') }}" method="post" enctype="multipart/form-data">
                     {{ @csrf_field() }}
 
+
                     <div class="row">
                         <div class="col-md-4">
                          <img src="" id="image" width="200px" class="img-fluid">
@@ -121,44 +130,41 @@
 
                            <input type="file" accept="image/*" onchange="preview_image(event)" name="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" >
 
-                        @error('image')
-                        <span class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                        </span>
-
-                        @enderror
+                           @if ($errors->has('image'))
+                           <span class="invalid-feedback" role="alert">
+                               <strong>{{ $errors->first('image') }}</strong>
+                           </span>
+                       @endif
                           </div>
                           {{-- <input type="hidden" id="image_id" name="image_id"> --}}
                         </div>
                       <!----- //Picture -->
                       <div class="col-md-4">
                           <label for="">Product Name</label>
-                          <input type="text" placeholder="product name" name="name" id="name" class="form-control @error('name') is-invalid  @enderror" autocomplete="" autofocus>
-                          @error('name')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-
-                          @enderror
+                          <input type="text" placeholder="product name" name="name" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                          @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                       </div>
                       <div class="col-md-4">
 
                         <div class="form-group">
                              <label for="">Product Category</label>
-                            <select  id="category" name="category" class="form-control @error('dept') is-invalid  @enderror">
-                                @if($categories)
+                            <select  id="category" name="category" class="form-control {{ $errors->has('dept') ? ' is-invalid' : '' }}">
+                               @if($categories)
+                               <option value=""></option>
                                 @foreach ($categories as $category )
                                  <option value="{{ $category->id }}">{{ $category->category }}</option>
                                 @endforeach
                                 @endif
                             </select>
-                            </select>
-                        @error('category')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-
-                        @enderror
+                            @if ($errors->has('category'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('category') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     </div>
 
@@ -166,34 +172,31 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="">Location (state/city)</label>
-                            <input type="text" name="location" placeholder="Lacation (state/city)" id="location" class="form-control @error('location') is-invalid @enderror">
-                            @error('location')
-                            <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                            </span>
-
-                            @enderror
+                            <input type="text" name="location" placeholder="Lacation (state/city)" id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}">
+                            @if ($errors->has('location'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    </span>
+                                @endif
                           </div>
                         </div>
                       <div class="col-md-4">
                           <label for="">Old Price</label>
-                          <input type="number" placeholder="Old price" name="oldprice" id="oldprice" step="0.01" class="form-control @error('oldprice') is-invalid  @enderror" autocomplete="" autofocus>
-                          @error('oldprice')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-
-                          @enderror
+                          <input type="number" placeholder="Old price" name="oldprice" id="oldprice" step="0.01" class="form-control {{ $errors->has('oldprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                          @if ($errors->has('oldprice'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('oldprice') }}</strong>
+                                    </span>
+                                @endif
                       </div>
                       <div class="col-md-4">
                         <label for="">New Price</label>
-                        <input type="number" placeholder="New price" name="newprice" id="newprice" step="0.01" class="form-control @error('newprice') is-invalid  @enderror" autocomplete="" autofocus>
-                        @error('newprice')
+                        <input type="number" placeholder="New price" name="newprice" id="newprice" step="0.01" class="form-control {{ $errors->has('newprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                        @if ($errors->has('newprice'))
                         <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
+                            <strong>{{ $errors->first('newprice') }}</strong>
                         </span>
-
-                        @enderror
+                    @endif
                     </div>
 
                     </div>
@@ -201,25 +204,23 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="">Product Quantity</label>
-                            <input type="number" placeholder="Quantities" name="quantity" id="quantity" step="1" class="form-control @error('quantity') is-invalid  @enderror" autocomplete="" autofocus>
-                        @error('quantity')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-
-                        @enderror
+                            <input type="number" placeholder="Quantities" name="quantity" id="quantity" step="1" class="form-control {{ $errors->has('quantity') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                            @if ($errors->has('quantity'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('quantity') }}</strong>
+                            </span>
+                        @endif
                         </div>
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="comment">Product Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Please descriped your product here, for yout customers" rows="5" id="comment"></textarea>
+                            <textarea class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Please descriped your product here, for yout customers" rows="5" id="comment"></textarea>
                           </div>
-                          @error('description')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-
-                          @enderror
+                          @if ($errors->has('description'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
                     </div>
                     </div>
 
@@ -236,8 +237,10 @@
       </div>
     </section>
 </div>
-@endsection
 
+@endsection
+</div>
+</div>
 @section('script')
 
 <script>
