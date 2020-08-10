@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'User register')
+@section('title', 'User Update')
 
 @section('content')
 <div class="container">
