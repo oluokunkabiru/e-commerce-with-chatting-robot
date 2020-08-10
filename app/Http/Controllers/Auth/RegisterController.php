@@ -120,7 +120,7 @@ class RegisterController extends Controller
         $user->country=ucwords($request->input('country'));
         $user->zipcode=$request->input('zipcode');
         $user->password=bcrypt($request->input('password'));
-        $user->picture_id="login.png";
+        $user->picture_id="1";
         $user->provider ="Soupe Register";
         $user->provider_id = $user->generateuserid();
         $user->save();
