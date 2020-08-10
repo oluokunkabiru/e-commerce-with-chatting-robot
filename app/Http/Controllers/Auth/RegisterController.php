@@ -69,4 +69,39 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+   
+
+    function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'address'  => ['nullable','string','min:3'],
+            'state' => ['nullable','string','min:2'],
+            'city' => ['nullable','string','min:2'],
+            'zipcode' => ['nullable','digits_between:6,6'],
+            'phone' =>['nullable', 'digits_between:6,15','unique:users'],
+            'country' => ['nullable','min:2', 'string'],
+        ]);
+        // return $request->input();
+
+        $user = new User();
+        $user->name= ucwords($request->input('name'));
+        $user->email=$request->input('email');
+        $user->phone=$request->input('phone');
+        $user->address= ucwords($request->input('address'));
+        $user->city=ucwords($request->input('city'));
+        $user->state=ucwords($request->input('state'));
+        $user->country=ucwords($request->input('country'));
+        $user->zipcode=$request->input('zipcode');
+        $user->password=bcrypt($request->input('password'));
+        $user->picture_id="login.png";
+        $user->provider ="Soupe Register";
+        $user->provider_id = $user->generateuserid();
+        $user->save();
+        return redirect('/dashboard');
+
+
+    }
 }
