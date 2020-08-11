@@ -172,6 +172,10 @@ class ProductController extends Controller
 
     }
 
+    public function viewproduct(Request $request){
+
+    }
+
     public function index()
     {
         //

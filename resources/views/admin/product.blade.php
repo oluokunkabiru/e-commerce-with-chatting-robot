@@ -1,11 +1,10 @@
 @extends('admin.layout')
 @section('title', 'Managed Product')
+
+
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
         <div class="jumbotron">
             <a href="#newproduct" class="btn btn-primary" data-toggle="modal"> Add new product</a>
             <div class="card-header">
@@ -47,16 +46,10 @@
                   <th>ID</th>
                    <th>Image</th>
                   <th>Name</th>
-                  <th>Department </th>
-                  <th>Old Price</th>
                   <th>New Price</th>
                   <th>Location</th>
-                  <th>Quantity</th>
                   <th>Description</th>
-
-                  <th>Date posted</th>
                   <th>Action</th>
-                  <th>Date Posted</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -75,17 +68,16 @@
                   @endphp
                   <td> <img src="../{{$picture}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
-                  <td>{{ $categorys }}</td>
-                  <td>{{ $product->oldprice }}</td>
-                  <td>{{ $product->newpric }}</td>
-
+                  <td>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
-                  <td>{{ $product->quantity }}</td>
                   <td>{{ $product->description }}</td>
-                  <td>{{ $product->city}}</td>
-                  <td>{{ $product->region }}</td>
+                  <td>
+                        {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                  <td>{{ $product->created_at }}</td>
+                      <a href="#view" data-toggle="modal" dataid="{{$product->id}} " class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
+                    || <a href="#edit" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
+                     || <a href="#delete" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                    </td>
                 </tr>
                     @endforeach
                 @endif
@@ -95,17 +87,12 @@
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                   <th>Image</th>
-                  <th>Name</th>
-                  <th>Department </th>
-                  <th>Old Price</th>
-                  <th>New Price</th>
-                  <th>Location</th>
-                  <th>Quantity</th>
-                  <th>Description</th>
-                  <th>Date posted</th>
-                  <th>Action</th>
-                  <th>Date Posted</th>
+                    <th>Image</th>
+                   <th>Name</th>
+                   <th>New Price</th>
+                   <th>Location</th>
+                   <th>Description</th>
+                   <th>Action</th>
                 </tr>
                 </tfoot>
               </table>
@@ -115,9 +102,85 @@
             </div>
 
 
-            <!-- /.card-body -->
+
+
+
+      <div class="modal" id="view">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Product Name</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <h1>Product Details show here</h1>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+              </div>
+            </div>
           </div>
-      </div><!-- /.container-fluid -->
+          {{-- /end view --}}
+
+
+          <div class="modal" id="edit">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Edit Product Name</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                      <h1>Edit Product Details show here</h1>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              {{-- /end view --}}
+
+              <div class="modal" id="delete">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Product Name</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                          <h1>Are you sure you want delelte product name?</h1>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  {{-- /end view --}}
+
       <div class="modal fade" id="newproduct" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -245,8 +308,8 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-    </section>
-</div>
+      </div>
+        </div>
 @endsection
 
 @section('script')
@@ -314,6 +377,24 @@ $.ajax({
 
 event.preventDefault();
 })
+// view javascript
+
+$(document).ready(function(){
+    $('#view').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('viewproduct')}}',
+        data:'view='+id,
+        success:function(data){
+          $('#view').html(data);
+        }
+      })
+    })
+  })
 
   </script>
 

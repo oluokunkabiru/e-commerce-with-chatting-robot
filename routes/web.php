@@ -52,6 +52,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('Admin/product', 'ProductController@adminProduct' );
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
     Route::post('Admin/Category', 'Admin\CategoryController@create' );
+    Route::post('view','ProductController@viewproduct')->name('viewproduct');
 
 
 });
@@ -80,6 +81,8 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/cart', 'AddtoCart@index')->name('cart');
 Route::post('cart','AddtoCart@store')->name('addtocart');
+// locate
+Route::view('/locate', 'users.locate' );
 
 Auth::routes();
 

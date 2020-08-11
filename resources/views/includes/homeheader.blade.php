@@ -121,7 +121,7 @@
                             <span class="arrow_carrot-down"></span>
                             <ul>
                                 <li><a href="#">Spanish</a></li>
-                                <li><a href="#">English</a></li>
+                                {{-- <li><a href="#">English</a></li> --}}
                             </ul>
                         </div>
 
@@ -249,17 +249,29 @@
                     </div>
                 </div>
 
-                <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
+                {{-- <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
                     <div class="hero__text">
                         <span><strong>Your Access to Food</strong></span>
                         <h6>Buy now and pay later <br />100% convenience</h6>
                         <p><strong>Plan your event with our accurate<br/> food planner </strong></p>
                         <a href="#" class="primary-btn">SHOP NOW</a>
                     </div>
-                </div>
-
+                </div> --}}
+                {{-- <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}"> --}}
+                    {{-- <div class="hero__text"> --}}
+                        <div class="form-group">
+                        <label for="address_address">Search Location</label>
+                        <input type="text" id="address-input" name="address_address" class="form-control map-input">
+                        <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                        <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                    </div>
+                    <div id="address-map-container" style="width:100%;height:400px; ">
+                        <div style="width: 100%; height: 100%" id="address-map"></div>
+                        {{-- <div style="height:100%; " id="map"></div> --}}
+                    {{-- </div> --}}
             </div>
         </div>
     </div>
 </section>
 <!-- Hero Section End -->
+

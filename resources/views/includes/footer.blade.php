@@ -75,3 +75,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{ asset('asset/js/mixitup.min.js') }}"></script>
 <script src="{{ asset('asset/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('asset/js/main.js')}}"></script>
+
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initMap" async defer></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initialize" async defer></script>
+{{-- <script src="{{asset('asset/js/ogajs.js')}}"></script> --}}
+<script src="{{asset('asset/js/mapinput.js')}}"></script>

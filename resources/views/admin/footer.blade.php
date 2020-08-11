@@ -1,3 +1,4 @@
+
 <footer class="main-footer">
     <strong>Copyright &copy; {{ date('Y')}} Yahas Fashion Hub</strong>
     All rights reserved.
@@ -13,6 +14,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+</body>
 
 <!-- jQuery -->
 <script src="{{ asset('asset/plugins/jquery/jquery.min.js') }}"></script>
@@ -34,7 +36,7 @@
 <!-- jQuery Knob Chart -->
 {{--  <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>  --}}
 <!-- daterangepicker -->
-<script src="{{ asset('asset/plugins/moment/moment.min.js') }}"></script>
+{{-- <script src="{{ asset('asset/plugins/moment/moment.min.js') }}"></script> --}}
 {{--  <script src="{{ asset('asset/plugins/daterangepicker/daterangepicker.js') }}"></script>  --}}
 <!-- Tempusdominus Bootstrap 4 -->
  {{-- <script src="{{ asset('asset/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
