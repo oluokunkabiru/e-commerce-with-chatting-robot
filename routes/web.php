@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('Admin/product', 'ProductController@adminProduct' );
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
     Route::post('Admin/Category', 'Admin\CategoryController@create' );
-    Route::post('view','ProductController@viewproduct')->name('viewproduct');
+    // Route::post('/Admin/Edit/{id}','ProductController@viewproduct')->name('viewproduct');
+    Route::post('viewproduct', 'ProductController@viewproduct')->name('viewproduct');
 
 
 });

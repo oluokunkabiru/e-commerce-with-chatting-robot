@@ -74,8 +74,8 @@
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                      <a href="#view" data-toggle="modal" dataid="{{$product->id}} " class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
-                    || <a href="#edit" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
+                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
+                        || <a href="#edit" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
                      || <a href="#delete" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
                     </td>
                 </tr>
@@ -106,29 +106,9 @@
 
 
       <div class="modal" id="view">
-            <div class="modal-dialog">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Product Name</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <h1>Product Details show here</h1>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
-              </div>
-            </div>
+           
           </div>
-          {{-- /end view --}}
+           {{-- /end view --}}
 
 
           <div class="modal" id="edit">
@@ -179,7 +159,7 @@
                       </div>
                     </div>
                   </div>
-                  {{-- /end view --}}
+                  /end view --}}
 
       <div class="modal fade" id="newproduct" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">
