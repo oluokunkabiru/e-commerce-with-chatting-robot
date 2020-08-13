@@ -193,5 +193,6 @@ return [
     */
 
     'same_site' => null,
+    env('SESSION_DOMAIN', 'soupe.com.ng'),
 
 ];

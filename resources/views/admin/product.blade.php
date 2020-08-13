@@ -75,8 +75,8 @@
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
                      <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
-                        || <a href="#edit" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
-                     || <a href="#delete" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                        || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
+                     || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
                     </td>
                 </tr>
                     @endforeach
@@ -102,64 +102,22 @@
             </div>
 
 
+{{-- @method('DELETE'); --}}
 
+{{-- view product --}}
+            <div class="modal" id="view">          </div>
 
-
-      <div class="modal" id="view">
-           
-          </div>
+    {{-- end view product --}}
+    {{-- edit product --}}
+             <div class="modal" id="edit"></div>
            {{-- /end view --}}
 
 
-          <div class="modal" id="edit">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                      <h4 class="modal-title">Edit Product Name</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                      <h1>Edit Product Details show here</h1>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
               {{-- /end view --}}
 
-              <div class="modal" id="delete">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
+              <div class="modal" id="delete"></div>
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Product Name</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
 
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                          <h1>Are you sure you want delelte product name?</h1>
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                  /end view --}}
 
       <div class="modal fade" id="newproduct" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -323,16 +281,7 @@
      }
      reader.readAsDataURL(event.target.files[0]);
     }
-    function preview_img(event)
-    {
-     var reader = new FileReader();
-     reader.onload = function()
-     {
-      var output = document.getElementById('output_image');
-      output.src = reader.result;
-     }
-     reader.readAsDataURL(event.target.files[0]);
-    }
+
 
     // add new product
     $('#addproductbtn').click(function(event){
@@ -376,6 +325,119 @@ $(document).ready(function(){
     })
   })
 
+
+//   edit product javascript
+
+$(document).ready(function()
+    {
+    $('#edit').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('vieweditproduct')}}',
+        data:'edit='+id,
+        success:function(data){
+          $('#edit').html(data);
+        }
+      })
+    })
+    })
+
+// preview delete file
+  $(document).ready(function(){
+    $('#delete').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('viewdeleteproduct')}}',
+        data:'delete='+id,
+        success:function(data){
+          $('#delete').html(data);
+        }
+      })
+    })
+  })
+
+
+// delete the file
+  $(document).ready(function(){
+    $('#deletd').on('click', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      alert(id);
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('viewdeleteproduct')}}',
+        data:'delete='+id,
+        success:function(data){
+          $('#delete').html(data);
+        }
+      })
+    })
+  })
+
+
+  function deleting(){
+        var id = document.getElementById('deleteitem').value;
+        $.ajax({
+        type:'DELETE',
+
+
+        url:'{{route('deleteproduct')}}',
+        data:{
+            'deleted':id,
+            '_token':'{{ csrf_token() }}',
+
+        }
+        // success:function(data){
+        //   $('#delete').html(data);
+        // }
+      })
+  }
+//   $(".deleteRecord").click(function(){
+
+// var id = $(this).data("id");
+
+// var token = $("meta[name='csrf-token']").attr("content");
+
+
+
+// $.ajax(
+
+// {
+
+//     url: "users/"+id,
+
+//     type: 'DELETE',
+
+//     data: {
+
+//         "id": id,
+
+//         "_token": token,
+
+//     },
+
+//     success: function (){
+
+//         console.log("it Works");
+
+//     }
+
+// });
+// data:{'_method':'DELETE'},
+// send this data with your ajax call.
+
+
+// })
   </script>
 
 @endsection
