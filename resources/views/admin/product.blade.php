@@ -220,11 +220,13 @@
                             </span>
                         @endif
                         </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
+                        <div class="col-md-8">
                             <label for="comment">Product Description</label>
-                            <textarea class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Please descriped your product here, for yout customers" rows="5" id="comment"></textarea>
-                          </div>
+
+                                <div class="mb-3">
+                                    <textarea name="description" class="textarea form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Please enter Product descriptions" rows="4"></textarea>
+                                </div>
+                                </div>
                           @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -383,7 +385,7 @@ $(document).ready(function()
 //   })
 
 
-//   
+//
 //   $(".deleteRecord").click(function(){
 
 // var id = $(this).data("id");
