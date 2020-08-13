@@ -285,6 +285,7 @@ class ProductController extends Controller
                 </button>
                 </div>
                 <div class="modal-body">
+                
                                 <div class="row">
                                     <div class="col-md-4">
                                      <img src="../' . $edit->picture->file  . '" id="image" width="200px" class="img-fluid">
@@ -369,9 +370,10 @@ class ProductController extends Controller
                 <div class="modal-body">
                     <h3>Are you sure you want delete <b>'.$delete->product_name .'?</b></h3>
                     <br>
-                    <form  role="form" runat="server">
-                        <input type="hidden"  value = "'. $id .'" id="deleteitem" >
-                    <button type="button" onclick="deleting()" class="btn btn-danger btn-lg ml-3">Delete </button>
+                    <form  role="form" runat="server" method ="POST" action="'. route('products.destroy', $id) .'">
+                    <input type="hidden"  value = "DELETE" name="_method" >
+                    '.csrf_field().'
+                    <button type="submit"  class="btn btn-danger btn-lg ml-3">Delete </button>
 
                     <a href ="#"  class="btn btn-success btn-lg float-right mr-3" data-dismiss="modal">Cancel</a>
                         </form>
@@ -449,19 +451,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        //
-        $id = $request('deleted');
-        return  $id;
-        // if($request->image_id){
-        //     $file_delete=Picture::findOrfail($request->image_id);
-        //     $file_delete->forceDelete();
-        //     unlink(public_path(). $file_delete->file);
-        // }
-        // $delete=intval($request->product_id);
-        // Product::findOrfail($delete)->forceDelete();
-        // return redirect(route('products.index'))->with('success', 'The product details has been  deleted successfully');
 
+        $products = Product::with(['picture', 'category'])->where('id', $id)->get();
+        // return $products;
+        foreach ($products as $product ) {
+            # code...
+
+        if($product->picture_id){
+            $file_delete=Picture::findOrfail($product->picture->id);
+            $file_delete->forceDelete();
+            unlink(public_path()."/". $file_delete->file);
+        }
+        $delete=intval($id);
+        Product::findOrfail($delete)->forceDelete();
+        return redirect(route('adminProduct'))->with('success', 'The product('. $product->product_name .') has been  deleted successfully');
+        }
     }
 }

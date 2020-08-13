@@ -102,8 +102,6 @@
             </div>
 
 
-{{-- @method('DELETE'); --}}
-
 {{-- view product --}}
             <div class="modal" id="view">          </div>
 
@@ -366,42 +364,26 @@ $(document).ready(function()
 
 
 // delete the file
-  $(document).ready(function(){
-    $('#deletd').on('click', function(e){
-      var id = $(e.relatedTarget).attr('dataid');
-      alert(id);
-      $.ajax({
-        type:'post',
-        headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-        url:'{{route('viewdeleteproduct')}}',
-        data:'delete='+id,
-        success:function(data){
-          $('#delete').html(data);
-        }
-      })
-    })
-  })
+//   $(document).ready(function(){
+//     $('#deletd').on('click', function(e){
+//       var id = $(e.relatedTarget).attr('dataid');
+//       alert(id);
+//       $.ajax({
+//         type:'post',
+//         headers: {
+//                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+//                 },
+//         url:'{{route('viewdeleteproduct')}}',
+//         data:'delete='+id,
+//         success:function(data){
+//           $('#delete').html(data);
+//         }
+//       })
+//     })
+//   })
 
 
-  function deleting(){
-        var id = document.getElementById('deleteitem').value;
-        $.ajax({
-        type:'DELETE',
-
-
-        url:'{{route('deleteproduct')}}',
-        data:{
-            'deleted':id,
-            '_token':'{{ csrf_token() }}',
-
-        }
-        // success:function(data){
-        //   $('#delete').html(data);
-        // }
-      })
-  }
+//   
 //   $(".deleteRecord").click(function(){
 
 // var id = $(this).data("id");

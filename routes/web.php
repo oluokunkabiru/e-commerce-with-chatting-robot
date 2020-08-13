@@ -57,7 +57,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('viewproduct', 'ProductController@viewproduct')->name('viewproduct');
     Route::post('vieweditproduct', 'ProductController@viewditproduct')->name('vieweditproduct');
     Route::post('viewdeleteproduct', 'ProductController@viewdeleteproduct')->name('viewdeleteproduct');
-    Route::post('deleteproduct', 'ProductController@destroy')->name('deleteproduct');
+    Route::resource('Admin/products', 'ProductController');
 
 
 });
