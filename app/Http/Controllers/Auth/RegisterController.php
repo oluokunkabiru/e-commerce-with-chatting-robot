@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Controllers\Auth;
-use Illuminate\Http\Request;
-use DB;
 
 
 class RegisterController extends Controller

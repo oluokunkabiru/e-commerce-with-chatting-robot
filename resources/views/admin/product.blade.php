@@ -76,8 +76,10 @@
 
                      <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
                         || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
-                     || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                        || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                     || <a href="#test" dataid="{{route('products.show', $product->id)}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fa fa-phone"></i> </a>
                     </td>
+                    {{-- {{route('products.show', $product->id)}} --}}
                 </tr>
                     @endforeach
                 @endif
@@ -107,8 +109,11 @@
 
     {{-- end view product --}}
     {{-- edit product --}}
-             <div class="modal" id="edit"></div>
-           {{-- /end view --}}
+    <div class="modal" id="edit"></div>
+    {{-- /end view --}}
+    <div class="modal" id="test">
+       <div class="result"></div>
+      </div>
 
 
               {{-- /end view --}}
@@ -365,63 +370,20 @@ $(document).ready(function()
   })
 
 
-// delete the file
-//   $(document).ready(function(){
-//     $('#deletd').on('click', function(e){
-//       var id = $(e.relatedTarget).attr('dataid');
-//       alert(id);
-//       $.ajax({
-//         type:'post',
-//         headers: {
-//                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
-//                 },
-//         url:'{{route('viewdeleteproduct')}}',
-//         data:'delete='+id,
-//         success:function(data){
-//           $('#delete').html(data);
-//         }
-//       })
-//     })
-//   })
-
-
-//
-//   $(".deleteRecord").click(function(){
-
-// var id = $(this).data("id");
-
-// var token = $("meta[name='csrf-token']").attr("content");
+  $(document).ready(function(){
+    $('#test').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        url:id,
+        success:function(data){
+          $('.result').html(data);
+        }
+      })
+    })
+  })
 
 
 
-// $.ajax(
-
-// {
-
-//     url: "users/"+id,
-
-//     type: 'DELETE',
-
-//     data: {
-
-//         "id": id,
-
-//         "_token": token,
-
-//     },
-
-//     success: function (){
-
-//         console.log("it Works");
-
-//     }
-
-// });
-// data:{'_method':'DELETE'},
-// send this data with your ajax call.
-
-
-// })
   </script>
 
 @endsection
