@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Managed Product')
+@section('title', 'All Managed Product')
 
 
 @section('content')
@@ -145,26 +145,6 @@
     // });
   });
 
-
-
-    // image preview
-
-    function preview_image(event)
-    {
-     var reader = new FileReader();
-     reader.onload = function()
-     {
-      var output = document.getElementById('image');
-      output.src = reader.result;
-     }
-     reader.readAsDataURL(event.target.files[0]);
-    }
-
-
-
-
-event.preventDefault();
-})
 // view javascript
 
 $(document).ready(function(){
@@ -175,7 +155,7 @@ $(document).ready(function(){
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('viewproduct')}}',
+        url:'{{route('allviewproduct')}}',
         data:'view='+id,
         success:function(data){
           $('#view').html(data);
@@ -196,7 +176,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('vieweditproduct')}}',
+        url:'{{route('allvieweditproduct')}}',
         data:'edit='+id,
         success:function(data){
           $('#edit').html(data);
@@ -214,7 +194,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('viewdeleteproduct')}}',
+        url:'{{route('allviewdeleteproduct')}}',
         data:'delete='+id,
         success:function(data){
           $('#delete').html(data);
