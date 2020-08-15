@@ -42,8 +42,17 @@ class ProductController extends Controller
     public function product()
     {
         //
-        $products = Product::with(['picture', 'category'])->where('users_id', Auth::user()->id)->get();
+        $products = Product::with(['picture', 'category'])->orderBy('id','desc')->where('users_id', Auth::user()->id)->get();
         return view('pages', compact('products'));
+    }
+
+    public function allproduct()
+    {
+        //
+         //
+         $categories = Category::get();
+         $products = Product::with(['picture', 'category'])->where('users_id', Auth::user()->id)->paginate(10);
+         return view('admin.product', compact(['products', 'categories']));
     }
 
     /**
@@ -109,19 +118,12 @@ class ProductController extends Controller
 
     public function marketerProduct(AdminProductRequest $request)
     {
-        //
-        $request->validate([
-            'name' => 'required|string',
-            'category' => 'required|string',
-            'oldprice' => 'required|numeric',
-            'newprice' => 'required|numeric',
-            'location' => 'required|string',
-            'quantity' => 'required|numeric',
-            'description' => 'required|string|min:10',
-            'image' => 'required',
-            // 'image'=>'mimes:png,jpg, png, jpeg, gif, JPG, PNG, JPEG, GIF',
-
-        ]);
+        $file = $request->file('image');
+        $extension = array('jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF', 'JPEG', 'jpeg');
+        $file_extension = $file->getClientOriginalExtension();
+        if (!in_array($file_extension, $extension)) {
+            return redirect()->back()->with('typeerror', "Invalid image");
+        }
 
         function createRandomPassword()
         {
@@ -143,6 +145,16 @@ class ProductController extends Controller
         }
 
         $product = new Product();
+        if ($file = $request->file('image')) {
+            $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+
+            $file->move('asset/images', $file_name);
+            $photo = new Picture();
+            $photo->file = $file_name;
+            $photo->save();
+            $product->picture_id = $photo->id;
+        }
+
         $product->product_name = $request->input('name');
         $product->category_id = $request->input('category');
         $product->oldprice = $request->input('oldprice');
@@ -150,15 +162,6 @@ class ProductController extends Controller
         $product->quantity = $request->input('quantity');
         $product->location = $request->input('location');
         $product->description = $request->input('description');
-        $file_name = "";
-        if ($file = $request->file('image')) {
-            $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
-            $file->move('asset/images', $file_name);
-            $photo = new Picture();
-            $photo->file = $file_name;
-            $photo->save();
-            $product->picture_id = $photo->id;
-        }
         $slug = $request->input('name') . '-' . $request->input('category') . '-N' . $request->input('newprice') . '-' . $request->input('location') . '-' . createRandomPassword();
         $product->slug = $slug;
         $product->user_browser = $_SERVER['HTTP_USER_AGENT'];
@@ -257,8 +260,8 @@ class ProductController extends Controller
     public function update(ProductUpdate $request, $id)
     {
 
-        $product= $request->all();
-        $products = Product::with(['picture', 'category'])->where('id', $id)->get();
+        // $product= $request->all();
+        $products = Product::with(['picture', 'category'])->where('id', $id)->first();
         // foreach ($products as $product) {
             # code...
 
@@ -288,7 +291,7 @@ class ProductController extends Controller
             }
             return $pass;
         }
-        $product = new Product();
+        $product = Product::findOrfail($id);
         if ($file = $request->file('image')) {
 // get the validity of image
             $file = $request->file('image');
@@ -320,13 +323,10 @@ class ProductController extends Controller
         $product->user_ipaddress = $_SERVER['REMOTE_ADDR'];
         $product->users_id = Auth::user()->id;
         //   Product::create($product);
-        return $product ;
-        Product::findOrfail($id)->update($product);
+        // return print_r ($product->toArray) ;
+        $product->update();
+        // Product::findOrfail($id)->update($product);
         return redirect()->back()->with('success', 'product '. $product->product_name .' successfully update to '.$request->input('name'));
-
-
-
-
 
     }
 

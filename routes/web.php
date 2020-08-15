@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,14 +53,13 @@ Route::post('/register', 'RegisterController@register')->name('register');
 Route::group(['middleware' => ['admin']], function () {
     Route::view('admin', 'admin.dashboard' )->name('admin');
     Route::get('/Admin/product', 'ProductController@admin')->name('adminProduct');
+    Route::get('/Admin/products', 'ProductController@allproduct')->name('allproduct');
     Route::post('Admin/product', 'ProductController@adminProduct' );
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
     Route::post('Admin/Category', 'Admin\CategoryController@create' );
-    // Route::post('/Admin/Edit/{id}','ProductController@viewproduct')->name('viewproduct');
     Route::post('viewproduct', 'ProductController@viewproduct')->name('viewproduct');
     Route::post('vieweditproduct', 'ProductController@vieweditproduct')->name('vieweditproduct');
     Route::post('viewdeleteproduct', 'ProductController@viewdeleteproduct')->name('viewdeleteproduct');
-    Route::resource('Admin/products', 'ProductController');
     Route::resource('Admin/products', 'ProductController');
 
 

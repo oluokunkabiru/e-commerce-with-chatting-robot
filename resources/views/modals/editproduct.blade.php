@@ -18,7 +18,7 @@
                       <div class="col-md-4">
                       <div class="form-group">
                           <label for="">Product Name</label>
-                          <input type="text" placeholder="product name" value=" {{ $edit->product_name  }}" name="name" id="name" class="form-control" autocomplete="" autofocus>
+                          <input type="text" placeholder="product name" value="{{ $edit->product_name  }}" name="name" id="name" class="form-control" autocomplete="" autofocus>
                     </div>
                       </div>
                       <div class="col-md-4">
@@ -39,26 +39,26 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label for="">Location (state/city)</label>
-                            <input type="text" name="location" placeholder="Lacation (state/city)" value="{{ $edit->location }}"  id="location" class="form-control">
+                            <input type="text" name="location" placeholder="Location (state/city)" value="{{ $edit->location }}"  id="location" class="form-control">
 
                           </div>
                         </div>
                       <div class="col-md-3">
                       <div class="form-group">
                           <label for="">Old Price</label>
-                          <input type="number" placeholder="Old price"  value="{{ $edit->oldprice }}"  name="oldprice" id="oldprice" step="0.01" class="form-control" autocomplete="" autofocus>
+                          <input type="number" placeholder="Old price" min="1"  value="{{ $edit->oldprice }}"  name="oldprice" id="oldprice" step="0.01" class="form-control" autocomplete="" autofocus>
                         </div>
                       </div>
                       <div class="col-md-3">
                       <div class="form-group">
                         <label for="">New Price</label>
-                        <input type="number" placeholder="New price"  value="{{ $edit->newprice }}"  name="newprice" id="newprice" step="0.01" class="form-control" autocomplete="" autofocus>
+                        <input type="number" placeholder="New price" min="1"  value="{{ $edit->newprice }}"  name="newprice" id="newprice" step="0.01" class="form-control" autocomplete="" autofocus>
                     </div>
                     </div>
                     <div class="col-md-3">
                     <div class="form-group">
                         <label for="">Product Quantity</label>
-                        <input type="number" placeholder="Quantities"  value="{{ $edit->quantity }} "  name="quantity" id="quantity" step="1" class="form-control" autocomplete="" autofocus>
+                        <input type="number" placeholder="Quantities" min="1"  value="{{ $edit->quantity }}"  name="quantity" id="quantity" step="1" class="form-control" autocomplete="" autofocus>
                     </div>
                     </div>
 
@@ -73,8 +73,9 @@
                      <button type="submit"  class="btn btn-success btn-lg ml-3">Update Product </button>
                             <button  class="btn btn-warning btn-lg float-right mr-3" data-dismiss="modal">Cancel</button>
                         </div>
+                    </form>
                         @endsection
-                   </form>
+
 
 
 @endsection

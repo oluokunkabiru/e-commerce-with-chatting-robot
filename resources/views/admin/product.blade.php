@@ -13,15 +13,15 @@
             @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong style="font-size:25px;">Success :{{session('success') }}</strong><br/>
+                <strong style="font-size:15px;">Success :{{session('success') }}</strong><br/>
             </div>
             @endif
 
             @if(session('typeerror'))
             <div class="alert alert-danger alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong style="font-size:25px;">Oops!
-                     {{session('typeerror') }}</strong><br/>
+                <strong style="font-size:20px;">Oops!</strong><br/>
+                    <strong> {{session('typeerror') }}</strong>
             </div>
             @endif
 
@@ -31,7 +31,7 @@
 
             <div class="alert alert-danger alert-dismissible fade show">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong style="font-size:25px;">Oops!
+              <strong style="font-size:20px;">Oops!
                    {{ "Kindly rectify below errors" }}</strong><br/>
               @foreach ($errors->all() as $error)
               {{$error }} <br/>
@@ -77,7 +77,6 @@
                      <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
                         || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
                         || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
-                     || <a href="#test" dataid="{{route('products.show', $product->id)}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fa fa-phone"></i> </a>
                     </td>
                     {{-- {{route('products.show', $product->id)}} --}}
                 </tr>
@@ -186,7 +185,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="">Location (state/city)</label>
-                            <input type="text" name="location" placeholder="Lacation (state/city)" id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}">
+                            <input type="text" name="location" placeholder="Location (state/city)" id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}">
                             @if ($errors->has('location'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('location') }}</strong>
@@ -368,20 +367,6 @@ $(document).ready(function()
       })
     })
   })
-
-
-  $(document).ready(function(){
-    $('#test').on('show.bs.modal', function(e){
-      var id = $(e.relatedTarget).attr('dataid');
-      $.ajax({
-        url:id,
-        success:function(data){
-          $('.result').html(data);
-        }
-      })
-    })
-  })
-
 
 
   </script>
