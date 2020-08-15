@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('marketer.layout')
 @section('title', 'Managed Product')
 
 
@@ -74,9 +74,9 @@
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
-                        || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
-                        || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
+                        || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
+                        || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
                     </td>
                     {{-- {{route('products.show', $product->id)}} --}}
                 </tr>
@@ -182,7 +182,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <div class="form-group">
                             <label for="">Location (state/city)</label>
                             <input type="text" name="location" placeholder="Location (state/city)" id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}">
@@ -193,7 +193,7 @@
                                 @endif
                           </div>
                         </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                           <label for="">Old Price</label>
                           <input type="number" placeholder="Old price" name="oldprice" id="oldprice" step="0.01" class="form-control {{ $errors->has('oldprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
                           @if ($errors->has('oldprice'))
@@ -202,7 +202,7 @@
                                     </span>
                                 @endif
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <label for="">New Price</label>
                         <input type="number" placeholder="New price" name="newprice" id="newprice" step="0.01" class="form-control {{ $errors->has('newprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
                         @if ($errors->has('newprice'))
@@ -211,40 +211,34 @@
                         </span>
                     @endif
                     </div>
-
+                    <div class="col-md-3">
+                        <label for="">Product Quantity</label>
+                        <input type="number" placeholder="Quantities" name="quantity" id="quantity" step="1" class="form-control {{ $errors->has('quantity') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                        @if ($errors->has('quantity'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('quantity') }}</strong>
+                        </span>
+                    @endif
+                    </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="">Product Quantity</label>
-                            <input type="number" placeholder="Quantities" name="quantity" id="quantity" step="1" class="form-control {{ $errors->has('quantity') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
-                            @if ($errors->has('quantity'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('quantity') }}</strong>
-                            </span>
-                        @endif
+
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <textarea name="description" class="textarea form-control" placeholder="Please enter Product descriptions" rows="4"></textarea>
+                                @if ($errors->has('description'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <label for="comment">Product Description</label>
-
-                                <div class="mb-3">
-                                    <textarea name="description" class="textarea form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Please enter Product descriptions" rows="4"></textarea>
-                                </div>
-                                </div>
-                          @if ($errors->has('description'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
                     </div>
-                    </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="submit" class="btn btn-success btn-block btn-lg">Add Product</button>
+                              </div>
 
-
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="submit" class="btn btn-success btn-block btn-lg" id="addproductbt">Add Product</button>
-            </div>
-        </form>
+                        </form>
           </div>
           <!-- /.modal-content -->
         </div>

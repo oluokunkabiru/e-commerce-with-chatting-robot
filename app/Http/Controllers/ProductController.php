@@ -51,8 +51,8 @@ class ProductController extends Controller
         //
          //
          $categories = Category::get();
-         $products = Product::with(['picture', 'category'])->paginate(10);
-         return view('admin.product', compact(['products', 'categories']));
+         $products = Product::with(['picture', 'category','user'])->paginate(10);
+         return view('admin.products', compact(['products', 'categories']));
     }
 
     /**
@@ -110,7 +110,7 @@ class ProductController extends Controller
         $product->slug = $slug;
         $product->user_browser = $_SERVER['HTTP_USER_AGENT'];
         $product->user_ipaddress = $_SERVER['REMOTE_ADDR'];
-        $product->users_id = Auth::user()->id;
+        $product->user_id = Auth::user()->id;
         //   Product::create($product);
         $product->save();
         return redirect()->back()->with('success', "New product add successfully");
@@ -166,7 +166,7 @@ class ProductController extends Controller
         $product->slug = $slug;
         $product->user_browser = $_SERVER['HTTP_USER_AGENT'];
         $product->user_ipaddress = $_SERVER['REMOTE_ADDR'];
-        $product->users_id = Auth::user()->id;
+        $product->user_id = Auth::user()->id;
         //   Product::create($product);
         $product->save();
         return redirect()->back()->with('success', "New product add successfully");
@@ -195,9 +195,9 @@ class ProductController extends Controller
     public function viewdeleteproduct(Request $request){
         $id = $request->input('delete');
 
-        //return dd($categorys);
         $deletes = Product::with(['picture', 'category'])->where('id', $id)->get();
 
+        return view('modals.deleteproduct',compact(['deletes','id']));
 
     }
     public function index()
@@ -321,7 +321,7 @@ class ProductController extends Controller
         $product->slug = $slug;
         $product->user_browser = $_SERVER['HTTP_USER_AGENT'];
         $product->user_ipaddress = $_SERVER['REMOTE_ADDR'];
-        $product->users_id = Auth::user()->id;
+        $product->user_id = Auth::user()->id;
         //   Product::create($product);
         // return print_r ($product->toArray) ;
         $product->update();

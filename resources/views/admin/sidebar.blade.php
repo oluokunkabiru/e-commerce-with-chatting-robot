@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('allproduct') }}" class="nav-link">
         <i class=" nav-icon fas fa-shopping-basket"></i>
               <p>
                All Product
