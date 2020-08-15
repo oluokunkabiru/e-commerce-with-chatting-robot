@@ -1,4 +1,4 @@
-<head>
+{{-- <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,20 +6,17 @@
     <title>Soupe::@yield('title')</title>
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="{{asset('asset/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('asset/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
     <link rel="icon" href="{{ asset('asset/img/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('asset/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset/plugins/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-
+    <!-- <link rel="stylesheet" href="../../../public/asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
+    <body class="skin-blue fixed sidebar-mini sidebar-mini-expand-feature" style="height: auto; min-height: 100%;">
+        <div class="wrapper">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-
+<body class="skin-blue fixed sidebar-mini sidebar-mini-expand-feature" style="height: auto; min-height: 100%;">
+    <div class="wrapper"> --}}
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -27,15 +24,10 @@
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
           </li>
-          {{-- <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{  }}" class="nav-link">Home
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
-          </li> --}}
+
         </ul>
 
- <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
             @guest
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +43,7 @@
                           </div>
                     </li>
                     @else
-                     <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>

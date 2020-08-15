@@ -28,7 +28,7 @@ class ProductController extends Controller
         $categories = Category::get();
 
         $products = Product::with(['picture', 'category'])->where('users_id', Auth::user()->id)->paginate(10);
-        return view('marketers.product', compact(['products', 'categories']));
+        return view('marketer.product', compact(['products', 'categories']));
     }
 
     public function admin()
@@ -51,7 +51,7 @@ class ProductController extends Controller
         //
          //
          $categories = Category::get();
-         $products = Product::with(['picture', 'category'])->where('users_id', Auth::user()->id)->paginate(10);
+         $products = Product::with(['picture', 'category'])->paginate(10);
          return view('admin.product', compact(['products', 'categories']));
     }
 

@@ -67,10 +67,13 @@ Route::group(['middleware' => ['admin']], function () {
 
 // marketer content goes here
 Route::group(['middleware' => ['marketer']], function () {
-    Route::view('marketer', 'marketers.dashboard')->name('marketer');
-    Route::get('/Marketers/product', 'ProductController@marketer')->name('marketerProduct');
-    // Route::view('newproduct', 'marketers.newproduct');
-    Route::post('Marketers/product', 'ProductController@marketerProduct' );
+    Route::view('marketer', 'marketer.dashboard')->name('marketer');
+    Route::get('/Marketer/product', 'ProductController@marketer')->name('marketerProduct');
+    Route::post('Marketer/product', 'ProductController@marketerProduct' );
+    Route::post('viewproduct', 'ProductController@viewproduct')->name('viewproduct');
+    Route::post('vieweditproduct', 'ProductController@vieweditproduct')->name('vieweditproduct');
+    Route::post('viewdeleteproduct', 'ProductController@viewdeleteproduct')->name('viewdeleteproduct');
+    Route::resource('Marketer/products', 'ProductController');
 
 
 

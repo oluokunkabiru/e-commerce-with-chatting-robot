@@ -1,12 +1,10 @@
-@extends('marketers.layout')
+@extends('admin.layout')
 @section('title', 'Managed Product')
-@section('content')
 
+
+@section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
         <div class="jumbotron">
             <a href="#newproduct" class="btn btn-primary" data-toggle="modal"> Add new product</a>
             <div class="card-header">
@@ -15,39 +13,43 @@
             @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong style="font-size:25px;">Success :{{session('success') }}</strong><br/>
+                <strong style="font-size:15px;">Success :{{session('success') }}</strong><br/>
             </div>
             @endif
-            
+
+            @if(session('typeerror'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong style="font-size:20px;">Oops!</strong><br/>
+                    <strong> {{session('typeerror') }}</strong>
+            </div>
+            @endif
+
+
+
             @if($errors->any())
 
             <div class="alert alert-danger alert-dismissible fade show">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong style="font-size:25px;">Oops!
+              <strong style="font-size:20px;">Oops!
                    {{ "Kindly rectify below errors" }}</strong><br/>
               @foreach ($errors->all() as $error)
               {{$error }} <br/>
               @endforeach
             </div>
             @endif
-
             <!-- /.card-header -->
             <div class="card-body">
               <table id="product" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                  <th>ID</th>
                    <th>Image</th>
                   <th>Name</th>
-                  <th>Department </th>
-                  <th>Old Price</th>
                   <th>New Price</th>
                   <th>Location</th>
-                  <th>Quantity</th>
                   <th>Description</th>
-                  <th>Date posted</th>
                   <th>Action</th>
-                  <th>Date Posted</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,22 +63,22 @@
                   @php
                  $picture= $product->picture ? $product->picture->file :"";
                   @endphp
-
-                  @php
+                    @php
                  $categorys = $product->category ? $product->category->category:"";
                   @endphp
                   <td> <img src="../{{$picture}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
-                  <td>{{ $categorys }}</td>
-                  <td>{{ $product->oldprice }}</td>
-                  <td>{{ $product->newprice }}</td>
+                  <td>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
-                  <td>{{ $product->quantity }}</td>
                   <td>{{ $product->description }}</td>
-                  <td>{{ $product->city}}</td>
-                  <td>{{ $product->region }}</td>
+                  <td>
+                        {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                  <td>{{ $product->created_at }}</td>
+                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
+                        || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
+                        || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                    </td>
+                    {{-- {{route('products.show', $product->id)}} --}}
                 </tr>
                     @endforeach
                 @endif
@@ -88,15 +90,10 @@
                     <th>ID</th>
                     <th>Image</th>
                    <th>Name</th>
-                   <th>Department </th>
-                   <th>Old Price</th>
                    <th>New Price</th>
                    <th>Location</th>
-                   <th>Quantity</th>
                    <th>Description</th>
-                   <th>Date posted</th>
                    <th>Action</th>
-                   <th>Date Posted</th>
                 </tr>
                 </tfoot>
               </table>
@@ -104,9 +101,26 @@
             <div class="float-right">
                 {{ $products->links() }}
             </div>
-            <!-- /.card-body -->
-          </div>
-      </div><!-- /.container-fluid -->
+
+
+{{-- view product --}}
+            <div class="modal" id="view">          </div>
+
+    {{-- end view product --}}
+    {{-- edit product --}}
+    <div class="modal" id="edit"></div>
+    {{-- /end view --}}
+    <div class="modal" id="test">
+       <div class="result"></div>
+      </div>
+
+
+              {{-- /end view --}}
+
+              <div class="modal" id="delete"></div>
+
+
+
       <div class="modal fade" id="newproduct" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -117,9 +131,8 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('marketerProduct') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('marketerProduct')}}" method="post" enctype="multipart/form-data">
                     {{ @csrf_field() }}
-
 
                     <div class="row">
                         <div class="col-md-4">
@@ -128,7 +141,7 @@
 
                             <label for="exampleInputFile">Upload Product  Picture</label>
 
-                           <input type="file" accept="image/*" onchange="preview_image(event)" name="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" >
+                            <input type="file" accept="image/*" onchange="preview_image(event)" name="image" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" >
 
                            @if ($errors->has('image'))
                            <span class="invalid-feedback" role="alert">
@@ -172,7 +185,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="">Location (state/city)</label>
-                            <input type="text" name="location" placeholder="Lacation (state/city)" id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}">
+                            <input type="text" name="location" placeholder="Location (state/city)" id="location" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}">
                             @if ($errors->has('location'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('location') }}</strong>
@@ -211,11 +224,13 @@
                             </span>
                         @endif
                         </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
+                        <div class="col-md-8">
                             <label for="comment">Product Description</label>
-                            <textarea class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Please descriped your product here, for yout customers" rows="5" id="comment"></textarea>
-                          </div>
+
+                                <div class="mb-3">
+                                    <textarea name="description" class="textarea form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Please enter Product descriptions" rows="4"></textarea>
+                                </div>
+                                </div>
                           @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -235,19 +250,27 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-    </section>
-</div>
-
+      </div>
+        </div>
 @endsection
-</div>
-</div>
+
 @section('script')
 
 <script>
     // table view
     $(function () {
       $('#product').DataTable();
-    });
+
+    // $('#product').DataTable({
+    //   "paging": true,
+    //   "lengthChange": false,
+    //   "searching": true,
+    //   "ordering": true,
+    //   "info": true,
+    //   "autoWidth": false,
+    // });
+  });
+
 
 
     // image preview
@@ -262,16 +285,7 @@
      }
      reader.readAsDataURL(event.target.files[0]);
     }
-    function preview_img(event)
-    {
-     var reader = new FileReader();
-     reader.onload = function()
-     {
-      var output = document.getElementById('output_image');
-      output.src = reader.result;
-     }
-     reader.readAsDataURL(event.target.files[0]);
-    }
+
 
     // add new product
     $('#addproductbtn').click(function(event){
@@ -296,6 +310,64 @@ $.ajax({
 
 event.preventDefault();
 })
+// view javascript
+
+$(document).ready(function(){
+    $('#view').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('viewproduct')}}',
+        data:'view='+id,
+        success:function(data){
+          $('#view').html(data);
+        }
+      })
+    })
+  })
+
+
+//   edit product javascript
+
+$(document).ready(function()
+    {
+    $('#edit').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('vieweditproduct')}}',
+        data:'edit='+id,
+        success:function(data){
+          $('#edit').html(data);
+        }
+      })
+    })
+    })
+
+// preview delete file
+  $(document).ready(function(){
+    $('#delete').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('viewdeleteproduct')}}',
+        data:'delete='+id,
+        success:function(data){
+          $('#delete').html(data);
+        }
+      })
+    })
+  })
+
 
   </script>
 
