@@ -71,13 +71,13 @@ Route::group(['middleware' => ['admin']], function () {
 
 // marketer content goes here
 Route::group(['middleware' => ['marketer']], function () {
-    Route::view('marketer', 'marketer.dashboard')->name('marketer');
-    Route::get('/Marketer/product', 'ProductController@marketer')->name('marketerProduct');
-    Route::post('Marketer/product', 'ProductController@marketerProduct' );
-    Route::post('viewproduct', 'ProductController@viewproduct')->name('viewproduct');
-    Route::post('vieweditproduct', 'ProductController@vieweditproduct')->name('vieweditproduct');
-    Route::post('viewdeleteproduct', 'ProductController@viewdeleteproduct')->name('viewdeleteproduct');
-    // Route::resource('Marketer/products', 'ProductController');
+    Route::get('/Marketer', 'Marketer\MarketerProductController@index')->name('marketer');
+    Route::get('/Marketer/Product', 'Marketer\MarketerProductController@marketerproductpage')->name('marketerProduct');
+    // Route::post('Marketer/product', 'Marketer\MarketerProductController@store' );
+    Route::post('marketerviewproduct', 'Marketer\MarketerProductController@viewproduct')->name('marketerviewproduct');
+    Route::post('marketervieweditproduct', 'Marketer\MarketerProductController@vieweditproduct')->name('marketervieweditproduct');
+    Route::post('marketerviewdeleteproduct', 'Marketer\MarketerProductController@viewdeleteproduct')->name('marketerviewdeleteproduct');
+    Route::resource('Marketer/marketerproduct', 'Marketer\MarketerProductController');
 
 
 

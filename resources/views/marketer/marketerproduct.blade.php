@@ -131,7 +131,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('marketerProduct')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('marketerproduct.store')}}" method="post" enctype="multipart/form-data">
                     {{ @csrf_field() }}
 
                     <div class="row">
@@ -314,7 +314,7 @@ $(document).ready(function(){
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('viewproduct')}}',
+        url:'{{route('marketerviewproduct')}}',
         data:'view='+id,
         success:function(data){
           $('#view').html(data);
@@ -335,7 +335,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('vieweditproduct')}}',
+        url:'{{route('marketervieweditproduct')}}',
         data:'edit='+id,
         success:function(data){
           $('#edit').html(data);
@@ -353,7 +353,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('viewdeleteproduct')}}',
+        url:'{{route('marketerviewdeleteproduct')}}',
         data:'delete='+id,
         success:function(data){
           $('#delete').html(data);

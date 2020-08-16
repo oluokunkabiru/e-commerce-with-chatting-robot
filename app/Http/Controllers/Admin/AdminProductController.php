@@ -7,6 +7,7 @@ use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AdminProductRequest;
 
@@ -33,7 +34,7 @@ class AdminProductController extends Controller
          //
          $categories = Category::get();
          $products = Product::with(['picture', 'category','user'])->paginate(10);
-         return view('admin.products', compact(['products', 'categories']));
+         return view('admin.allproducts', compact(['products', 'categories']));
     }
 
     public function adminproductpage()
@@ -179,9 +180,77 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductUpdate $request, $id)
     {
-        //
+
+        // $product= $request->all();
+        $products = Product::with(['picture', 'category'])->where('id', $id)->first();
+        // foreach ($products as $product) {
+            # code...
+
+        if($request->file('image')){
+            $file_delete=Picture::findOrfail($products->picture->id);
+            $file_delete->forceDelete();
+            unlink(public_path()."/". $file_delete->file);
+         }
+
+
+
+            function createRandomPasswordss()
+            {
+                $chars = "0123456789012345678901234567890123456789";
+                srand((float)microtime() * 1000000);
+                $i = 0;
+                $pass = '';
+                while ($i <= 5) {
+
+                    $num = rand() % 33;
+
+                    $tmp = substr($chars, $num, 1);
+
+                    $pass = $pass . $tmp;
+
+                    $i++;
+                }
+                return $pass;
+            }
+            $product = Product::findOrfail($id);
+            if ($file = $request->file('image')) {
+    // get the validity of image
+                $file = $request->file('image');
+                $extension = array('jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF', 'JPEG', 'jpeg');
+                $file_extension = $file->getClientOriginalExtension();
+                if (!in_array($file_extension, $extension)) {
+                    return redirect()->back()->with('typeerror', "This must be of Image of type JPG, PNG, GIF etc.");
+                }
+                // save the image
+                $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+                $file->move('asset/images', $file_name);
+                $photo = new Picture();
+                $photo->file = $file_name;
+                $photo->save();
+                $product->picture_id = $photo->id;
+
+            }
+
+        $product->product_name = $request->input('name');
+        $product->category_id = $request->input('category');
+        $product->oldprice = $request->input('oldprice');
+        $product->newprice = $request->input('newprice');
+        $product->quantity = $request->input('quantity');
+        $product->location = $request->input('location');
+        $product->description = $request->input('description');
+        $slug = $request->input('name') . '-' . $request->input('category') . '-N' . $request->input('newprice') . '-' . $request->input('location') . '-' . createRandomPasswordss();
+        $product->slug = $slug;
+        $product->user_browser = $_SERVER['HTTP_USER_AGENT'];
+        $product->user_ipaddress = $_SERVER['REMOTE_ADDR'];
+        $product->user_id = Auth::user()->id;
+        //   Product::create($product);
+        // return print_r ($product->toArray) ;
+        $product->update();
+        // Product::findOrfail($id)->update($product);
+        return redirect()->back()->with('success', 'product '. $product->product_name .' successfully update to '.$request->input('name'));
+
     }
 
     /**
@@ -190,8 +259,20 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+        $product = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        // return $products;
+            # code...
+
+        if($product->picture_id){
+            $file_delete=Picture::findOrfail($product->picture->id);
+            $file_delete->forceDelete();
+            unlink(public_path()."/". $file_delete->file);
+        }
+        $delete=intval($id);
+        Product::findOrfail($delete)->forceDelete();
+        return redirect()->back()->with('success', 'The product('. $product->product_name .') has been  deleted successfully');
     }
 }

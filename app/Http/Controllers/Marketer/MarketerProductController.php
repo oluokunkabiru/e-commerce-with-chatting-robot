@@ -1,43 +1,60 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Marketer;
 
 use App\Picture;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Validator;
-use App\Http\Requests\AdminProductRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductUpdate;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AdminProductRequest;
 
-class ProductController extends Controller
+class MarketerProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     *
      */
 
-
-
-    public function marketer()
+    public function marketerproductpage()
     {
         //
         $categories = Category::get();
-
         $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->paginate(10);
-        return view('marketer.product', compact(['products', 'categories']));
+        return view('marketer.marketerproduct', compact(['products', 'categories']));
+    }
+    public function viewproduct(Request $request)
+    {
+        $id = $request->input('view');
+        $view = Product::with(['picture', 'category'])->where('id', $id)->firstOrfail();
+        return view('marketer.viewproduct', compact(['view']));
     }
 
-   
+    public function vieweditproduct(Request $request)
+    {
+        $id = $request->input('edit');
+        $categories = Category::get();
+        $edit = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        return view('marketer.vieweditproduct', compact(['id','categories','edit']));
+        //,
+    }
 
-    public function product()
+
+    public function viewdeleteproduct(Request $request){
+        $id = $request->input('delete');
+
+        $delete = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+
+        return view('marketer.viewdeleteproduct',  compact(['delete','id']));
+
+    }
+    public function index()
     {
         //
-        $products = Product::with(['picture', 'category'])->orderBy('id','desc')->where('users_id', Auth::user()->id)->get();
-        return view('pages', compact('products'));
+        return view('marketer.dashboard');
     }
 
 
@@ -47,10 +64,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function marketerProduct(AdminProductRequest $request)
+    public function create()
     {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AdminProductRequest $request)
+    {
+        //
+
         $file = $request->file('image');
         $extension = array('jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF', 'JPEG', 'jpeg');
         $file_extension = $file->getClientOriginalExtension();
@@ -58,7 +86,7 @@ class ProductController extends Controller
             return redirect()->back()->with('typeerror', "Invalid image");
         }
 
-        function createRandomPassword()
+        function createRandomPasswords()
         {
             $chars = "0123456789012345678901234567890123456789";
             srand((float)microtime() * 1000000);
@@ -95,7 +123,7 @@ class ProductController extends Controller
         $product->quantity = $request->input('quantity');
         $product->location = $request->input('location');
         $product->description = $request->input('description');
-        $slug = $request->input('name') . '-' . $request->input('category') . '-N' . $request->input('newprice') . '-' . $request->input('location') . '-' . createRandomPassword();
+        $slug = $request->input('name') . '-' . $request->input('category') . '-N' . $request->input('newprice') . '-' . $request->input('location') . '-' . createRandomPasswords();
         $product->slug = $slug;
         $product->user_browser = $_SERVER['HTTP_USER_AGENT'];
         $product->user_ipaddress = $_SERVER['REMOTE_ADDR'];
@@ -103,60 +131,9 @@ class ProductController extends Controller
         //   Product::create($product);
         $product->save();
         return redirect()->back()->with('success', "New product add successfully");
-    }
 
 
 
-    public function viewproduct(Request $request)
-    {
-        $id = $request->input('view');
-        $views = Product::with(['picture', 'category'])->where('id', $id)->get();
-        return view('modals.viewproduct',compact('views'));
-    }
-
-    public function vieweditproduct(Request $request)
-    {
-        $id = $request->input('edit');
-        $categories = Category::get();
-
-        //return dd($categorys);
-        $edits = Product::with(['picture', 'category'])->where('id', $id)->get();
-        return view('modals.editproduct', compact(['id','categories','edits']));
-    }
-
-
-    public function viewdeleteproduct(Request $request){
-        $id = $request->input('delete');
-
-        $deletes = Product::with(['picture', 'category'])->where('id', $id)->get();
-
-        return view('modals.deleteproduct',compact(['deletes','id']));
-
-    }
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -168,8 +145,6 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-
-        return view('includes.show',compact('id'));
     }
 
     /**
@@ -262,9 +237,6 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'product '. $product->product_name .' successfully update to '.$request->input('name'));
 
     }
-
-
-
 
     /**
      * Remove the specified resource from storage.
