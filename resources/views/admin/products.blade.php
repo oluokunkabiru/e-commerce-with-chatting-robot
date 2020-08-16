@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Managed Product')
+@section('title', 'All Managed Product')
 
 
 @section('content')
@@ -62,14 +62,15 @@
                 <td scope="row">{{ ++$i }}</td>
                   @php
                  $picture= $product->picture ? $product->picture->file :"";
-                  @endphp
-                    @php
+
                  $categorys = $product->category ? $product->category->category:"";
+                 $user = $product->user  ? $product->user->name:"";
                   @endphp
                   <td> <img src="../{{$picture}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
                   <td>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
+                  <td>{{ $user }}</td>
                   <td>{{ $product->description }}</td>
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
@@ -92,6 +93,7 @@
                    <th>Name</th>
                    <th>New Price</th>
                    <th>Location</th>
+                   <th>Marketer Name</th>
                    <th>Description</th>
                    <th>Action</th>
                 </tr>
@@ -143,26 +145,6 @@
     // });
   });
 
-
-
-    // image preview
-
-    function preview_image(event)
-    {
-     var reader = new FileReader();
-     reader.onload = function()
-     {
-      var output = document.getElementById('image');
-      output.src = reader.result;
-     }
-     reader.readAsDataURL(event.target.files[0]);
-    }
-
-
-
-
-event.preventDefault();
-})
 // view javascript
 
 $(document).ready(function(){
@@ -173,7 +155,7 @@ $(document).ready(function(){
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('viewproduct')}}',
+        url:'{{route('allviewproduct')}}',
         data:'view='+id,
         success:function(data){
           $('#view').html(data);
@@ -194,7 +176,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('vieweditproduct')}}',
+        url:'{{route('allvieweditproduct')}}',
         data:'edit='+id,
         success:function(data){
           $('#edit').html(data);
@@ -212,7 +194,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('viewdeleteproduct')}}',
+        url:'{{route('allviewdeleteproduct')}}',
         data:'delete='+id,
         success:function(data){
           $('#delete').html(data);

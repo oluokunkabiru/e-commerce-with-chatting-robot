@@ -52,14 +52,18 @@ Route::post('/register', 'RegisterController@register')->name('register');
 // admin content goew here
 Route::group(['middleware' => ['admin']], function () {
     Route::view('admin', 'admin.dashboard' )->name('admin');
-    Route::get('/Admin/product', 'ProductController@admin')->name('adminProduct');
-    Route::get('/Admin/products', 'ProductController@allproduct')->name('allproduct');
-    Route::post('Admin/product', 'ProductController@adminProduct' );
+    Route::get('/Admin/product','Admin\AdminProduct@admin' )->name('adminProduct');
+    Route::get('/Admin/All Product','Admin\AdminProduct@allproduct')->name('allproduct');
+    Route::post('Admin/product', 'Admin\AdminProduct@adminProduct' );
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
     Route::post('Admin/Category', 'Admin\CategoryController@create' );
-    Route::post('viewproduct', 'ProductController@viewproduct')->name('viewproduct');
-    Route::post('vieweditproduct', 'ProductController@vieweditproduct')->name('vieweditproduct');
-    Route::post('viewdeleteproduct', 'ProductController@viewdeleteproduct')->name('viewdeleteproduct');
+    Route::post('viewproducts', 'Admin\AdminProduct@viewproduct')->name('viewproducts');
+    Route::post('vieweditproducts', 'Admin\AdminProduct@vieweditproduct')->name('vieweditproducts');
+    Route::post('viewdeleteproducts', 'Admin\AdminProduct@viewdeleteproduct')->name('viewdeleteproducts');
+    Route::post('Admin/Category', 'Admin\CategoryController@create' );
+    Route::post('allviewproduct', 'Admin\AdminProduct@allproduct')->name('allviewproduct');
+    Route::post('allvieweditproduct', 'Admin\AdminProduct@allproduct')->name('allvieweditproduct');
+    Route::post('allviewdeleteproduct', 'Admin\AdminProduct@destroy')->name('allviewdeleteproduct');
     Route::resource('Admin/products', 'ProductController');
 
 
