@@ -54,7 +54,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::view('admin', 'admin.dashboard' )->name('admin');
     Route::get('/Admin/product', 'ProductController@admin')->name('adminProduct');
     Route::get('/Admin/All Product', 'ProductController@allproduct')->name('allproduct');
-    Route::post('Admin/product', 'ProductController@adminProduct' );
+    // Route::post('Admin/product', 'ProductController@adminProduct' );
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
     Route::post('Admin/Category', 'Admin\CategoryController@create' );
     Route::post('viewproducts', 'ProductController@viewproduct')->name('viewproducts');
