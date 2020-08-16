@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('adminProduct') }}" class="nav-link">
+            <a href="{{ route('adminproduct') }}" class="nav-link">
         <i class=" nav-icon fas fa-shopping-basket"></i>
               <p>
                My Product

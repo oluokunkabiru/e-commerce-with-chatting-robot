@@ -177,8 +177,8 @@ class ProductController extends Controller
     public function viewproduct(Request $request)
     {
         $id = $request->input('view');
-        $views = Product::with(['picture', 'category'])->where('id', $id)->get();
-        return view('modals.viewproduct',compact('views'));
+        $view = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        return view('modals.viewproduct',compact('view'));
     }
 
     public function vieweditproduct(Request $request)
@@ -187,17 +187,17 @@ class ProductController extends Controller
         $categories = Category::get();
 
         //return dd($categorys);
-        $edits = Product::with(['picture', 'category'])->where('id', $id)->get();
-        return view('modals.editproduct', compact(['id','categories','edits']));
+        $edit = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        return view('modals.editproduct', compact(['id','categories','edit']));
     }
 
 
     public function viewdeleteproduct(Request $request){
         $id = $request->input('delete');
 
-        $deletes = Product::with(['picture', 'category'])->where('id', $id)->get();
+        $delete = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
 
-        return view('modals.deleteproduct',compact(['deletes','id']));
+        return view('modals.deleteproduct',compact(['delete','id']));
 
     }
     public function index()

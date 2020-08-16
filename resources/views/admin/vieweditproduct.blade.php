@@ -1,7 +1,7 @@
 @extends('modals.modallayout')
 @section('title', "Edit : $edit->product_name ")
 @section('content')
-<form action="{{ route('products.update', $id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('adminproduct.update', $id) }}" method="post" enctype="multipart/form-data">
 @method('PUT')
   <input type="hidden"  value = "{{ $id }}" name="id" >
     {{ csrf_field() }}
