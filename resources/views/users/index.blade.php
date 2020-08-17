@@ -1,30 +1,9 @@
 @extends('layout.mainlayout')
 @section('title', 'Dashboard');
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            @include('layout.userprofile')
 
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 <div class="container-fluid">
+
     <div id="accordion">
         <!-------My Account Ordr----------->
 
@@ -104,7 +83,7 @@
       <div class="card-body">
         @if (session('success'))
         <div class="alert alert-success" role="alert" >
-            {{ session('success') }}
+           <strong style="font-size: 15px"> {{ session('success') }}</strong>
           </div>
         @endif
         @if($errors->any())
@@ -119,8 +98,7 @@
         </div>
         @endif
 
-        <form method="post" action="{{ route('profile.update', auth()->id()) }}" enctype="multipart/form-data">
-
+        <form method="post" action="{{route('Profile.update', auth()->id())}}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
           <div class="row">
@@ -329,7 +307,7 @@
             <div class="col">
                 <label for="">Profile Picture</label>
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control-file border" name="profile_picture">
+                    <input type="file" class="form-control-file border" name="image">
 
                 </div>
 

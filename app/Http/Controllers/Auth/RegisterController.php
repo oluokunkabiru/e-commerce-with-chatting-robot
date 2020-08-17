@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use DB;
 use App\User;
+use App\Picture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
 
 class RegisterController extends Controller
 {
@@ -37,11 +37,11 @@ class RegisterController extends Controller
     {
         switch(Auth::user()->role){
             case 'admin':
-            $this->redirectTo = '/admin';
+            $this->redirectTo = '/Admin';
             return $this->redirectTo;
                 break;
             case 'marketer':
-                    $this->redirectTo = '/marketer';
+                    $this->redirectTo = '/Marketer';
                 return $this->redirectTo;
                 break;
                 case 'user':
@@ -109,7 +109,11 @@ class RegisterController extends Controller
             'country' => ['nullable','min:2', 'string'],
         ]);
         // return $request->input();
-
+        $picture = Picture::count('id');
+        $defaut = 'login.png';
+        if($picture<1){
+        Picture::create(['file'=> $defaut]);
+        }
         $user = new User();
         $user->name= ucwords($request->input('name'));
         $user->email=$request->input('email');
@@ -128,4 +132,5 @@ class RegisterController extends Controller
 
 
     }
-}
+
+  }

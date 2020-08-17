@@ -88,8 +88,12 @@ Route::group(['middleware' => ['marketer']], function () {
 Route::group(['middleware' => ['user']], function () {
     Route::view('dashboard', 'users.index')->name('dashboard');
 });
+
+
+
 Route::group(['middleware' => 'auth'], function () {
-    Route::PATCH('/user/profile/{id}', 'UserUpdate@userupdate')->name('profile.update');
+    // Route::PATCH('/user/profile/{id}', 'UserUpdateController')->name('profile.update');
+    Route::resource('Update/Profile', 'UserUpdateController');
 
 });
 
