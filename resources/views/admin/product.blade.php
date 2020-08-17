@@ -110,9 +110,7 @@
     {{-- edit product --}}
     <div class="modal" id="edit"></div>
     {{-- /end view --}}
-    <div class="modal" id="test">
-       <div class="result"></div>
-      </div>
+      
 
 
               {{-- /end view --}}
@@ -280,30 +278,6 @@
     }
 
 
-    // add new product
-    $('#addproductbtn').click(function(event){
-    var form = $('#addproductform')[0];
-    var formData  = new FormData(form);
-$.ajax({
-    type:'POST',
-    url: 'addproduct',
-    data: formData,
-
-    success: function (data) {
-    var result=data;
-    // $("#fooditemerror").html(result);
-    // if(result=="Category Created"){
-    //  window.location.assign('managefood');
-    //  }
-    },
-    cache:false,
-    contentType:false,
-    processData:false
-});
-
-event.preventDefault();
-})
-// view javascript
 
 $(document).ready(function(){
     $('#view').on('show.bs.modal', function(e){

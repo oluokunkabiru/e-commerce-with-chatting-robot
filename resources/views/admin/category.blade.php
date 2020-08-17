@@ -2,11 +2,6 @@
 @section('title', 'Managed Category')
 @section('content')
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
         <div class="jumbotron">
             <a href="#newcategory" class="btn btn-primary" data-toggle="modal"> Add new Category</a>
 
@@ -19,7 +14,7 @@
                 <strong style="font-size:25px;">Success :{{session('success') }}</strong><br/>
             </div>
             @endif
-            
+
             @if($errors->any())
 
             <div class="alert alert-danger alert-dismissible fade show">
@@ -57,6 +52,10 @@
 
 
                   <td>{{ $category->created_at }}</td>
+                  <td>
+                     <a href="#edit"  dataid="{{$category->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
+                    || <a href="#delete" dataid="{{$category->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
+                  </td>
                 </tr>
                     @endforeach
                 @endif
@@ -72,7 +71,13 @@
             </div>
             <!-- /.card-body -->
           </div>
-      </div><!-- /.container-fluid -->
+
+
+
+
+      <div class="modal" id="edit"></div>
+      <div class="modal" id="delete"></div>
+
       <div class="modal fade" id="newcategory" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -83,7 +88,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="Category" method="post">
+                <form action="{{ route('category.store') }}" method="post">
                     {{ @csrf_field() }}
 
                     <div class="row">
@@ -91,13 +96,12 @@
                           <label for="">Category Name</label>
                          </div>
                          <div class="col-md-8">
-                              <input type="text" placeholder="Category name" name="category" id="name" class="form-control @error('name') is-invalid  @enderror" autocomplete="" autofocus>
-                          @error('name')
-                          <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-
-                          @enderror
+                            <input type="text" placeholder="Category name" name="category" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                            @if ($errors->has('name'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('name') }}</strong>
+                                      </span>
+                                  @endif
                          </div>
                     </div>
 
@@ -113,7 +117,6 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-    </section>
 </div>
 @endsection
 
@@ -149,29 +152,41 @@
      reader.readAsDataURL(event.target.files[0]);
     }
 
-    // add new product
-    $('#addproductbtn').click(function(event){
-    var form = $('#addproductform')[0];
-    var formData  = new FormData(form);
-$.ajax({
-    type:'POST',
-    url: 'addproduct',
-    data: formData,
+    $(document).ready(function(){
+    $('#edit').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('editcategory')}}',
+        data:'edit='+id,
+        success:function(data){
+          $('#edit').html(data);
+        }
+      })
+    })
+  })
 
-    success: function (data) {
-    var result=data;
-    // $("#fooditemerror").html(result);
-    // if(result=="Category Created"){
-    //  window.location.assign('managefood');
-    //  }
-    },
-    cache:false,
-    contentType:false,
-    processData:false
-});
 
-event.preventDefault();
-})
+
+  $(document).ready(function(){
+    $('#delete').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('deletecategory')}}',
+        data:'delete='+id,
+        success:function(data){
+          $('#delete').html(data);
+        }
+      })
+    })
+  })
 
   </script>
 

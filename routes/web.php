@@ -56,7 +56,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/Admin/All Product', 'Admin\AdminProductController@allproduct')->name('allproduct');
     // Route::post('Admin/product', 'Admin\AdminProductController@store' );
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
-    Route::post('Admin/Category', 'Admin\CategoryController@create' );
+    Route::post('editcategory', 'Admin\CategoryController@show' )->name('editcategory');
+    Route::post('deletecategory', 'Admin\CategoryController@delete' )->name('deletecategory');
     Route::post('viewproducts', 'Admin\AdminProductController@viewproduct')->name('viewproducts');
     Route::post('vieweditproducts', 'Admin\AdminProductController@vieweditproduct')->name('vieweditproducts');
     Route::post('viewdeleteproducts', 'Admin\AdminProductController@viewdeleteproduct')->name('viewdeleteproducts');
@@ -65,6 +66,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('allvieweditproduct','Admin\AdminProductController@allproduct' )->name('allvieweditproduct');
     Route::post('allviewdeleteproduct', 'Admin\AdminProductController@viewdeleteproduct')->name('allviewdeleteproduct');
     Route::resource('Admin/adminproduct', 'Admin\AdminProductController');
+    Route::resource('Admin/category', 'Admin\CategoryController');
 
 
 });
