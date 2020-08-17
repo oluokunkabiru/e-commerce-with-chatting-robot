@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Picture;
+use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Product;
 
 class CategoryController extends Controller
 {
@@ -47,13 +48,27 @@ class CategoryController extends Controller
     }
     public function destroy(Request $request, $id){
         $category = Category::where('id', $id)->firstOrFail();
-        $product = Product::findOrFail($category->id)->get();
-        // return $product;
+        $products = Product::where('category_id', $id)->get();
+        foreach($products as $product)
+        {
+                if($product->picture_id){
+                    $file_delete=Picture::findOrfail($product->picture->id);
+                    $file_delete->forceDelete();
+                  unlink(public_path()."/". $file_delete->file);
+            }
+            $delete=intval($product->id);
+            Product::findOrfail($delete)->forceDelete();
+        }
+
         $category->forceDelete();
         return  redirect()->back()->with('success','Category deleted successfully');
 
 
     }
+
+
+
+    
     public function store(Request $request)
     {
         $request->validate([
