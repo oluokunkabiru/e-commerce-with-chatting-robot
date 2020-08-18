@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     //
     public function index(){
-        $categories = Category::get();
+        $categories = Category::orderBy('id', 'DESC')->get();
         return view('admin.category', compact('categories'));
     }
 
@@ -68,7 +68,7 @@ class CategoryController extends Controller
 
 
 
-    
+
     public function store(Request $request)
     {
         $request->validate([

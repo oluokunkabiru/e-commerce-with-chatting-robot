@@ -58,9 +58,9 @@
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                             <li>
-                                <form action="{{ route('addtocart')}}" method="post">
+                                <form action="{{ route('AddtoCart.store')}}" method="post">
                                     <input type="hidden" name="id" value="{{ $product->id }}">
-                                    @csrf
+                                    {{ csrf_field() }}
                                     <button type="submit"><i class="fa fa-shopping-cart"></i></button>
                                 </form>
 

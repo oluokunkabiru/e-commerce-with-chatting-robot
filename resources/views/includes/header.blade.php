@@ -26,7 +26,6 @@
             <div>English</div>
             <span class="arrow_carrot-down"></span>
             <ul>
-                <li><a href="#">Spanis</a></li>
                 <li><a href="#">English</a></li>
             </ul>
         </div>
@@ -122,7 +121,6 @@
                             <div>English</div>
                             <span class="arrow_carrot-down"></span>
                             <ul>
-                                <li><a href="#">Spanis</a></li>
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
@@ -188,13 +186,7 @@
                 </nav>
             </div>
             <div class="col-lg-3">
-                <div class="header__cart">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                    </ul>
-                    <div class="header__cart__price">item: <span>N150.00</span></div>
-                </div>
+                @include('includes.cart')
             </div>
         </div>
         <div class="humberger__open">

@@ -35,7 +35,7 @@ Route::get('/contact', 'PagesController@contact')->name('contact');
 // shop details view
 Route::get('/shop-details', 'PagesController@shopDetails')->name('shopDetails');
 // shop chart view
-Route::get('/shoping-cart', 'PagesController@shopCart')->name('shopingCart');
+// Route::get('/shoping-cart', 'PagesController@shopCart')->name('shopingCart');
 // checkout view
 Route::get('/checkout', 'PagesController@blogDetails')->name('checkout');
 // blog view
@@ -95,13 +95,20 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::PATCH('/user/profile/{id}', 'UserUpdateController')->name('profile.update');
     Route::resource('Update/Profile', 'UserUpdateController');
 
+
 });
+
+
+// add to cart
+Route::resource('AddtoCart', 'CartController');
+Route::put('/Cart/update/{cart}', 'CartController@update')->name('cartupdate');
+
 
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-Route::get('/cart', 'AddtoCart@index')->name('cart');
-Route::post('cart','AddtoCart@store')->name('addtocart');
+// Route::get('/ShoppingCart', 'CartController@index')->name('shopingCart');
+// Route::post('cart','AddtoCart@store')->name('addtocart');
 // locate
 Route::view('/locate', 'users.locate' );
 

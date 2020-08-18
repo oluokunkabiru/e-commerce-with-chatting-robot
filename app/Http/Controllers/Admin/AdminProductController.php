@@ -24,7 +24,7 @@ class AdminProductController extends Controller
     public function product()
     {
         //
-        $products = Product::with(['picture', 'category'])->orderBy('id','desc')->where('users_id', Auth::user()->id)->get();
+        $products = Product::with(['picture', 'category'])->orderBy('id', 'DESC')->where('users_id', Auth::user()->id)->get();
         return view('pages', compact('products'));
     }
 
@@ -33,7 +33,7 @@ class AdminProductController extends Controller
         //
          //
          $categories = Category::get();
-         $products = Product::with(['picture', 'category','user'])->paginate(10);
+         $products = Product::with(['picture', 'category','user'])->orderBy('id', 'DESC')->paginate(10);
          return view('admin.allproducts', compact(['products', 'categories']));
     }
 
@@ -41,7 +41,7 @@ class AdminProductController extends Controller
     {
         //
         $categories = Category::get();
-        $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->paginate(10);
+        $products = Product::with(['picture', 'category'])->orderBy('id', 'DESC')->where('user_id', Auth::user()->id)->paginate(10);
         return view('admin.adminproduct', compact(['products', 'categories']));
     }
     public function viewproduct(Request $request)

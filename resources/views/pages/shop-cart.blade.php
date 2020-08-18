@@ -20,14 +20,41 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Shoping Cart Section Begin -->
+
     <section class="shoping-cart spad">
+        @if(Cart::count() >0)
         <div class="container">
-            <div class="row">
+        <h4 class="text-center mt-3 mb-5">Your Shopping Cart contains <span class="font-weight-bold">{{ Cart::count() }}</span> items</h4>
+        @if($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Oops!</strong>
+            @foreach ($errors as $error )
+            {{ $error }}
+            @endforeach
+
+          </div>
+        @endif
+        @if(session('fail'))
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Success!</strong> {{ session('fail') }}
+        </div>
+        @endif
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Success!</strong> {{ session('success') }}
+        </div>
+        @endif
+
+        <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
                             <thead>
                                 <tr>
+                                    <th>S/N</th>
                                     <th class="shoping__product">Products</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
@@ -36,72 +63,53 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i=1;
+                                @endphp
+                                @foreach (Cart::content() as $item)
+
+
                                 <tr>
+                                    <td>{{ $i }}</td>
                                     <td class="shoping__cart__item">
-                                        <img src="{{ asset('asset/img/cart/cart-1.jpg') }}" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="{{ $item->model->picture->file }}" alt="{{ $item->model->product_name }}" style="width: 120px">
+                                        <h5>{{ $item->model->product_name }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        <i class="fa">&#8358;</i> {{ $item->model->newprice}}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <input type="number" name="quantity" id="upCart"  value="{{ $item->qty }}" max="{{ $item->model->quantity }}" min="1">
+                                                <input type="hidden" id="rowId"  value="{{ $item->rowId }}" style="max-width:80px;">
+                                                <input type="hidden"  id="proId" value="{{ $item->model->id }}" style="max-width:80px;">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        <i class="fa">&#8358;</i> {{ Cart::subtotal() }}
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                        <form action="{{route('AddtoCart.destroy', $item->rowId )}}" method="post" id="delete-form{{$item->rowId}}" style="display:none">
+                                            @csrf
+                                             @method('DELETE')
+                                        </form>
+                                       <button onclick="if(confirm('Are you sure you want to delete this product?')){
+                                       event.defaultPrevented;
+                                       document.getElementById('delete-form{{$item->rowId}}').submit();
+                                       } else{
+                                           event.defaultPrevented;
+                                       }" class="btn btn-danger btn-sm" ><span class="icon_close"></span></button>
+
+
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="{{ asset('asset/img/cart/cart-2.jpg') }}" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="{{ asset('asset/img/cart/cart-3.jpg') }}" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                @php
+                                    $i++;
+                                @endphp
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -138,9 +146,53 @@
                 </div>
             </div>
         </div>
+
+
+        @else
+            <h3 class="text-center font-weight-bold">You dont Have any product on Cart</h3>
+
+        @endif
     </section>
+
     <!-- Shoping Cart Section End -->
 
 
+<script>
+    
 
+
+
+     $(document).ready(function(){
+         $('.qtybtn').on('click', function()){
+             alert('hello')
+         }
+       <?php
+       for($i=1; $i< 20; $i++)
+        {
+          ?>
+ $('#upCart<?php echo $i; ?>').on('change keyup', function(){
+var newqty= $('#upCart<?php echo $i; ?>').val();
+var rowId= $('#rowId<?php echo $i; ?>').val();
+var proId = $('#proId<?php echo $i; ?>').val();
+alert(rowId);
+if(newqty <= 0){alert('Please enter valid number')}
+else{
+      $.ajax({
+        url: "{{ url('/AddtoCart/update') }}/" + rowId,
+        type:"PUT",
+        dataType:"html",
+        data: "qty=" + newqty + "& rowId=" + rowId + "& proId=" + proId,
+        success:function(response){
+     //    console.log(response);
+    window.location.href='{{ route('AddtoCart.index')  }}'
+        //$('#updateDiv').html(response);
+
+         }
+});
+}
+
+}
+<?php } ?>
+});
+</script>
 @endsection
