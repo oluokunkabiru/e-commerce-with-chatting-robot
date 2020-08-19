@@ -54,7 +54,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>S/N</th>
+                                    <th class="mr-3">S/N</th>
                                     <th class="shoping__product">Products</th>
                                     <th>Price</th>
                                     <th>Quantity</th>

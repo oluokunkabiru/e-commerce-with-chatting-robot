@@ -73,11 +73,16 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1" name="quantity">
+                                    <input type="text" value="1" id="upCart" name="quantity">
+
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('AddtoCart.store') }}" class="primary-btn">ADD TO CARD</a>
+                        <form action="{{ route('AddtoCart.store')}}" method="post">
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            {{ csrf_field() }}
+                        <button type="submit" class="primary-btn">ADD TO CARD</button>
+                        </form>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>{{ $product->quantity }}</span></li>
@@ -123,7 +128,14 @@
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="{{ route('AddtoCart.store') }}"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li>
+                                    <form action="{{ route('AddtoCart.store')}}" method="post">
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                        {{ csrf_field() }}
+
+                                    <button type="submit"><i class="fa fa-shopping-cart"></i></button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -146,9 +158,10 @@
 
 @endsection
 @section('script')
+
+
 <script>
 $(document).ready(function(){
-alert('hello');
 var proQty = $('.pro-qty');
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
@@ -192,3 +205,4 @@ var proQty = $('.pro-qty');
 })
 
 </script>
+@endsection
