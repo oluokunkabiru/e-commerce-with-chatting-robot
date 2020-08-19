@@ -202,41 +202,43 @@
     /*-------------------
 		Quantity change
 	--------------------- */
-    var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
-    proQty.on('click', '.qtybtn', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('#upCart').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find('#upCart').val(newVal);
-        var rowId = $button.parent().find('#rowId').val();
-        var proId = $button.parent().find('#proId').val();
-        // alert('quantity = ' + newVal + '\n Row Id = ' + rowId + '\n Pro Id' + proId);
-        if(newVal <= 0){alert('Please enter valid number')}
-        else{
-        $.ajax({
-            url: "{{ route('cartupdate',"+ rowId+") }}" ,
-            type:"PUT",
-            dataType:"html",
-            data: "qty=" + newVal + "& rowId=" + rowId + "& proId=" + proId,
-            success:function(response){
-        //    console.log(response);
-                window.location.href = "{{ route('AddtoCart.index')  }}";
-            //$('#updateDiv').html(response);
+    // var proQty = $('.pro-qty');
+    // proQty.prepend('<span class="dec qtybtn">-</span>');
+    // proQty.append('<span class="inc qtybtn">+</span>');
+    // proQty.on('click', '.qtybtn', function () {
+    //     var $button = $(this);
+    //     var oldValue = $button.parent().find('#upCart').val();
+    //     if ($button.hasClass('inc')) {
+    //         var newVal = parseFloat(oldValue) + 1;
+    //     } else {
+    //         // Don't allow decrementing below zero
+    //         if (oldValue > 0) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //         } else {
+    //             newVal = 0;
+    //         }
+    //     }
+    //     $button.parent().find('#upCart').val(newVal);
+    //     var rowId = $button.parent().find('#rowId').val();
+    //     var proId = $button.parent().find('#proId').val();
+    //     // alert('quantity = ' + newVal + '\n Row Id = ' + rowId + '\n Pro Id' + proId);
+    //     if(newVal <= 0){alert('Please enter valid number')}
+    //     else{
+    //     $.ajax({
+    //         url:'AddtoCart/'+rowId,
+    //         type: "PUT",
+    //         dataType:"html",
+    //         data: "qty=" + newVal + "& rowId=" + rowId + "& proId=" + proId,
+    //         success:function(response){
+    //     //    console.log(response);
+    //             window.location.href = "{{ route('AddtoCart.index')  }}";
+    //         //$('#updateDiv').html(response);
 
-            }
-    });
-    }
-    });
+    //         }
+    // });
+    // }
+    // });
+
+    
 
 })(jQuery);

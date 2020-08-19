@@ -30,7 +30,7 @@
     @if(Cart::instance('default')->total() >0)
     <div class="header__cart__price">Amount: <span class="fa">&#8358;
 
-        {{ Cart::instance('default')->total() }}</span></div>
+        {{ Cart::instance('default')->subtotal() }}</span></div>
 </div>
 <div class="w3ls_right_nav ml-auto d-flex">
     <span style="font-size:30px;" class="badge">

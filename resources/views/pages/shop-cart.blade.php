@@ -88,7 +88,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        <i class="fa">&#8358;</i> {{ Cart::subtotal() }}
+                                        <i class="fa">&#8358;</i> {{ $item->model->newprice *$item->qty }}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <form action="{{route('AddtoCart.destroy', $item->rowId )}}" method="post" id="delete-form{{$item->rowId}}" style="display:none">
@@ -138,8 +138,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Total Amount <span><i class="fa">&#8358;</i> {{ Cart::subtotal() }}</span></li>
+                            {{-- <li>Total <span>$454.98</span></li> --}}
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -155,44 +155,53 @@
     </section>
 
     <!-- Shoping Cart Section End -->
-
-
+@endsection
+@section('script')
 <script>
-    
+$(document).ready(function(){
 
+var proQty = $('.pro-qty');
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('#upCart').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('#upCart').val(newVal);
+        var rowId = $button.parent().find('#rowId').val();
+        var proId = $button.parent().find('#proId').val();
 
+        // alert('quantity = ' + newVal + '\n Row Id = ' + rowId + '\n Pro Id' + proId);
+        if(newVal <= 0){alert('Please enter valid number')}
+        else{
+        $.ajax({
+            url:"{{ url('/AddtoCart') }}/"+rowId,
+            type: "PUT",
+            headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+            dataType:"html",
+            data: "qty=" + newVal + "& rowId=" + rowId + "& proId=" + proId,
+            success:function(response){
+        //    console.log(response);
+                window.location.href = "{{ route('AddtoCart.index')  }}";
+            //$('#updateDiv').html(response);
 
-     $(document).ready(function(){
-         $('.qtybtn').on('click', function()){
-             alert('hello')
-         }
-       <?php
-       for($i=1; $i< 20; $i++)
-        {
-          ?>
- $('#upCart<?php echo $i; ?>').on('change keyup', function(){
-var newqty= $('#upCart<?php echo $i; ?>').val();
-var rowId= $('#rowId<?php echo $i; ?>').val();
-var proId = $('#proId<?php echo $i; ?>').val();
-alert(rowId);
-if(newqty <= 0){alert('Please enter valid number')}
-else{
-      $.ajax({
-        url: "{{ url('/AddtoCart/update') }}/" + rowId,
-        type:"PUT",
-        dataType:"html",
-        data: "qty=" + newqty + "& rowId=" + rowId + "& proId=" + proId,
-        success:function(response){
-     //    console.log(response);
-    window.location.href='{{ route('AddtoCart.index')  }}'
-        //$('#updateDiv').html(response);
+            }
+    });
+    }
+    });
+})
 
-         }
-});
-}
-
-}
-<?php } ?>
-});
 </script>
+
 @endsection

@@ -107,7 +107,7 @@ Route::put('/Cart/update/{cart}', 'CartController@update')->name('cartupdate');
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-// Route::get('/ShoppingCart', 'CartController@index')->name('shopingCart');
+Route::get('/ShoppingCart', 'CartController@index')->name('shopingCart');
 // Route::post('cart','AddtoCart@store')->name('addtocart');
 // locate
 Route::view('/locate', 'users.locate' );

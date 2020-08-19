@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
+                        <a href="{{ route('AddtoCart.store') }}" class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>{{ $product->quantity }}</span></li>
@@ -123,7 +123,7 @@
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="{{ route('AddtoCart.store') }}"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -145,3 +145,50 @@
     @endif
 
 @endsection
+@section('script')
+<script>
+$(document).ready(function(){
+alert('hello');
+var proQty = $('.pro-qty');
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('#upCart').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('#upCart').val(newVal);
+        var rowId = $button.parent().find('#rowId').val();
+        var proId = $button.parent().find('#proId').val();
+
+        // alert('quantity = ' + newVal + '\n Row Id = ' + rowId + '\n Pro Id' + proId);
+        if(newVal <= 0){alert('Please enter valid number')}
+        else{
+        $.ajax({
+            url:"{{ url('/AddtoCart') }}/"+rowId,
+            type: "PUT",
+            headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+            dataType:"html",
+            data: "qty=" + newVal + "& rowId=" + rowId + "& proId=" + proId,
+            success:function(response){
+        //    console.log(response);
+                window.location.href = "{{ route('AddtoCart.index')  }}";
+            //$('#updateDiv').html(response);
+
+            }
+    });
+    }
+    });
+})
+
+</script>
