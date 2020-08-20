@@ -20,6 +20,7 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Checkout Section Begin -->
+@if (Cart::count()>0)
 <section class="checkout spad">
     <div class="container">
         <div class="row">
@@ -28,117 +29,131 @@
                 </h6>
             </div>
         </div>
+
+
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form action="#">
+            <form action="#" method="POST">
+                {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-lg-8 col-md-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="checkout__input">
-                                    <p>Fist Name<span>*</span></p>
-                                    <input type="text">
+                                    <p>Names<span>*</span></p>
+                                    <input type="text" value="{{ Auth::user()->name }}" name="name">
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Last Name<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                            </div>
+
                         </div>
                         <div class="checkout__input">
                             <p>Country<span>*</span></p>
-                            <input type="text">
+                            <input type="text" name="country" value="{{ Auth::user()->country }}">
                         </div>
                         <div class="checkout__input">
                             <p>Address<span>*</span></p>
-                            <input type="text" placeholder="Street Address" class="checkout__input__add">
+                            <input type="text" placeholder="Street Address" name="address" value="{{ Auth::user()->address }}" class="checkout__input__add">
                             <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
                         </div>
                         <div class="checkout__input">
                             <p>Town/City<span>*</span></p>
-                            <input type="text">
+                            <input type="text" name="city" placeholder="City/Town" value="{{ Auth::user()->city }}">
                         </div>
                         <div class="checkout__input">
                             <p>Country/State<span>*</span></p>
-                            <input type="text">
+                            <input type="text" name="state" value="{{ Auth::user()->state }}">
                         </div>
                         <div class="checkout__input">
                             <p>Postcode / ZIP<span>*</span></p>
-                            <input type="text">
+                            <input type="text" name="zip" value="{{ Auth::user()->zipcode }}">
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Phone<span>*</span></p>
-                                    <input type="text">
+                                    <input type="tel" name="phone" value="{{ Auth::user()->phone }}">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
-                                    <input type="text">
+                                    <input type="email" name="email" value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
                         </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="acc">
-                                Create an account?
-                                <input type="checkbox" id="acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <p>Create an account by entering the information below. If you are a returning customer
-                            please login at the top of the page</p>
-                        <div class="checkout__input">
-                            <p>Account Password<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="diff-acc">
-                                Ship to a different address?
-                                <input type="checkbox" id="diff-acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="checkout__input">
-                            <p>Order notes<span>*</span></p>
-                            <input type="text"
-                                placeholder="Notes about your order, e.g. special notes for delivery.">
-                        </div>
+
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="checkout__order">
                             <h4>Your Order</h4>
-                            <div class="checkout__order__products">Products <span>Total</span></div>
-                            <ul>
-                                <li>Vegetable’s Package <span>$75.99</span></li>
-                                <li>Fresh Vegetable <span>$151.99</span></li>
-                                <li>Organic Bananas <span>$53.99</span></li>
-                            </ul>
-                            <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                            <div class="checkout__order__total">Total <span>$750.99</span></div>
+                            <div class="checkout__order__products">
+
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                        <th>Products</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Cart::content() as $item)
+                                        <tr>
+                                            <td>{{ $item->model->product_name }}</td>
+                                            <td>{{ $item->qty }}</td>
+                                            <td><i class="fa">&#8358;</i> {{ $item->model->newprice}}</td>
+                                            <td><i class="fa">&#8358;</i> {{ $item->model->newprice*$item->qty}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
+
+                            <div class="checkout__order__subtotal">Subtotal <span><i class="fa">&#8358;</i>{{ Cart::subtotal() }}</span></div>
+                            <div class="checkout__order__subtotal">Tax <span><i class="fa">&#8358;</i>{{ Cart::tax() }}</span></div>
+                            <div class="checkout__order__total">Total <span><i class="fa">&#8358;</i>{{ Cart::total() }}</span></div>
+
                             <div class="checkout__input__checkbox">
                                 <label for="acc-or">
-                                    Create an account?
-                                    <input type="checkbox" id="acc-or">
+                                    <h3 class="text-center font-weight-bold">Payment Method</h3>
+                                    {{--  <input type="checkbox" id="acc-or">
+                                    <span class="checkmark"></span>  --}}
+                                </label>
+                            </div>
+                            <p>Select your payment method below</p>
+                            <div class="checkout__input__checkbox">
+                                <label for="credit">
+                                    Loan/Credit
+                                    <input type="checkbox" id="credit" class="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua.</p>
                             <div class="checkout__input__checkbox">
-                                <label for="payment">
-                                    Check Payment
-                                    <input type="checkbox" id="payment">
+                                <label for="paystack">
+                                    Paystack
+                                    <input type="checkbox" id="paystack" class="payment_method">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="cash">
+                                    Cash
+                                    <input type="checkbox" id="cash" class="payment_method">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="bitcoin">
+                                    Bitcoin
+                                    <input type="checkbox" id="bitcoin" class="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="paypal">
                                     Paypal
-                                    <input type="checkbox" id="paypal">
+                                    <input type="checkbox" id="paypal" class="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -148,8 +163,31 @@
                 </div>
             </form>
         </div>
+
     </div>
 </section>
+@else
+<div class="jumbotron m-5 p-5">
+    <h3>Dear <strong> {{ Auth::user()->name }}</strong>,
+        You don't have any product on your cart. Please go and <a href="{{ route('shop') }}">shopping</a></h3>
+
+</div>
+@endif
 <!-- Checkout Section End -->
 
+@endsection
+@section('script')
+<script>
+
+    $(".payment_method").change(function() {
+    $(".payment_method").prop('checked', false);
+    $(this).prop('checked', true);
+});
+
+
+$(".chb").change(function() {
+    $(".chb").not(this).prop('checked', false);
+});
+
+</script>
 @endsection

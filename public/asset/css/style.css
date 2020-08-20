@@ -934,6 +934,11 @@ ol {
 	border-color: #7fad39;
 }
 
+.product__item__pic__hover li:hover button {
+	background: #7fad39;
+	border-color: #7fad39;
+}
+
 .featured__item__pic__hover li:hover button i {
 	color: #ffffff;
 	transform: rotate(360deg);
@@ -967,6 +972,9 @@ ol {
 	transition: all, 0.3s;
 }
 /* end of price submit button */
+
+
+
 .featured__item__text {
 	text-align: center;
 	padding-top: 15px;
@@ -1402,7 +1410,47 @@ ol {
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
+/* shop add to cart button */
+.product__item__pic__hover li:hover  button{
+	background: #7fad39;
+	border-color: #7fad39;
+}
 
+.product__item__pic__hover li:hover button i {
+	color: #ffffff;
+	transform: rotate(360deg);
+}
+
+.product__item__pic__hover li button {
+	font-size: 16px;
+	color: #1c1c1c;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #ebebeb;
+	background: #ffffff;
+	display: block;
+	border-radius: 50%;
+	-webkit-transition: all, 0.5s;
+	-moz-transition: all, 0.5s;
+	-ms-transition: all, 0.5s;
+	-o-transition: all, 0.5s;
+	transition: all, 0.5s;
+}
+
+.product__item__pic__hover li button i {
+	position: relative;
+	transform: rotate(0);
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+
+/* end of add to cart button */
 .product__discount__item__text {
 	text-align: center;
 	padding-top: 20px;
@@ -2254,7 +2302,14 @@ ol {
 .checkout__order .checkout__order__products span {
 	float: right;
 }
+/* table manipulation */
 
+.checkout__order .checkout__order__products table tbody tr td {
+    opacity: 0.6;
+
+}
+
+/* end table manipulation */
 .checkout__order ul {
 	margin-bottom: 12px;
 }

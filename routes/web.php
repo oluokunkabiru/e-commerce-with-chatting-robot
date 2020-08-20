@@ -94,6 +94,7 @@ Route::group(['middleware' => ['user']], function () {
 Route::group(['middleware' => 'auth'], function () {
     // Route::PATCH('/user/profile/{id}', 'UserUpdateController')->name('profile.update');
     Route::resource('Update/Profile', 'UserUpdateController');
+    Route::resource('Checkout', 'CheckoutController');
 
 
 });

@@ -10,7 +10,7 @@
                 <div class="breadcrumb__text">
                     <h2>Soupe Shop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.html">Home</a>
+                        <a href="{{ route('home') }}">Home</a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -209,12 +209,20 @@
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li>
+
+                                                <form action="{{ route('AddtoCart.store')}}" method="post">
+                                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                                    {{ csrf_field() }}
+                                                    <button type="submit"><i class="fa fa-shopping-cart"></i></button>
+                                                </form>
+
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
                                         <span>{{ $categorys }}</span>
-                                        <h5><a href="{{ route('productDetails' , ['id' => $product->slug]) }}">{{ $product->product_name }}</h5>
+                                        <h5><a href="{{ route('productDetails' , ['id' => $product->slug]) }}">{{ $product->product_name }}</a></h5>
                                         <div class="product__item__price fa">&#8358;{{ $product->newprice }}<span class="fa">&#8358;{{ $product->oldprice }}</span>
                                         </div>
                                     </div>
@@ -262,7 +270,16 @@
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+
+                                    <li>
+
+                                        <form action="{{ route('AddtoCart.store')}}" method="post">
+                                            <input type="hidden" name="id" value="{{ $product->id }}">
+                                            {{ csrf_field() }}
+                                            <button type="submit"><i class="fa fa-shopping-cart"></i></button>
+                                        </form>
+
+                                    </li>
                                 </ul>
                             </div>
                             <div class="product__item__text">

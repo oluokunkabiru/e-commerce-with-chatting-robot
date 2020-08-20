@@ -39,7 +39,7 @@
                 <ul class="header__menu__dropdown">
                     <li><a href="{{ url('/shop') }}">Shop Details</a></li>
                     <li><a href="{{ route('shopingCart') }}">Shoping Cart</a></li>
-                    <li><a href="{{ route('checkout') }}">Check Out</a></li>
+                    <li><a href="{{ route('Checkout.index') }}">Check Out</a></li>
                     <li><a href="{{ route('blogDetails') }}">Update Details</a></li>
                 </ul>
             </li>
@@ -146,7 +146,7 @@
                                 <ul class="header__menu__dropdown">
                                     <li><a href="{{ url('/shop') }}">Shop Details</a></li>
                                     <li><a href="{{ route('shopingCart') }}">Shoping Cart</a></li>
-                                    <li><a href="{{ route('checkout') }}">Check Out</a></li>
+                                    <li><a href="{{ route('Checkout.index') }}">Check Out</a></li>
                                     <li><a href="{{ route('blogDetails') }}">Update Details</a></li>
                             </ul>
                         </li>

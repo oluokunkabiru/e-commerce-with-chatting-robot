@@ -28,7 +28,7 @@
        @endif
     </ul>
     @if(Cart::instance('default')->total() >0)
-    <div class="header__cart__price">Amount: <span class="fa">&#8358;
+    <div class="header__cart__price ml-2">Amount: <span class="fa">&#8358;
 
         {{ Cart::instance('default')->subtotal() }}</span></div>
 </div>
