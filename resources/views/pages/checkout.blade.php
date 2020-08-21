@@ -30,10 +30,34 @@
             </div>
         </div>
 
+        @if($errors->any())
+
+            <div class="alert alert-danger alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong style="font-size:20px;">Oops!
+                   {{ "Kindly rectify below errors" }}</strong><br/>
+              @foreach ($errors->all() as $error)
+              {{$error }} <br/>
+              @endforeach
+            </div>
+            @endif
+
+        @if(session('fail'))
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Success!</strong> {{ session('fail') }}
+        </div>
+        @endif
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Success!</strong> {{ session('success') }}
+        </div>
+        @endif
 
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form action="#" method="POST">
+            <form action="{{ route('Checkout.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -53,7 +77,7 @@
                         <div class="checkout__input">
                             <p>Address<span>*</span></p>
                             <input type="text" placeholder="Street Address" name="address" value="{{ Auth::user()->address }}" class="checkout__input__add">
-                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)" name="address1">
                         </div>
                         <div class="checkout__input">
                             <p>Town/City<span>*</span></p>
@@ -65,7 +89,7 @@
                         </div>
                         <div class="checkout__input">
                             <p>Postcode / ZIP<span>*</span></p>
-                            <input type="text" name="zip" value="{{ Auth::user()->zipcode }}">
+                            <input type="text" name="zipcode" value="{{ Auth::user()->zipcode }}">
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
@@ -125,35 +149,35 @@
                             <div class="checkout__input__checkbox">
                                 <label for="credit">
                                     Loan/Credit
-                                    <input type="checkbox" id="credit" class="payment_method">
+                                    <input type="checkbox" id="credit" value="Credit" class="payment_method" name="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="paystack">
                                     Paystack
-                                    <input type="checkbox" id="paystack" class="payment_method">
+                                    <input type="checkbox" id="paystack" value="Paystack" class="payment_method" name="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="cash">
                                     Cash
-                                    <input type="checkbox" id="cash" class="payment_method">
+                                    <input type="checkbox" value="Cash" id="cash" class="payment_method" name="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="bitcoin">
                                     Bitcoin
-                                    <input type="checkbox" id="bitcoin" class="payment_method">
+                                    <input value="Bitcoin" type="checkbox" id="bitcoin" class="payment_method" name="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="paypal">
                                     Paypal
-                                    <input type="checkbox" id="paypal" class="payment_method">
+                                    <input type="checkbox" id="paypal" value="Paypal" class="payment_method" name="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
