@@ -96,7 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Update/Profile', 'UserUpdateController');
     Route::resource('Checkout', 'CheckoutController');
     Route::view('Thanks', 'pages.thanks')->name('thanks');
-    Route::get('/History', 'PagesController@histories')->name('history');
+    Route::get('/History', 'HistoryController@index')->name('history');
+    Route::post('History', 'HistoryController@shows')->name('showhistory');
 
 });
 

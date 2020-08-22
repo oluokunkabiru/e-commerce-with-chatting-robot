@@ -31,6 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('billing_price');
             $table->string('billing_total_price');
             $table->string('billing_payment_method');
+            $table->string('orderid');
             $table->timestamps();
         });
     }

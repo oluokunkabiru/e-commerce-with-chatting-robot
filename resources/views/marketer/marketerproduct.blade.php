@@ -74,7 +74,7 @@
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
+                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
                         || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
                         || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
                     </td>

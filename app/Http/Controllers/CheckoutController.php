@@ -6,6 +6,7 @@ use App\Order;
 use App\OrderdProdct;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
+use App\OrderHistory;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -38,10 +39,12 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     public function store(OrderRequest $request)
     {
         //
+        $orderid = md5(Order::max('id'));
+        // return $orderid;
         if( Cart::instance('default')->count < 0)
         {
             return redirect()->route('home')->with('fail', 'Shop before you submit orders');
@@ -64,8 +67,14 @@ class CheckoutController extends Controller
                 $orders->billing_price     =    $item->model->newprice;
                 $orders->billing_total_price     =    $item->model->newprice*$item->qty;
                 $orders->billing_payment_method=$request->payment_method;
+                $orders->orderid = $orderid;
+                // echo $orderid .'<br>';
             $orders->save();
          }
+         $history = new OrderHistory;
+         $history->history = $orderid;
+         $history->users_id =Auth::user()->id ;
+         $history->save();
          foreach(Cart::content() as $item)
          {
             $ordersproduct =new OrderdProdct;
