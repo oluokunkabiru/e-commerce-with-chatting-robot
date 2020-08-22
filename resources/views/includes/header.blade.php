@@ -63,8 +63,9 @@
                       @elseif(Auth::user()->role=='marketer')
                       <li><a href="{{ route('marketer') }}">Dashboard</a></li>
                       @else
-                      <li><a href="#">History</a></li>
+                       {{ "" }}
                       @endif
+                       <li><a href="{{ route('history') }}">History</a></li>
                        <li>
                           <a class="text-center" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
@@ -168,8 +169,9 @@
                        @elseif(Auth::user()->role=='marketer')
                        <li><a href="{{ route('marketer') }}">Dashboard</a></li>
                        @else
-                       <li><a href="#">History</a></li>
+                       {{ "" }}
                        @endif
+                       <li><a href="{{ route('history') }}">History</a></li>
                        <li>
                           <a class="text-center" href="{{ route('logout') }}"
                           onclick="event.preventDefault();

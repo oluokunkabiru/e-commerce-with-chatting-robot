@@ -51,7 +51,7 @@ class CartController extends Controller
         }
        Cart::add($id, $product->product_name, 1, $product->newprice)->associate('App\Product');
 
-       return redirect()->back()->with('success', 'Product has been  added succefully');
+       return redirect()->back()->with('cartsuccess', 'Product has been  added succefully');
 
      }
 
@@ -87,7 +87,7 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         Cart::update($id, $request->qty);
-        session()->flash('success', 'Quantity was succefully updated');
+        session()->flash('cartsuccess', 'Quantity was succefully updated');
         return response()->json(['success'=>true]);
     }
 
@@ -101,6 +101,6 @@ class CartController extends Controller
     {
         //
         Cart::instance('default')->remove($id);
-        return redirect()->back()->with("success", "Item has been removed successfully");
+        return redirect()->back()->with("cartsuccess", "Item has been removed successfully");
     }
 }

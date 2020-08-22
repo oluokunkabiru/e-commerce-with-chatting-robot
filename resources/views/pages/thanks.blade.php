@@ -7,7 +7,7 @@
             <div class="col-md-6 jumbotron">
                 <h4><i><strong>Dear {{ Auth::user()->name }}</strong></i>, your orders have been taken successfully</h4>
                 <h5 class="m-4">Thanks for your patronage, we promised to get back to you shortly</h5>
-                <p><a href="{{ route('shop') }}">Shopping more</a></p>
+                <p><a href="{{ route('shop') }}" class="btn btn-success">Shopping more</a></p>
             </div>
             <div class="col-md-3"></div>
         </div>

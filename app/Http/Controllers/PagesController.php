@@ -53,6 +53,9 @@ class PagesController extends Controller
          return view('pages.checkout');
      }
 
+     public function histories(){
+         return view('pages.history');
+     }
 
 
 
