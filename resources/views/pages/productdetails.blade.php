@@ -37,8 +37,15 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="{{ route('productDetails' , ['id' => $product->slug]) }}">{{ $product->product_name }}</a></h6>
-                            <h4><span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" class="font-weight-bold  fa">&#8358; {{ $product->newprice }}</span>   <span class="float-right mr-2 fa">&#8358; <strike>{{ $product->oldprice }}</strike></span></h4>
+                            <h4><a href="{{ route('productDetails' , ['id' => $product->slug]) }}" class="text-dark font-weight-bold">{{ $product->product_name }}</a></h4>
+                            <div class="card-">
+                                <div class="card-header"><h4><span class="fa">&#8358;</span>{{ $product->newprice }}<span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span></h4></div>
+                                <div class="card-body text-left">
+                                    <p>Owner : <b>{{ucwords($product->user->name) }}</b></p>
+                                    <p>Contact : <b>{{ $product->user->phone }}</b></p>
+                                    <p>Location : <b>{{ ucwords($product->location) }}</b></p>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

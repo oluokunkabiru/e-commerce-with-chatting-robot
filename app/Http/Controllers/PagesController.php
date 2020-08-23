@@ -11,9 +11,9 @@ class PagesController extends Controller
     //
      //
      public function index(){
-        $category = Product::orderBy('id','desc')->first()->limit(10)->get()->unique('category_id');
-        $products = Product::orderBy('id','desc')->limit(16)->get();
-        $latest = Product::orderBy('id','desc')->limit(18)->get();
+        $category = Product::orderBy('id','DESC')->first()->limit(10)->get()->unique('category_id');
+        $products = Product::orderBy('id','DESC')->limit(16)->get();
+        $latest = Product::orderBy('id','DESC')->limit(18)->get();
         return view('pages.index', compact(['category','products','latest']));
      }
 
