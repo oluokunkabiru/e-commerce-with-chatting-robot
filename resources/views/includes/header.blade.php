@@ -10,15 +10,15 @@
         <a href="#"><img src="img/logo.png" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
-        <ul>
+       {{-- <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
         <div class="header__cart__price">item: <span>
-            {{-- @if(Cart::instance('default')->count()>0)
+             @if(Cart::instance('default')->count()>0)
             {{ Cart::instance('default')->count() }}</span>
-            @endif --}}
-        </span></div>
+            @endif
+        </span></div>--}}
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
@@ -89,7 +89,7 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> support@soupe.com.ng</li>
+            <li><i class="fa fa-envelope"></i> support@oluokunkabiru.com</li>
             <li>Free Shipping for all Order</li>
         </ul>
     </div>
@@ -104,8 +104,8 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> support@soupe.com.ng</li>
-                            <li>Free Shipping for all Order </li>
+                            <li><i class="fa fa-envelope"></i> support@oluokunkabiru.com</li>
+                            <li>Free Shipping for all Order</li>
                         </ul>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+2347032446095</h5>
+                            <h5>+2348130584550</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>

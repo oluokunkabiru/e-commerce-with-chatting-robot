@@ -15,16 +15,12 @@
 <!-- //logo -->
 <div class="header__cart">
     <ul>
-        <li><a href="{{ route('shopingCart') }}" title="Cart">
+        {{-- <li><a href="{{ route('shopingCart') }}" title="Cart"> --}}
         {{--  <i class="fas fa-cart-plus"> Cart</i> </a></li>  --}}
         @if(Cart::instance('default')->count()>0)
         <li><a href="#"><i class="fa fa-heart"></i> <span style="">1</span></a></li>
         <li><a href="{{ route('shopingCart') }}"><i class="fa fa-shopping-cart"></i>
-
-<span>
-
-        {{ Cart::instance('default')->count() }}
-        </span></a></li>
+<span>{{ Cart::instance('default')->count() }} </span></a></li>
        @endif
     </ul>
     @if(Cart::instance('default')->total() >0)
