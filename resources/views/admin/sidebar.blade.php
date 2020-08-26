@@ -29,7 +29,7 @@
             <a href="{{ route('dashboard') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard | Maeketer
+                Dashboard | Admin 
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

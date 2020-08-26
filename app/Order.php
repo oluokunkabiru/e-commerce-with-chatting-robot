@@ -16,8 +16,12 @@ class Order extends Model
     public function picture(){
         return $this->belongsTo('App\Picture');
     }
+
     public function product(){
         return $this->belongsTo('App\Product');
+    }
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 
 }

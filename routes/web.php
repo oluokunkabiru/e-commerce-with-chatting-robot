@@ -51,7 +51,7 @@ Route::get('/Product/{id}','PagesController@productDetails' )->name('productDeta
 Route::post('/register', 'RegisterController@register')->name('register');
 // admin content goew here
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('/Admin', 'Admin\AdminProductController@index' )->name('admin');
+    Route::get('/Admin', 'Admin\AdminController@index' )->name('admin');
     Route::get('/Admin/Product', 'Admin\AdminProductController@adminproductpage')->name('adminproduct');
     Route::get('/Admin/All Product', 'Admin\AdminProductController@allproduct')->name('allproduct');
     // Route::post('Admin/product', 'Admin\AdminProductController@store' );
@@ -73,13 +73,14 @@ Route::group(['middleware' => ['admin']], function () {
 
 // marketer content goes here
 Route::group(['middleware' => ['marketer']], function () {
-    Route::get('/Marketer', 'Marketer\MarketerProductController@index')->name('marketer');
+    Route::get('/Marketer', 'Marketer\MarketerController@index')->name('marketer');
     Route::get('/Marketer/Product', 'Marketer\MarketerProductController@marketerproductpage')->name('marketerProduct');
     // Route::post('Marketer/product', 'Marketer\MarketerProductController@store' );
     Route::post('marketerviewproduct', 'Marketer\MarketerProductController@viewproduct')->name('marketerviewproduct');
     Route::post('marketervieweditproduct', 'Marketer\MarketerProductController@vieweditproduct')->name('marketervieweditproduct');
     Route::post('marketerviewdeleteproduct', 'Marketer\MarketerProductController@viewdeleteproduct')->name('marketerviewdeleteproduct');
     Route::resource('Marketer/marketerproduct', 'Marketer\MarketerProductController');
+    Route::get('/test', 'Marketer\MarketerController@test')->name('test');
 
 
 
@@ -119,4 +120,4 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-
+// Route::get('/test', 'MarketerMarketerController@test');

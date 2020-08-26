@@ -51,12 +51,7 @@ class MarketerProductController extends Controller
         return view('marketer.viewdeleteproduct',  compact(['delete','id']));
 
     }
-    public function index()
-    {
-        //
-        return view('marketer.dashboard');
-    }
-
+    
 
 
     /**
