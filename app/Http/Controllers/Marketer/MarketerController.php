@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Marketer;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;
+use App\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class MarketerController extends Controller
@@ -18,8 +19,8 @@ class MarketerController extends Controller
     public function index()
     {
         //
-        $products = Product::where('user_id', Auth::user()->id)->get();
-        $totalproductposted = count($products);
+        $product = Product::where('user_id', Auth::user()->id)->get();
+        $totalproductposted = count($product);
         $order = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
                  ->join('users', 'products.user_id', 'users.id')->where('users.id', Auth::user()->id)->get();
         $totalordered =count($order);
@@ -29,16 +30,46 @@ class MarketerController extends Controller
         $pending = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
                      ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> Auth::user()->id, 'orders.status'=>'Pending'])->get();
         $totalpending = count($pending);
+        $products = Product::with(['picture', 'orders', 'user'])->where(['user_id'=>Auth::user()->id])->get();
 
-        return view('marketer.dashboard', compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending']));
+        return view('marketer.dashboard', compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending',
+        'pending', 'products']));
+    }
+// view product
+public function marketerViewOrder(Request $request)
+    {
+        $id = $request->input('view');
+        $view = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
+        return view('marketer.view_order', compact(['view']));
+    }
+
+    public function vieweditproduct(Request $request)
+    {
+        $id = $request->input('edit');
+        $categories = Category::get();
+        $edit = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        return view('marketer.vieweditproduct', compact(['id','categories','edit']));
+        //,
+    }
+
+
+    public function viewdeleteproduct(Request $request){
+        $id = $request->input('delete');
+
+        $delete = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+
+        return view('marketer.viewdeleteproduct',  compact(['delete','id']));
+
     }
 
 
 public function test(){
-    $order = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
-    ->join('users', 'products.user_id', 'users.id')->where(['users.id'=>1, 'orders.status'=>'Delivered'])->get();
+    // $order = Order::with(['picture','product', 'user'])->rightjoin('products', 'products.id', 'orders.product_id')
+    // ->rightjoin('users', 'products.user_id', 'users.id')->where(['users.id'=>Auth::user()->id, 'orders.status'=>'Pending'])->get();
     // $order = Order::select('orders.*')->get();
-    return $order;
+
+    $products = Product::with(['picture', 'orders', 'user'])->where(['user_id'=>1])->get();
+   return view('marketer.test', compact(['products']));
 }
 
     /**

@@ -81,6 +81,7 @@ Route::group(['middleware' => ['marketer']], function () {
     Route::post('marketerviewdeleteproduct', 'Marketer\MarketerProductController@viewdeleteproduct')->name('marketerviewdeleteproduct');
     Route::resource('Marketer/marketerproduct', 'Marketer\MarketerProductController');
     Route::get('/test', 'Marketer\MarketerController@test')->name('test');
+    Route::post('marketervieworder', 'Marketer\MarketerController@marketerViewOrder')->name('marketervieworder');
 
 
 
