@@ -82,7 +82,8 @@ Route::group(['middleware' => ['marketer']], function () {
     Route::resource('Marketer/marketerproduct', 'Marketer\MarketerProductController');
     Route::get('/test', 'Marketer\MarketerController@test')->name('test');
     Route::post('marketervieworder', 'Marketer\MarketerController@marketerViewOrder')->name('marketervieworder');
-
+    Route::post('marketerviewdeliverorder', 'Marketer\MarketerController@deliver')->name('marketerviewdeliverorder');
+    Route::put('marketerdelivered', 'Marketer\MarketerController@delivered')->name('marketerDelivered');
 
 
 });

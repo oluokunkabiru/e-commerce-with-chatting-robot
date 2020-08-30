@@ -42,6 +42,24 @@ public function marketerViewOrder(Request $request)
         $view = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
         return view('marketer.view_order', compact(['view']));
     }
+// view deliver product
+    public function deliver(Request $request){
+        $id = $request->deliver;
+        $view = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
+        $deliverby = Auth::user()->name;
+        return view('marketer.process_order', compact(['view']));
+    }
+
+// delivered the product
+
+public function delivered(Request $request){
+    $id = $request->id;
+    $deliver = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
+    $deliver->status = "Delivered";
+    $deliver->delivered_by = Auth::user()->name;
+    $deliver->update();
+    return redirect()->back()->with('success', $deliver->product_name." Delivered Successfully");
+}
 
     public function vieweditproduct(Request $request)
     {

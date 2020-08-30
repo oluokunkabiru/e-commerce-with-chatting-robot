@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('user_id');
             $table->string('product_id');
             $table->enum('status',['Pending','Delivered', 'Processing'])->default('Pending');
+            $table->string('delivered_by')->nullable();
             $table->string('picture_id');
             $table->string('quantity');
             $table->string('product_name');

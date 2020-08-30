@@ -82,10 +82,17 @@
     </div>
 
 </div>
+
 @section('footer')
 <div class="modal-footer">
-    <button class="btn btn-danger btn-lg float-right mr-3" data-dismiss="modal">Close</button>
+    <form action="{{ route('marketerDelivered') }}" method="POST">
+        {{ csrf_field() }}
+        @method('put')
+        <input type="hidden"  name="id" value="{{ $view->id }}">
+    <button type="submit" class="btn btn-success btn-lg ml-3">Deliver </button>
+    <button class="btn btn-warning btn-lg float-right mr-3" data-dismiss="modal">Cancel</button>
 </div>
+</form>
 @endsection
 
 @endsection

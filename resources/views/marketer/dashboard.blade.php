@@ -64,8 +64,30 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
+
   <div class="card-body">
       <h2 class="text-center font-weight-bold">Recent Orders</h2>
+
+      @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong style="font-size:15px;">Success :{{session('success') }}</strong><br/>
+            </div>
+            @endif
+
+
+            @if($errors->any())
+
+            <div class="alert alert-danger alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong style="font-size:20px;">Oops!
+                   {{ "Kindly rectify below errors" }}</strong><br/>
+              @foreach ($errors->all() as $error)
+              {{$error }} <br/>
+              @endforeach
+            </div>
+            @endif
+
     <table id="product" class="table table-bordered table-striped">
       <thead>
       <tr>
@@ -105,8 +127,7 @@
         <td>{{ $order->billing_phone }}</td>
         <td>
            <a href="#view" dataid="{{$order->id}}" data-toggle="modal" class="btn btn-primary btn-sm" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
-              || <a href="#edit"  dataid="{{$order->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
-              || <a href="#delete" dataid="{{$order->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
+              || <a href="#deliver"  dataid="{{$order->id}}" data-toggle="modal" class="btn btn-success btn-sm" ><i class="fas fa-shopping-cart"  style="font-size: 12px;"></i> </a>
           </td>
           {{-- {{route('products.show', $product->id)}} --}}
       </tr>
@@ -138,7 +159,7 @@
 
 {{-- end view product --}}
 {{-- edit product --}}
-<div class="modal" id="edit"></div>
+<div class="modal" id="deliver"></div>
 {{-- /end view --}}
 {{-- /end view --}}
 
@@ -193,17 +214,17 @@ $(document).ready(function()
 
 // preview delete file
   $(document).ready(function(){
-    $('#delete').on('show.bs.modal', function(e){
+    $('#deliver').on('show.bs.modal', function(e){
       var id = $(e.relatedTarget).attr('dataid');
       $.ajax({
         type:'post',
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('marketerviewdeleteproduct')}}',
-        data:'delete='+id,
+        url:'{{route('marketerviewdeliverorder')}}',
+        data:'deliver='+id,
         success:function(data){
-          $('#delete').html(data);
+          $('#deliver').html(data);
         }
       })
     })
