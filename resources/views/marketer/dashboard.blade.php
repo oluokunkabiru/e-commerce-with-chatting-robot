@@ -65,6 +65,7 @@
   </div>
   <!-- /.row -->
   <div class="card-body">
+      <h2 class="text-center font-weight-bold">Recent Orders</h2>
     <table id="product" class="table table-bordered table-striped">
       <thead>
       <tr>

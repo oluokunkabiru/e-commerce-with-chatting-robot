@@ -88,7 +88,7 @@
           </ul>
         </li>
 <!----//-Brand----->
-           
+
 
             <!--- Stock Unit -->
             <li class="nav-item has-treeview">
@@ -126,21 +126,20 @@
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();" class="nav-link">
-                       {{ __('Logout') }}
-                   </a>
-                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                       @csrf
-                   </form>
+           </li>
+           <li class="nav-item">
+            <a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();" class="nav-link">
+              <i class="nav-icon fa fa-power-off text-danger"></i>
+              <p class="text">Sign Out</p>
+            </a>
 
-                    </div>
-                </li>
-              </ul>
-            </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

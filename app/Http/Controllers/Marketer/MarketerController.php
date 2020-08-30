@@ -30,7 +30,7 @@ class MarketerController extends Controller
         $pending = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
                      ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> Auth::user()->id, 'orders.status'=>'Pending'])->get();
         $totalpending = count($pending);
-        $products = Product::with(['picture', 'orders', 'user'])->where(['user_id'=>Auth::user()->id])->get();
+        $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
 
         return view('marketer.dashboard', compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending',
         'pending', 'products']));
