@@ -153,7 +153,6 @@
       </tfoot>
     </table>
   </div>
-<a href="{{ route('test') }}">test</a>
 
 <div class="modal" id="view"> </div>
 
@@ -163,7 +162,6 @@
 {{-- /end view --}}
 {{-- /end view --}}
 
-<div class="modal" id="delete"></div>
 @endsection
 
 @section('script')
@@ -194,23 +192,6 @@
 
 //   edit product javascript
 
-$(document).ready(function()
-    {
-    $('#edit').on('show.bs.modal', function(e){
-      var id = $(e.relatedTarget).attr('dataid');
-      $.ajax({
-        type:'post',
-        headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-        url:'{{route('marketervieweditproduct')}}',
-        data:'edit='+id,
-        success:function(data){
-          $('#edit').html(data);
-        }
-      })
-    })
-    })
 
 // preview delete file
   $(document).ready(function(){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Marketer;
 
+use App\Order;
 use App\Picture;
 use App\Product;
 use App\Category;
@@ -18,7 +19,21 @@ class MarketerProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function index(){
+        $product = Product::where('user_id', Auth::user()->id)->get();
+            $totalproductposted = count($product);
+            $order = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
+                     ->join('users', 'products.user_id', 'users.id')->where('users.id', Auth::user()->id)->get();
+            $totalordered =count($order);
+            $deliver = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
+                    ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> Auth::user()->id, 'orders.status'=>'Delivered'])->get();
+            $totaldelivered = count($deliver);
+            $pending = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
+                         ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> Auth::user()->id, 'orders.status'=>'Pending'])->get();
+            $totalpending = count($pending);
+            return view('marketer.heading',  compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending',
+            'pending']));
+    }
     public function marketerproductpage()
     {
         //
@@ -51,7 +66,7 @@ class MarketerProductController extends Controller
         return view('marketer.viewdeleteproduct',  compact(['delete','id']));
 
     }
-    
+
 
 
     /**

@@ -35,6 +35,20 @@ class MarketerController extends Controller
         return view('marketer.dashboard', compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending',
         'pending', 'products']));
     }
+    // product orders for both recent and all orders
+
+    public function marketerOrders(){
+        $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
+        return view('marketer.marketer_all_orders', compact(['products']));
+    }
+
+
+
+    // marketers buyers/customers
+    public function marketersBuyers(){
+        $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
+
+    }
 // view product
 public function marketerViewOrder(Request $request)
     {

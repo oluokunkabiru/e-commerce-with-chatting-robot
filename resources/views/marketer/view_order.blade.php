@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-5">
         <div class="card">
-            <img src="{{ $view->picture->file }}" alt="{{ $view->product_name }}" class="card-img">
+            <img src="../{{$view->picture->file }}" alt="{{ $view->product_name }}" class="card-img">
         </div>
     </div>
 
