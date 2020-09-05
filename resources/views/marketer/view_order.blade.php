@@ -72,10 +72,13 @@
         <!-- small box -->
         <div class="small-box bg-dark">
             <div class="inner">
-                <h4> Phone No :: {{ $view->billing_phone }} </h4>
-                <h4> Email :: {{ $view->billing_email }} </h4>
-                <h4> Payment Method :: {{ucwords( $view->billing_payment_method) }} </h4>
-
+                <h5> Phone No :: {{ $view->billing_phone }} </h5>
+                <h5> Email :: {{ $view->billing_email }} </h5>
+                <h5> Payment Method :: {{ucwords( $view->billing_payment_method) }} </h5>
+                <h5>Order Date:: {{ $view->created_at }}</h5>
+                @if ($view->created_at!=$view->updated_at)
+                <h5>Deliver Date :: {{ $view->updated_at }}</h5>
+                @endif
 
             </div>
         </div>

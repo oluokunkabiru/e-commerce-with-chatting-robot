@@ -86,7 +86,7 @@ Route::group(['middleware' => ['marketer']], function () {
     Route::post('marketerviewdeliverorder', 'Marketer\MarketerController@deliver')->name('marketerviewdeliverorder');
     Route::put('marketerdelivered', 'Marketer\MarketerController@delivered')->name('marketerDelivered');
     Route::get('/Marketer/Orders', 'Marketer\MarketerController@marketerOrders')->name('marketerAllOrders');
-
+    Route::get('Marketer/Customers', 'Marketer\MarketerController@marketersBuyers')->name('marketerBuyers');
 });
 // users goes here
 Route::group(['middleware' => ['user']], function () {

@@ -39,6 +39,7 @@ class MarketerController extends Controller
 
     public function marketerOrders(){
         $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
+
         return view('marketer.marketer_all_orders', compact(['products']));
     }
 
@@ -46,8 +47,9 @@ class MarketerController extends Controller
 
     // marketers buyers/customers
     public function marketersBuyers(){
-        $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
-
+        $customers = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get()->unique();
+        // return $customers;
+        return view('marketer.marketers_buyers', compact(['customers']));
     }
 // view product
 public function marketerViewOrder(Request $request)

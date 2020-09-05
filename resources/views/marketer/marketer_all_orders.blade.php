@@ -72,10 +72,20 @@
 
                     @endif</td>
                 <td>
-                    <a href="#view" dataid="{{$order->id}}" data-toggle="modal" class="btn btn-primary btn-sm"><i
-                            class="far fa-eye" style="font-size: 12px;"></i> </a>
-                    || <a href="#deliver" dataid="{{$order->id}}" data-toggle="modal" class="btn btn-success btn-sm"><i
-                            class="fas fa-shopping-cart" style="font-size: 12px;"></i> </a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#view" dataid="{{$order->id}}" data-toggle="modal"
+                                class="btn btn-primary btn-sm"><i class="far fa-eye" style="font-size: 12px;"></i> </a>
+
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#deliver" dataid="{{$order->id}}" data-toggle="modal"
+                                class="btn btn-success btn-sm"><i class="fas fa-shopping-cart"
+                                    style="font-size: 12px;"></i> </a>
+
+                        </div>
+                    </div>
+
                 </td>
                 {{-- {{route('products.show', $product->id)}} --}}
             </tr>

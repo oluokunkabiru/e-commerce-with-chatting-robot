@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-6 col-md-6 col-sm-6">
         <!-- small box -->
         <div class="small-box bg-dark">
@@ -75,8 +76,10 @@
                 <h4> Phone No :: {{ $view->billing_phone }} </h4>
                 <h4> Email :: {{ $view->billing_email }} </h4>
                 <h4> Payment Method :: {{ucwords( $view->billing_payment_method) }} </h4>
-
-
+                <h4>Order Date:: {{ $view->created_at }}</h4>
+                @if ($view->created_at!=$view->updated_at)
+                <h4>Deliver Date :: {{ $view->updated_at }}</h4>
+                @endif
             </div>
         </div>
     </div>
