@@ -56,4 +56,18 @@ public function delivered(Request $request){
     return redirect()->back()->with('success', $deliver->product_name." Delivered Successfully");
 }
 
+public function allOrders()
+{
+    $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->get();
+    return view('admin.all_orders', compact(['products']));
+}
+
+public function viewAllOrderStatus(Request $request)
+{
+    $id = $request->view;
+    $view = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
+    $marketer = Product::with(['user', 'picture'])->where('id', $view->product->id)->firstOrFail();
+    return view('admin.admin_view_all_order', compact(['view', 'marketer']));
+}
+
 }

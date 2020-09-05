@@ -30,7 +30,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard | Admin
-                <i class="right fas fa-angle-left"></i>
+                {{--  <i class="right fas fa-angle-left"></i>  --}}
               </p>
             </a>
           </li>
@@ -62,7 +62,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="{{ route('adminorders') }}" class="nav-link">
+            <a href="{{ route('allOrders') }}" class="nav-link">
               <i class="nav-icon fas fa-shopping-basket"></i>
               <p>
               All Orders
