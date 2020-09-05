@@ -67,6 +67,10 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('allviewdeleteproduct', 'Admin\AdminProductController@viewdeleteproduct')->name('allviewdeleteproduct');
     Route::resource('Admin/adminproduct', 'Admin\AdminProductController');
     Route::resource('Admin/category', 'Admin\CategoryController');
+    Route::get('/Admin/Customer/Orders', 'Admin\AdminController@adminorders')->name('adminorders');
+    Route::post('Admin/viewOrders', 'Admin\AdminController@adminViewOrder')->name('adminViewOrders');
+    Route::post('Admin/processOrders', 'Admin\AdminController@deliver')->name('adminProcessOrders');
+    Route::put('Admin/deliverOrders', 'Admin\AdminController@delivered')->name('adminDelivered');
 
 
 });

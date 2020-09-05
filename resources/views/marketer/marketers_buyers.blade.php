@@ -36,8 +36,11 @@
 
         @endphp
    @endforeach
-    @endforeach
 
+    @endforeach
+@php
+    print_r($image)
+@endphp
 @foreach ($id as $item=>$value)
 
 

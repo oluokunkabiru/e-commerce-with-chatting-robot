@@ -40,7 +40,6 @@ class MarketerController extends Controller
 
     public function marketerOrders(){
         $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
-
         return view('marketer.marketer_all_orders', compact(['products']));
     }
 

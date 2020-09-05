@@ -14,14 +14,19 @@
         <div class="card-title pb-2 pt-2 text-center bg-light"><h5> {{ Auth::user()->name }} <span class="fa fa-home  float-right text-warning pr-3"></span> </h5></div>
       <div class="card-body">
           {{-- <p> --}}
-            <a class="text-center btn btn-lg btn-block"  href="{{ route('home') }}">
-             <img src="{{ Auth::user()->picture->file }}" class="img-fluid card-img">
-            </a>
+            {{--  <a class="text-center btn btn-lg btn-block"  href="{{ route('home') }}">  --}}
+                <div class="text-center">
+                    <img src="{{ Auth::user()->picture->file }}" class="img-fluid card-img rounded-circle" style="width: 50%">
+                </div>
+            {{--  </a>  --}}
           {{-- </p> --}}
-         <div class="container  m-5">
+         <div class="container m-5">
            <div class="row">
-             <div class="col-sm-5 col-md-2 ">Address:</div>
-             <div class="col-sm-7 col-md-10 ">
+             <div class="col-sm-5 col-md-5 ">
+                 <h4>Address:</h4>
+                </div>
+             <div class="col-sm-7 col-md-7 ">
+<h4>
              @if(Auth::user()->address=='')
              <span class="text-danger"> {{ ' No Address set yet' }}</span>
              @endif
@@ -29,12 +34,15 @@
              @if(Auth::user()->address!='')
              {{ Auth::user()->address }}
             @endif
-
+</h4>
              </div>
            </div>
            <div class="row">
-            <div class="col-sm-5 col-md-2 ">City:</div>
-            <div class="col-sm-7 col-md-10 ">
+            <div class="col-sm-5 col-md-5 ">
+                <h4>City:</h4>
+        </div>
+            <div class="col-sm-7 col-md-7 ">
+                <h4>
             @if(Auth::user()->city=='')
             <span class="text-danger"> {{ ' No City set yet' }}</span>
             @endif
@@ -42,13 +50,16 @@
             @if(Auth::user()->city!='')
             {{ Auth::user()->city }}
            @endif
-
+</h4>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-sm-5 col-md-2 ">State:</div>
-            <div class="col-sm-7 col-md-10 ">
+            <div class="col-sm-5 col-md-5 ">
+                <h4> State:</h4>
+            </div>
+            <div class="col-sm-7 col-md-7">
+                <h4>
             @if(Auth::user()->state=='')
             <span class="text-danger"> {{ ' No State set yet' }}</span>
             @endif
@@ -56,13 +67,17 @@
             @if(Auth::user()->state!='')
             {{ Auth::user()->state }}
            @endif
-
+</h4>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-sm-5 col-md-2 ">Zipcode:</div>
-            <div class="col-sm-7 col-md-10 ">
+
+            <div class="col-sm-5 col-md-5">
+                 <h4>Zipcode:</h4>
+            </div>
+            <div class="col-sm-7 col-md-7 ">
+                <h4>
             @if(Auth::user()->zipcode=='')
             <span class="text-danger"> {{ ' No Zipcode set yet' }}</span>
             @endif
@@ -70,7 +85,7 @@
             @if(Auth::user()->zipcode!='')
             {{ Auth::user()->zipcode }}
            @endif
-
+</h4>
             </div>
           </div>
 
