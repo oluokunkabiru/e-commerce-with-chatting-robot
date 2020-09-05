@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Marketer;
 
+use App\User;
 use App\Order;
 use App\Product;
 use App\Category;
@@ -52,6 +53,49 @@ class MarketerController extends Controller
         return view('marketer.marketers_buyers', compact(['customers']));
     }
 // view product
+
+public function buyersinformation(Request $request){
+    $id = $request->view;
+    $customer = User::where('id',$id )->firstOrFail();
+    $mproduct = Product::with(['user', 'orders'])->where('user_id', Auth::user()->id)->get();
+    $totalmyproductorder =0;
+    // my product order
+    foreach ($mproduct as $mp) {
+        $or = Order::where(['product_id'=> $mp->id, 'user_id'=>$id])->get();
+        foreach ($or as $order) {
+            $totalmyproductorder+=$order->quantity;
+        }
+    }
+// my product deliver for this customer
+$totaldeliveredforthiscustomer=0;
+    // my product order
+    foreach ($mproduct as $mp) {
+        $or = Order::where(['product_id'=> $mp->id, 'user_id'=>$id, 'status'=>'Delivered'])->get();
+        foreach ($or as $order) {
+            $totaldeliveredforthiscustomer+=$order->quantity;
+        }
+    }
+
+    // total product order
+    $totalproductorder=0;
+        $or = Order::where(['user_id'=>$id])->get();
+        foreach ($or as $order) {
+            $totalproductorder+=$order->quantity;
+    }
+    // total qunatity delivered
+
+    // total product order
+    $totalproductdelivered=0;
+        $or = Order::where(['user_id'=>$id, 'status'=>'Delivered'])->get();
+        foreach ($or as $order) {
+            $totalproductdelivered+=$order->quantity;
+    }
+$customers = Order::where('user_id', $id)->OrderBy('id', 'DESC')->firstOrFail();
+
+
+    return view('marketer.customer_details', compact(['customer', 'totalmyproductorder', 'totalproductorder',
+    'totaldeliveredforthiscustomer', 'totalproductdelivered','customers']));
+}
 public function marketerViewOrder(Request $request)
     {
         $id = $request->input('view');

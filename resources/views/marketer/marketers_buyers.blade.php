@@ -20,6 +20,7 @@
             $email = array();
             $phone = array();
             $id =array();
+            $slug = array();
         @endphp
 
         @foreach ($customers as $customer)
@@ -31,6 +32,7 @@
             $phone [$custumer->user->id]=$custumer->user->phone?$custumer->user->phone:$custumer->billing_phone;
             $email [$custumer->user->id]=$custumer->user->email;
             $id[$custumer->user->id] =$custumer->user->id;
+
 
         @endphp
    @endforeach
@@ -45,12 +47,15 @@
             <td>{{$name[$item]}}</td>
              <td>{{ $email[$item]}}</td>
             <td>{{ $phone[$item]}}</td>
-            <td><a href=""> More</a></td>
-        </tr>
-@endforeach
+            <td>
+                 <a href="#view" dataid="{{$id[$item]}}" data-toggle="modal" class="btn btn-primary">More </a>
 
+            </td>
+</tr>
+@endforeach
     </tbody>
-    <tfoot>
+</table>
+        <div id="view" class="modal"></div>
 @endsection
 
 
@@ -59,5 +64,24 @@
   $(function () {
       $('#customer').DataTable();
   });
+
+  $(document).ready(function(){
+    $('#view').on('show.bs.modal', function(e){
+      var id = $(e.relatedTarget).attr('dataid');
+    //   alert(id);
+      $.ajax({
+        type:'post',
+        headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+        url:'{{route('marketerCustomerDetails')}}',
+        data:'view='+id,
+        success:function(data){
+          $('#view').html(data);
+        }
+      })
+    })
+  })
+
         </script>
 @endsection
