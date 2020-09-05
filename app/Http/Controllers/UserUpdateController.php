@@ -86,6 +86,7 @@ class UserUpdateController extends Controller
             'image' => ['sometimes','nullable', 'file'],
         ]);
         $user=User::where('id', $id)->firstOrFail();
+        // return $request->all();
         $input =  $request->except('password', 'password_confirmation');
         $file_name = "";
         if($file = $request->file('image') )
