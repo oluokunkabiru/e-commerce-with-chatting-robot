@@ -7,7 +7,7 @@
     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-4">
-                         <img src="../{{ $edit->picture->file }}" id="image" width="200px" class="img-fluid">
+                         <img src="{{ url($edit->picture->file) }}" id="image" width="200px" class="img-fluid">
                           <div class="form-group">
                             <label for="exampleInputFile">Upload Product  Picture</label>
                             <input type="file" accept="image/*" onchange="preview_image(event)" name="image" class="form-control" >

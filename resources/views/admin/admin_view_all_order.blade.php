@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-5">
         <div class="card">
-            <img src="../../{{$view->picture->file }}" alt="{{ $view->product_name }}" class="card-img">
+            <img src="{{url($view->picture->file) }}" alt="{{ $view->product_name }}" class="card-img">
         </div>
     </div>
 
@@ -98,7 +98,7 @@
             <div class="card-body">
                 <div>
                  <div class="text-center">
-                    <img src="../../{{ $marketer->user->picture->file }}" alt="{{ $marketer->user->name }}" style="width: 100px" class="card-img rounded-circle">
+                    <img src="{{ url($marketer->user->picture->file) }}" alt="{{ $marketer->user->name }}" style="width: 100px" class="card-img rounded-circle">
                  </div>
                  <a href="#moremarketerinfo" data-toggle="collapse" class="card-link">More</a>
                  <div class="container bg-dark collapse" id="moremarketerinfo">

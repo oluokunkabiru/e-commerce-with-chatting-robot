@@ -20,7 +20,7 @@
 @foreach ($customers as $customer =>$value)
     <tr>
         <td scope="row">{{ ++$i }}</td>
-        <td><img src="../{{ $customers[$customer]->picture->file }}" alt="{{ $customers[$customer]->name }}" style="width: 100px"></td>
+        <td><img src="{{ url($customers[$customer]->picture->file) }}" alt="{{ $customers[$customer]->name }}" style="width: 100px"></td>
         <td>{{ $customers[$customer]->name }}</td>
         <td>{{ $customers[$customer]->email }}</td>
         <td>{{ $customers[$customer]->phone?$customers[$customer]->phone:$order[$customer]->billing_phone }}</td>

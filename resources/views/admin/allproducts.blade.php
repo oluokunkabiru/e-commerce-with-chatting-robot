@@ -66,7 +66,7 @@
                  $categorys = $product->category ? $product->category->category:"";
                  $user = $product->user  ? $product->user->name:"";
                   @endphp
-                  <td> <img src="../{{$picture}}" alt="{{$picture }}" style="width:100px"> </td>
+                  <td> <img src="{{url($picture)}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
                   <td>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
