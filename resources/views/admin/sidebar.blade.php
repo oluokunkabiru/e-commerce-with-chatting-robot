@@ -13,7 +13,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
+            <img src="{{ url(Auth::user()->picture->file) }}" class="img-circle elevation-2" alt="{{ Auth::user()->name }}">
         </div>
         <div class="info">
           <a href="{{ route('dashboard') }}" class="d-block">{{ Auth::User() ? Auth::User()->name: "Name not available" }}</a>
@@ -89,78 +89,18 @@
         </li>
           <!----//staff----->
             <!-----Brand----->
-          <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
-            <p>
-              Brands
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="#" class="nav-link active">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add New Brand</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Brand</p>
-              </a>
-            </li>
 
-          </ul>
-        </li>
-<!----//-Brand----->
            <!-- Cateegories  -->
            <li class="nav-item has-treeview">
             <a href="{{ route('category') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Categories
-                <i class="fas fa-angle-left right"></i>
+                {{-- <i class="fas fa-angle-left right"></i> --}}
               </p>
             </a>
-
-            <!--- Stock Unit -->
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-copy"></i>
-                  <p>
-                    Stock Units
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add New Stock Unit</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Manage Stock Units</p>
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-            <!-- / Stock Units -->
           </li>
 
-           <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-copy"></i>
-                  <p>
-                    Settings
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-           </li>
            <li class="nav-item">
             <a href="{{ route('logout') }}"
             onclick="event.preventDefault();

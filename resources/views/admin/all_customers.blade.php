@@ -50,7 +50,7 @@
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('marketerCustomerDetails')}}',
+        url:'{{route('customersInformtion')}}',
         data:'view='+id,
         success:function(data){
           $('#view').html(data);

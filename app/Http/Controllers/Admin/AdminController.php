@@ -82,7 +82,7 @@ public function adminBuyers()
     // return $order;
     $order = Order::whereIn('product_id', $product)->get();
     $customers = User::with(['picture'])->orderBy('id', 'DESC')->whereIn('id', $orders)->get();
-   
+
     // return $customers;
     return view('admin.admin_customers', compact(['customers','order']));
 }
@@ -95,5 +95,50 @@ public function allBuyers()
     // return $order;
     return view('admin.all_customers', compact(['customers', 'order']));
 }
+
+
+public function buyersInformation(Request $request){
+    $id = $request->view;
+    $customer = User::where('id',$id )->firstOrFail();
+    $mproduct = Product::with(['user', 'orders'])->where('user_id', Auth::user()->id)->get();
+    $totalmyproductorder =0;
+    // my product order
+    foreach ($mproduct as $mp) {
+        $or = Order::where(['product_id'=> $mp->id, 'user_id'=>$id])->get();
+        foreach ($or as $order) {
+            $totalmyproductorder+=$order->quantity;
+        }
+    }
+// my product deliver for this customer
+$totaldeliveredforthiscustomer=0;
+    // my product order
+    foreach ($mproduct as $mp) {
+        $or = Order::where(['product_id'=> $mp->id, 'user_id'=>$id, 'status'=>'Delivered'])->get();
+        foreach ($or as $order) {
+            $totaldeliveredforthiscustomer+=$order->quantity;
+        }
+    }
+
+    // total product order
+    $totalproductorder=0;
+        $or = Order::where(['user_id'=>$id])->get();
+        foreach ($or as $order) {
+            $totalproductorder+=$order->quantity;
+    }
+    // total qunatity delivered
+
+    // total product order
+    $totalproductdelivered=0;
+        $or = Order::where(['user_id'=>$id, 'status'=>'Delivered'])->get();
+        foreach ($or as $order) {
+            $totalproductdelivered+=$order->quantity;
+    }
+$customers = Order::where('user_id', $id)->OrderBy('id', 'DESC')->firstOrFail();
+
+
+    return view('admin.customers_information', compact(['customer', 'totalmyproductorder', 'totalproductorder',
+    'totaldeliveredforthiscustomer', 'totalproductdelivered','customers']));
+}
+
 
 }

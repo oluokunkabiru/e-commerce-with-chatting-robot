@@ -75,8 +75,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('Admin/viewAllOrders', 'Admin\AdminController@viewAllOrderStatus')->name('viewAllOrderStatus');
     Route::get('/Admin/Customers', 'Admin\AdminController@adminBuyers')->name('adminBuyers');
     Route::get('/Admin/AllCustomers', 'Admin\AdminController@allBuyers')->name('allBuyers');
-
-
+    Route::post('/Admin/customersInformation', 'Admin\AdminController@buyersInformation')->name('customersInformtion');
 });
 
 // marketer content goes here
