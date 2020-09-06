@@ -70,4 +70,21 @@ public function viewAllOrderStatus(Request $request)
     return view('admin.admin_view_all_order', compact(['view', 'marketer']));
 }
 
+// buyeers
+
+public function adminBuyers()
+{
+    $customers = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get()->unique();
+    return view('admin.admin_customers', compact(['customers']));
+}
+
+public function allBuyers()
+{
+    $customer = Order::pluck('user_id')->unique();
+    $order = Order::whereIn('user_id', $customer)->distinct()->get();
+    $customers = User::with(['picture'])->orderBy('id', 'DESC')->whereIn('id', $customer)->get();
+    // return $order;
+    return view('admin.all_customers', compact(['customers', 'order']));
+}
+
 }

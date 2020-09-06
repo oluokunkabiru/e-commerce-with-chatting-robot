@@ -71,10 +71,19 @@
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('adminBuyers') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-               Buyers
+             My  Buyers
+              </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('allBuyers') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+             All  Buyers
               </p>
             </a>
         </li>
