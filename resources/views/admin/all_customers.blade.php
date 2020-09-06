@@ -1,4 +1,4 @@
-@extends('marketer.layout')
+@extends('admin.layout')
 @section('title', Auth::user()->name. " Customers")
 @section('content')
 <table id="customer" class="table table-bordered table-striped">

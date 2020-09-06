@@ -14,48 +14,20 @@
     </thead>
     <tbody>
         @php
-            $i =0;
-            $name = array();
-            $image = array();
-            $email = array();
-            $phone = array();
-            $id =array();
-            $slug = array();
-        @endphp
+        $i=0;
+    @endphp
 
-        @foreach ($customers as $customer)
-        @foreach ($customer->orders as $custumer)
-        @php
-            $i;
-            $image[$custumer->id]=$custumer->user->picture->file;
-            $name [$custumer->user->id]=$custumer->user->name;
-            $phone [$custumer->user->id]=$custumer->user->phone?$custumer->user->phone:$custumer->billing_phone;
-            $email [$custumer->user->id]=$custumer->user->email;
-            $id[$custumer->user->id] =$custumer->user->id;
-
-
-        @endphp
-   @endforeach
-
-    @endforeach
-@php
-    print_r($image)
-@endphp
-@foreach ($id as $item=>$value)
-
-
+@foreach ($customers as $customer =>$value)
     <tr>
-            <td>{{ ++$i }}</td>
-            <td><img src="../{{  $image[$item] }}" alt="{{$name[$item] }}" style="width: 100px"></td>
-            <td>{{$name[$item]}}</td>
-             <td>{{ $email[$item]}}</td>
-            <td>{{ $phone[$item]}}</td>
-            <td>
-                 <a href="#view" dataid="{{$id[$item]}}" data-toggle="modal" class="btn btn-primary">More </a>
+        <td scope="row">{{ ++$i }}</td>
+        <td><img src="../{{ $customers[$customer]->picture->file }}" alt="{{ $customers[$customer]->name }}" style="width: 100px"></td>
+        <td>{{ $customers[$customer]->name }}</td>
+        <td>{{ $customers[$customer]->email }}</td>
+        <td>{{ $customers[$customer]->phone?$customers[$customer]->phone:$order[$customer]->billing_phone }}</td>
+        <td> <a href="#view" dataid="{{$customers[$customer]->id}}" data-toggle="modal" class="btn btn-primary">More </a></td>
 
-            </td>
-</tr>
-@endforeach
+    </tr>
+    @endforeach
     </tbody>
 </table>
         <div id="view" class="modal"></div>

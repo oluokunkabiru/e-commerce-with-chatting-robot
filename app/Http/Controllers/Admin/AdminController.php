@@ -74,8 +74,17 @@ public function viewAllOrderStatus(Request $request)
 
 public function adminBuyers()
 {
-    $customers = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get()->unique();
-    return view('admin.admin_customers', compact(['customers']));
+    // $customers = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->pluck('id');
+
+    $product = Product::where(['user_id'=>Auth::user()->id])->pluck('id')->unique();
+    //
+    $orders = Order::whereIn('product_id', $product)->pluck('user_id')->unique();
+    // return $order;
+    $order = Order::whereIn('product_id', $product)->get();
+    $customers = User::with(['picture'])->orderBy('id', 'DESC')->whereIn('id', $orders)->get();
+   
+    // return $customers;
+    return view('admin.admin_customers', compact(['customers','order']));
 }
 
 public function allBuyers()
