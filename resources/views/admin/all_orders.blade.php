@@ -57,7 +57,7 @@
                 {{--  @php
      $categorys = $product->category ? $product->category->category:"";
       @endphp  --}}
-                <td> <img src="{{($picture)}}" alt="{{$picture }}" style="width:100px"> </td>
+                <td> <img src="{{url($picture)}}" alt="{{$picture }}" style="width:100px"> </td>
                 <td>{{ $order->product_name }}</td>
                 <td>{{ $order->quantity}}</td>
                 <td>{{ $order->user->name }}</td>

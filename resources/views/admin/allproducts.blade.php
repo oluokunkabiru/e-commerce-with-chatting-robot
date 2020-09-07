@@ -75,9 +75,22 @@
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 15px;"></i> </a>
-                        || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 15px;"></i> </a>
-                        || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> </a>
+                        <div class="row">
+                            <div class="col-md-4">
+                        <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
+
+                            </div>
+
+                            <div class="col-md-4">
+                        <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
+
+                            </div>
+
+                            <div class="col-md-4">
+                         <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
+
+                            </div>
+                        </div>
                     </td>
                     {{-- {{route('products.show', $product->id)}} --}}
                 </tr>
@@ -155,7 +168,7 @@ $(document).ready(function(){
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('allviewproduct')}}',
+        url:'{{route('viewproducts')}}',
         data:'view='+id,
         success:function(data){
           $('#view').html(data);
@@ -176,7 +189,7 @@ $(document).ready(function()
         headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-        url:'{{route('allvieweditproduct')}}',
+        url:'{{route('vieweditproducts')}}',
         data:'edit='+id,
         success:function(data){
           $('#edit').html(data);

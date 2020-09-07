@@ -38,7 +38,7 @@ class MarketerProductController extends Controller
     {
         //
         $categories = Category::get();
-        $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->paginate(10);
+        $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         return view('marketer.marketerproduct', compact(['products', 'categories']));
     }
     public function viewproduct(Request $request)

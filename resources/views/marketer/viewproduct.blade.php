@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-4 col-lg-4">
-        <img src="../{{ $view->picture->file }} " id="image" width="200px" class="img-fluid">
+        <img src="{{url( $view->picture->file) }} " id="image" width="200px" class="img-fluid">
     </div>
 <!----- //Picture -->
 <div class="col-lg-4 col-md-4">

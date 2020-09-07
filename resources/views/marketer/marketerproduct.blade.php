@@ -66,7 +66,7 @@
                     @php
                  $categorys = $product->category ? $product->category->category:"";
                   @endphp
-                  <td> <img src="../{{$picture}}" alt="{{$picture }}" style="width:100px"> </td>
+                  <td> <img src="{{url($picture)}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
                   <td>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
@@ -74,9 +74,22 @@
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
 
-                     <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
-                        || <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
-                        || <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
+                        <div class="row">
+                            <div class="col-md-4">
+                        <a href="#view" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-eye"  style="font-size: 12px;"></i> </a>
+
+                            </div>
+
+                            <div class="col-md-4">
+                        <a href="#edit"  dataid="{{$product->id}}" data-toggle="modal" class="btn btn-primary btn-sm" href="#" ><i class="far fa-edit"  style="font-size: 12px;"></i> </a>
+
+                            </div>
+
+                            <div class="col-md-4">
+                         <a href="#delete" dataid="{{$product->id}}" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" style="font-size: 12px;"></i> </a>
+
+                            </div>
+                        </div>
                     </td>
                     {{-- {{route('products.show', $product->id)}} --}}
                 </tr>
@@ -99,7 +112,6 @@
               </table>
             </div>
             <div class="float-right">
-                {{ $products->links() }}
             </div>
 
 
@@ -255,7 +267,7 @@
     $(function () {
       $('#product').DataTable();
 
-    
+
   });
 
 
