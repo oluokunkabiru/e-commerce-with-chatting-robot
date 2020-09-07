@@ -14,7 +14,7 @@
                   $categorys = $product->category ? $product->category->category:"";
                @endphp
                 <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{ asset($picture) }}">
+                    <div class="categories__item set-bg" data-setbg="{{ url($picture) }}">
                         <h5><a href="{{ route('produtCategory',['id' => $categorys]) }}">{{ $categorys }}</a></h5>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 @endphp
             <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $categorys }} fresh-meat">
                 <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{ asset($picture)  }}">
+                    <div class="featured__item__pic set-bg" data-setbg="{{ url($picture)  }}">
                         <ul class="featured__item__pic__hover">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -78,7 +78,7 @@
                                     <p>Location : <b>{{ ucwords($product->location) }}</b></p>
                                 </div>
                             </div>
-                           
+
                     </div>
                 </div>
             </div>

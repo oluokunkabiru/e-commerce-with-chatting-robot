@@ -72,7 +72,7 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td class="shoping__cart__item">
-                                        <img src="{{ $item->model->picture->file }}" alt="{{ $item->model->product_name }}" style="width: 120px">
+                                        <img src="{{ url($item->model->picture->file) }}" alt="{{ $item->model->product_name }}" style="width: 120px">
                                         <h5>{{ $item->model->product_name }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">

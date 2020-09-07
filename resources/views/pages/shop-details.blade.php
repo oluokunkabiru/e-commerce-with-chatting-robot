@@ -39,7 +39,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{ asset($picture) }}" alt="">
+                                src="{{ url($picture) }}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             @foreach ($related as $product )
@@ -49,8 +49,8 @@
                                     @endphp
  {{-- route('productDetails' , ['id' => $product->slug]) --}}
 
-                            <img data-imgbigurl="{{asset($picture) }}"
-                                src="{{ asset($picture) }}" alt="">
+                            <img data-imgbigurl="{{url($picture) }}"
+                                src="{{ url($picture) }}" alt="">
                              @endforeach
                         </div>
                     </div>

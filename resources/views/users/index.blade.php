@@ -16,7 +16,7 @@
           {{-- <p> --}}
             {{--  <a class="text-center btn btn-lg btn-block"  href="{{ route('home') }}">  --}}
                 <div class="text-center">
-                    <img src="{{ Auth::user()->picture->file }}" class="img-fluid card-img rounded-circle" style="width: 50%">
+                    <img src="{{ url(Auth::user()->picture->file) }}" class="img-fluid card-img rounded-circle" style="width: 50%">
                 </div>
             {{--  </a>  --}}
           {{-- </p> --}}

@@ -23,7 +23,7 @@
                 @endphp
                 @foreach ($history as $item)
                 <tr>
-                    <td><img src="{{ asset($item->picture->file) }}" alt="{{ $item->product_name }}" style="width: 100px"></td>
+                    <td><img src="{{ url($item->picture->file) }}" alt="{{ $item->product_name }}" style="width: 100px"></td>
                     <td>{{ $item->product_name }}</td>
                     <td><span class="fa">&#8358;</span> {{ $item->billing_price}}</td>
                     <td>{{ $item->quantity }}</td>

@@ -135,8 +135,8 @@
                                 </table>
 
                             <div class="checkout__order__subtotal">Subtotal <span><i class="fa">&#8358;</i>{{ Cart::subtotal() }}</span></div>
-                            <div class="checkout__order__subtotal">Tax <span><i class="fa">&#8358;</i>{{ Cart::tax() }}</span></div>
-                            <div class="checkout__order__total">Total <span><i class="fa">&#8358;</i>{{ Cart::total() }}</span></div>
+                            {{-- <div class="checkout__order__subtotal">Tax <span><i class="fa">&#8358;</i>{{ Cart::tax() }}</span></div> --}}
+                            <div class="checkout__order__total">Total <span><i class="fa">&#8358;</i>{{ Cart::subtotal() }}</span></div>
 
                             <div class="checkout__input__checkbox">
                                 <label for="acc-or">
