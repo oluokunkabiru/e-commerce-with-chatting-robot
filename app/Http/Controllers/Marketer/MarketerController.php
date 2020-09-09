@@ -152,8 +152,8 @@ public function test(){
     // ->rightjoin('users', 'products.user_id', 'users.id')->where(['users.id'=>Auth::user()->id, 'orders.status'=>'Pending'])->get();
     // $order = Order::select('orders.*')->get();
 
-    $products = Product::with(['picture', 'orders', 'user'])->where(['user_id'=>1])->get();
-   return view('marketer.test', compact(['products']));
+    // $products = Product::with(['picture', 'orders', 'user'])->get();
+//    return view('users.test', compact(['products']));
 }
 
     /**
