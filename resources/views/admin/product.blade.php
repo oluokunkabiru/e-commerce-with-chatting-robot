@@ -146,6 +146,7 @@
                                <strong>{{ $errors->first('image') }}</strong>
                            </span>
                        @endif
+
                           </div>
                           {{-- <input type="hidden" id="image_id" name="image_id"> --}}
                         </div>
