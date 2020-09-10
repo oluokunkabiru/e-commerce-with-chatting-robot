@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use\App\Category;
 use\App\Product;
+use App\Setting;
 
 class PagesController extends Controller
 {
@@ -20,7 +21,7 @@ class PagesController extends Controller
      }
 
      public function shop(){
-         $products =  Product::inRandomOrder()('id','desc')->paginate(20);
+         $products =  Product::inRandomOrder()->paginate(20);
          $category = Product::orderBy('id','desc')->first()->paginate(10)->unique('category_id');
          $latest = Product::orderBy('id','desc')->paginate(18);
          $latestrated = Product::orderBy('id','desc')->paginate(18);
@@ -28,6 +29,16 @@ class PagesController extends Controller
 
 
          return view('pages.shopgrid', compact(['category','products','latest','latestrated', 'latestreview']));
+     }
+
+     public function headers(){
+        $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+         return view('includes.header', compact(['setting']));
+     }
+     public function heads(){
+        $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+        // return $setting;
+        return view('includes.head', compact(['setting']));
      }
      public function contact(){
          return view('pages.contact');

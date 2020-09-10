@@ -1,4 +1,7 @@
-  <!-- Page Preloder -->
+ @php
+    $setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+ @endphp
+ <!-- Page Preloder -->
   <div id="preloder">
     <div class="loader"></div>
 </div>
@@ -7,7 +10,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt=""></a>
+        <a href="{{ route('home') }}"><img src="{{ url($setting->picture->file) }}" style="width: 119px; height:50px" alt="{{ $setting->company }}"></a>
     </div>
     <div class="humberger__menu__cart">
        {{-- <ul>
@@ -82,15 +85,15 @@
     </nav>
     <div id="mobile-menu-wrap"></div>
     <div class="header__top__right__social">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a href="{{ $setting->twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="{{ $setting->linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> support@oluokunkabiru.com</li>
-            <li>Free Shipping for all Order</li>
+            <li><i class="fa fa-envelope"></i> {{ $setting->supportemail }}</li>
+            <li>{{ $setting->shipping }}"</li>
         </ul>
     </div>
 </div>
@@ -104,18 +107,18 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> support@oluokunkabiru.com</li>
-                            <li>Free Shipping for all Order</li>
+                            <li><i class="fa fa-envelope"></i> {{ $setting->supportemail }}</li>
+                            <li>{{ $setting->shipping }}</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__right">
                         <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="{{ $setting->twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="{{ $setting->linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
                         </div>
                         <div class="header__top__right__language">
                             <img src="img/language.png" alt="">
@@ -135,7 +138,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="home"><img src="{{ asset('asset/img/logo.png') }}" alt="Logo"></a>
+                    <a href="home"><img src="{{ url($setting->picture->file) }}" style="width: 119px; height:50px" alt="{{ $setting->company }}"></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -239,7 +242,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+2348130584550</h5>
+                            <h5>{{ $setting->phone}}</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>

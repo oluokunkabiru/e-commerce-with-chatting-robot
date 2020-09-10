@@ -133,3 +133,4 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/test', 'MarketerMarketerController@test');
+Route::get('/test', 'PagesController@heads');

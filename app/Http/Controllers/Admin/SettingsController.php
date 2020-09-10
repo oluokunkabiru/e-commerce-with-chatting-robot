@@ -92,7 +92,7 @@ class SettingsController extends Controller
             unlink(public_path()."/". $file_delete->file);
             $logos = $request->file('logo');
          $extension = $logos->getClientOriginalExtension();
-         $file = strtolower($request->company.'_logo.' . $extension);
+         $file = str_replace(" ", "_", strtolower($request->company.'_logo.' . $extension));
          $logos->move('asset/images', $file);
 
          $logo = new Picture();

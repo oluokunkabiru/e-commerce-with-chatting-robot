@@ -1,10 +1,18 @@
+@php
+    $setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+    $producting= App\Product::get();
+@endphp
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="description" content="{{ $setting->company }}">
+    <meta name="keywords" content="
+        @foreach($producting as $product)
+        {{ $product->product_name ."," }}
+        @endforeach
+    ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Oluokun Kabir Store::@yield('title')</title>
+    <title>{{ $setting->company }}::@yield('title')</title>
 
     <!-- Google Font -->
 
@@ -17,5 +25,5 @@
     <link rel="stylesheet" href="{{ asset('asset/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}" type="text/css">
-    <link rel="icon" href="{{ asset('asset/img/logo.png') }}">
+    <link rel="icon" href="{{ url($setting->picture->file) }}">
 </head>
