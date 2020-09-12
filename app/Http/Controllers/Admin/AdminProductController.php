@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Picture;
 use App\Product;
+use App\Setting;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use App\Http\Requests\AdminProductRequest;
 
 class AdminProductController extends Controller
@@ -122,9 +124,24 @@ class AdminProductController extends Controller
 
         $product = new Product();
         if ($file = $request->file('image')) {
-            $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+            $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+            $files = Image::make($file);
+            $imagepath = public_path().'/asset/images/';
 
-            $file->move('asset/images', $file_name);
+       $files->resize(320,300);
+       $watermark = public_path()."/asset/design/design.png";
+       $files->insert($watermark,  'bottom-right');
+      $files->text($setting->company,150,150, function($text){
+          $text->color('#00ff00');
+          $text->file(4);
+          $text->size(30);
+          $text->align('center');
+      });
+       $files->save($imagepath.str_replace(" ", "_",time().$file->getClientOriginalName()));
+
+         $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+
+            // $file->move('asset/images', $file_name);
             $photo = new Picture();
             $photo->file = $file_name;
             $photo->save();
@@ -224,8 +241,42 @@ class AdminProductController extends Controller
                     return redirect()->back()->with('typeerror', "This must be of Image of type JPG, PNG, GIF etc.");
                 }
                 // save the image
-                $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
-                $file->move('asset/images', $file_name);
+
+        //         $setting = Setting::with(['picture'])->where('id', $id)->firstOrFail();
+        //         $files = Image::make($file);
+        //         $imagepath = public_path().'/asset/images/';
+
+
+        //    $files->resize(320,300);
+        //    $watermark = public_path()."/asset/design/design.png";
+        //    $files->insert($watermark,  'bottom-right');
+        //   $files->text($setting->company,150,150, function($text){
+        //       $text->color('#00ff00');
+        //       $text->file(4);
+        //       $text->size(30);
+        //       $text->align('center');
+        //   });
+        //    $files->save($imagepath.str_replace(" ", "_",time()."_".$file->getClientOriginalName()));
+
+                // $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+                // $file->move('asset/images', $file_name);
+                $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+                $files = Image::make($file);
+                $imagepath = public_path().'/asset/images/';
+
+           $files->resize(320,300);
+           $watermark = public_path()."/asset/design/design.png";
+           $files->insert($watermark,  'bottom-right');
+          $files->text($setting->company,150,150, function($text){
+              $text->color('#00ff00');
+              $text->file(4);
+              $text->size(30);
+              $text->align('center');
+          });
+           $files->save($imagepath.str_replace(" ", "_",time().$file->getClientOriginalName()));
+
+             $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+
                 $photo = new Picture();
                 $photo->file = $file_name;
                 $photo->save();

@@ -146,8 +146,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Midnite81\GeoLocation\GeoLocationServiceProvider::class,
-
 
         /*
          * Package Service Providers...
@@ -161,6 +159,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -211,8 +210,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'GeoLocation' => Midnite81\GeoLocation\Facades\GeoLocation::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
 
 
     ],
