@@ -63,6 +63,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('viewdeleteproducts', 'Admin\AdminProductController@viewdeleteproduct')->name('viewdeleteproducts');
     Route::post('Admin/Category', 'Admin\CategoryController@create' );
     Route::resource('/Admin/Settings', 'Admin\SettingsController');
+    Route::put('aboutandaddress', 'Admin\SettingsController@about')->name('aboutandaddress');
     // Route::post('allviewproduct', 'Admin\AdminProductController@vieweditproduct')->name('allviewproduct');
     // Route::post('allvieweditproduct','Admin\AdminProductController@vieweditproduct' )->name('allvieweditproduct');
     Route::post('allviewdeleteproduct', 'Admin\AdminProductController@viewdeleteproduct')->name('allviewdeleteproduct');

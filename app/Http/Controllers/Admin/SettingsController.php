@@ -6,6 +6,7 @@ use App\Picture;
 use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AboutRequest;
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\SettingsRequest;
 
@@ -97,17 +98,9 @@ class SettingsController extends Controller
             //  $wpath = public_path().'/asset/design/';
              $imagepath = public_path().'/asset/images/';
 
-        // $thumbnailImage->save($originalPath.time().".".$originalImage->getClientOriginalExtension());
-        // getClientOriginalName());$setting->picture->file
+
         $file->resize(120,50);
-        $watermark = public_path()."/asset/design/design.png";
-        $file->insert($watermark,  'bottom-right');
-       $file->text($setting->company,150,150, function($text){
-           $text->color('#00ff00');
-           $text->file(4);
-           $text->size(30);
-           $text->align('center');
-       });
+
         $file->save($imagepath.time()."_".$files->getClientOriginalName());
 
         $file = time()."_".$files->getClientOriginalName();
@@ -123,6 +116,16 @@ class SettingsController extends Controller
          $setting->update();
          return redirect()->back()->with('success', 'Settings Updated Successfully');
     }
+     public function about(AboutRequest $request)
+     {
+        $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+        $setting->about = ucwords($request->about);
+        $setting->address =ucwords($request->address);
+        $setting->update();
+        return redirect()->back()->with('success', 'Settings Updated Successfully');
+
+
+     }
 
     /**
      * Remove the specified resource from storage.
