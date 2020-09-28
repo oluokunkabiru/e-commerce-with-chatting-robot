@@ -1,3 +1,8 @@
+
+@php
+$setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+
+@endphp
  <!-- Footer Section Begin -->
  <footer class="footer spad">
     <div class="container">
@@ -8,9 +13,9 @@
                         <a href="./index.html"><img src="img/logo.png" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: Osogbo, Osun State</li>
-                        <li>Phone: +2348130584550</li>
-                        <li>Email: support@oluokuunkabiru.com</li>
+                        <li>Address: {{ $setting->address }}</li>
+                        <li>Phone: {{ $setting->phone }}</li>
+                        <li>Email:{{ $setting->supportemail }}</li>
                     </ul>
                 </div>
             </div>
@@ -44,10 +49,10 @@
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                        <a href="{{ $setting->twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="{{ $setting->linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -55,10 +60,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer__copyright">
-                    <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Powered  <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://github.com/oluokunkabiru" target="_blank">Oluokun Kabiru Adesina</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    {{--  <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->  --}}
+                        <strong>Copyright &copy; {{ date('Y')}} {{ ucwords($setting->company) }}</strong>
+                        All rights reserved.
+                        <div class="float-right d-none d-sm-inline-block">
+                          <b>Designed By OLUOKUN KABIRU ADESINA
+                        </div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                    {{--  <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>  --}}
                 </div>
             </div>
         </div>

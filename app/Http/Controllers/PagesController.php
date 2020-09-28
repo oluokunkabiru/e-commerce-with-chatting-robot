@@ -26,9 +26,12 @@ class PagesController extends Controller
          $latest = Product::orderBy('id','desc')->paginate(18);
          $latestrated = Product::orderBy('id','desc')->paginate(18);
          $latestreview = Product::orderBy('id','desc')->paginate(18);
+         $categor = Category::orderBy('id', 'desc')->paginate(10);
+         $minprice = Product::min('newprice');
+         $maxprice  = Product::max('newprice');
 
 
-         return view('pages.shopgrid', compact(['category','products','latest','latestrated', 'latestreview']));
+         return view('pages.shopgrid', compact(['category','minprice','maxprice', 'categor','products','latest','latestrated', 'latestreview']));
      }
 
      public function headers(){
@@ -78,6 +81,10 @@ class PagesController extends Controller
          return view('pages.test', compact(['products']));
      }
 
+     public function footer(){
+         $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+         return view('includes.footer', compact(['setting']));
+     }
 
 
 }
