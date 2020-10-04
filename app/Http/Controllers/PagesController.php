@@ -44,7 +44,8 @@ class PagesController extends Controller
         return view('includes.head', compact(['setting']));
      }
      public function contact(){
-         return view('pages.contact');
+         $setting = Setting::where('id', 1)->firstOrFail();
+         return view('pages.contact', compact(['setting']));
      }
      public function blog(){
          return view('pages.blog');

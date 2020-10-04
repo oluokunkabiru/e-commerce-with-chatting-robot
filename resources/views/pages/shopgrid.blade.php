@@ -204,66 +204,146 @@
 
                                 </div>
                             </div>
-                            {{--  <div class="latest-product__slider owl-carousel">
+
+                        </div>
+                    </div>
+
+
+                    <div class="sidebar__item">
+                        <div class="latest-product__text">
+                            <h4>Review Products</h4>
+                            <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
+                                    @for ($i =0 ; $i <3 ; $i++)
+                                    @if (isset($latestreview[$i]->product_name))
+
+
+                                    <a href="{{ route('productDetails' , ['id' => $latestreview[$i]->slug]) }}" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ asset('asset/img/latest-product/lp-1.jpg') }}" alt="">
+                                            <img src="{{ asset( $latestreview[$i]->picture->file) }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>N30.00</span>
+                                            <h6>{{  $latestreview[$i]->product_name }}</h6>
+                                           <span> <i class="fa">&#8358;</i>{{ $latestreview[$i]->newprice }}</span>
                                         </div>
                                     </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ asset('asset/img/latest-product/lp-2.jpg') }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>N30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ asset('asset/img/latest-product/lp-3.jpg') }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>N30.00</span>
-                                        </div>
-                                    </a>
+                                    @endif
+                                    @endfor
+
+
                                 </div>
                                 <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
+                                    @for ($i =3 ; $i <6 ; $i++)
+                                    @if (isset($latestreview[$i]->product_name))
+
+
+                                    <a href="{{ route('productDetails' , ['id' => $latestreview[$i]->slug]) }}" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ asset('asset/img/latest-product/lp-1.jpg') }}" alt="">
+                                            <img src="{{ asset( $latestreview[$i]->picture->file) }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>N30.00</span>
+                                            <h6>{{  $latestreview[$i]->product_name }}</h6>
+                                           <span> <i class="fa">&#8358;</i>{{ $latestreview[$i]->newprice }}</span>
                                         </div>
                                     </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ asset('asset/img/latest-product/lp-2.jpg') }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>N30.00</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="{{ asset('asset/img/latest-product/lp-3.jpg') }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Crab Pool Security</h6>
-                                            <span>N30.00</span>
-                                        </div>
-                                    </a>
+                                    @endif
+                                    @endfor
+
+
                                 </div>
-                            </div>  --}}
+
+                                <div class="latest-prdouct__slider__item">
+                                    @for ($i =6 ; $i <9 ; $i++)
+                                    @if (isset($latestreview[$i]->product_name))
+
+
+                                    <a href="{{ route('productDetails' , ['id' => $latestreview[$i]->slug]) }}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="{{ asset( $latestreview[$i]->picture->file) }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{  $latestreview[$i]->product_name }}</h6>
+                                           <span> <i class="fa">&#8358;</i>{{ $latestreview[$i]->newprice }}</span>
+                                        </div>
+                                    </a>
+                                    @endif
+                                    @endfor
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="sidebar__item">
+                        <div class="latest-product__text">
+                            <h4>Top Rated Products</h4>
+                            <div class="latest-product__slider owl-carousel">
+                                <div class="latest-prdouct__slider__item">
+                                    @for ($i =0 ; $i <3 ; $i++)
+                                    @if (isset($latestrated[$i]->product_name))
+
+
+                                    <a href="{{ route('productDetails' , ['id' => $latestrated[$i]->slug]) }}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="{{ asset( $latestrated[$i]->picture->file) }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{  $latestrated[$i]->product_name }}</h6>
+                                           <span> <i class="fa">&#8358;</i>{{ $latestrated[$i]->newprice }}</span>
+                                        </div>
+                                    </a>
+                                    @endif
+                                    @endfor
+
+                                </div>
+                                <div class="latest-prdouct__slider__item">
+                                    @for ($i =3 ; $i <6 ; $i++)
+                                    @if (isset($latestrated[$i]->product_name))
+
+
+                                    <a href="{{ route('productDetails' , ['id' => $latestrated[$i]->slug]) }}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="{{ asset( $latestrated[$i]->picture->file) }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{  $latestrated[$i]->product_name }}</h6>
+                                           <span> <i class="fa">&#8358;</i>{{ $latestrated[$i]->newprice }}</span>
+                                        </div>
+                                    </a>
+                                    @endif
+                                    @endfor
+
+
+                                </div>
+
+                                <div class="latest-prdouct__slider__item">
+                                    @for ($i =6 ; $i <9 ; $i++)
+                                    @if (isset($latestrated[$i]->product_name))
+
+
+                                    <a href="{{ route('productDetails' , ['id' => $latestrated[$i]->slug]) }}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="{{ asset( $latestrated[$i]->picture->file) }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{  $latestrated[$i]->product_name }}</h6>
+                                           <span> <i class="fa">&#8358;</i>{{ $latestrated[$i]->newprice }}</span>
+                                        </div>
+                                    </a>
+                                    @endif
+                                    @endfor
+
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

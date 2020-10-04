@@ -103,10 +103,20 @@
               </p>
             </a>
           </li>
+          {{--  messages  --}}
+          <li class="nav-item has-treeview">
+            <a href="{{ route('custmersMessages') }}" class="nav-link">
+              <i class="nav-icon fas fa-comments"></i>
+              <p>
+                Messages
+                {{-- <i class="fas fa-angle-left right"></i> --}}
+              </p>
+            </a>
+          </li>
 <!-- Settings  -->
            <li class="nav-item has-treeview">
             <a href="{{ route('Settings.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings
                 {{-- <i class="fas fa-angle-left right"></i> --}}

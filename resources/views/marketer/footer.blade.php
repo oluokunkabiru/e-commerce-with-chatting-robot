@@ -1,9 +1,12 @@
+@php
+        $setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 
+@endphp
 <footer class="main-footer">
-    <strong>Copyright &copy; {{ date('Y')}} Yahas Fashion Hub</strong>
+    <strong>Copyright &copy; {{ date('Y')}} {{ ucwords($setting->company) }}</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Designed By OIC Hub
+      <b>Designed By OLUOKUN KABIRU ADESINA
     </div>
   </footer>
 

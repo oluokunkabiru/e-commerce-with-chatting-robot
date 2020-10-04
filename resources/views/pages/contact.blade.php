@@ -27,14 +27,14 @@
                 <div class="contact__widget">
                     <span class="icon_phone"></span>
                     <h4>Phone</h4>
-                    <p>  </p>
+                    <p> {{ $setting->phone }} </p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                 <div class="contact__widget">
                     <span class="icon_pin_alt"></span>
                     <h4>Address</h4>
-                    <p>  </p>
+                    <p> {{ $setting->address }} </p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 text-center">
@@ -48,7 +48,8 @@
                 <div class="contact__widget">
                     <span class="icon_mail_alt"></span>
                     <h4>Email</h4>
-                    <p>support@soupe.com.ng</p>
+                    <p> {{ $setting->supportemail }} </p>
+
                 </div>
             </div>
         </div>
@@ -84,16 +85,49 @@
                 </div>
             </div>
         </div>
-        <form action="#">
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong style="font-size:15px;">Success :{{session('success') }}</strong><br/>
+        </div>
+        @endif
+        @if($errors->any())
+
+        <div class="alert alert-danger alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong style="font-size:20px;">Oops!
+               {{ "Kindly rectify below errors" }}</strong><br/>
+          @foreach ($errors->all() as $error)
+          {{$error }} <br/>
+          @endforeach
+        </div>
+        @endif
+        <form action="{{ route('contactus.store') }}" method="POST">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <input type="text" placeholder="Your name">
+                    <input type="text" name="name" value="{{ Auth::user()->name, old('name') }}" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Your name">
+                    @if ($errors->has('name'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <input type="text" placeholder="Your Email">
+                    <input type="email" name="email" value="{{ Auth::user()->email, old('email') }}" placeholder="Your Email"  class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}">
+                    @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
                 </div>
                 <div class="col-lg-12 text-center">
-                    <textarea placeholder="Your message"></textarea>
+                    <textarea placeholder="Your message" name="message"  class="textarea form-control {{ $errors->has('email') ? ' is-invalid' : '' }} " ></textarea>
+                    @if ($errors->has('message'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('message') }}</strong>
+                    </span>
+                @endif
                     <button type="submit" class="site-btn">SEND MESSAGE</button>
                 </div>
             </div>
@@ -102,4 +136,23 @@
 </div>
 <!-- Contact Form End -->
 
+@endsection
+@section('script')
+<script>
+    $(function () {
+      // Summernote
+      $('.textarea').summernote({
+          height:150,
+          toolbar:[
+              ['style', ['style']],
+              ['font', ['bold', 'italic', 'underline', 'clear']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['table', ['table']],
+              ['insert', ['link', 'pictur']],
+              ['view', ['fullscreen', 'codeview', 'help']]
+          ]
+      })
+    })
+  </script>
 @endsection

@@ -78,6 +78,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/Admin/Customers', 'Admin\AdminController@adminBuyers')->name('adminBuyers');
     Route::get('/Admin/AllCustomers', 'Admin\AdminController@allBuyers')->name('allBuyers');
     Route::post('/Admin/customersInformation', 'Admin\AdminController@buyersInformation')->name('customersInformtion');
+    Route::get('/Admin/Customers/Messages', 'ContactUs@index')->name('custmersMessages');
+    Route::post('showmessage', 'ContactUs@shows')->name('readmessage');
+
 });
 
 // marketer content goes here
@@ -112,6 +115,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('Thanks', 'pages.thanks')->name('thanks');
     Route::get('/History', 'HistoryController@index')->name('history');
     Route::post('History', 'HistoryController@shows')->name('showhistory');
+    Route::resource('contactus', 'ContactUs');
 
 });
 

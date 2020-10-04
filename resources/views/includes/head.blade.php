@@ -25,5 +25,7 @@
     <link rel="stylesheet" href="{{ asset('asset/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/plugins/summernote/summernote-bs4.css') }}">
+
     <link rel="icon" href="{{ url($setting->picture->file) }}">
 </head>
