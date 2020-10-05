@@ -140,5 +140,16 @@ $customers = Order::where('user_id', $id)->OrderBy('id', 'DESC')->firstOrFail();
     'totaldeliveredforthiscustomer', 'totalproductdelivered','customers']));
 }
 
+public function marketerRequest(){
+    $marketers = User::with(['picture'])->where(['role'=>'marketer', 'status'=>'free'])->get();
+    return view('admin.marketer_request', compact(['marketers']));
+}
+public function acceptMarketer(Request $request ){
+    $id = $request->id;
+    $marketer = User::where('id', $id)->firstOrFail();
+    $marketer->status = "paid";
+    $marketer->update();
+    return redirect()->back()->with('success', $marketer->name." Approved  Successfully");
+}
 
 }

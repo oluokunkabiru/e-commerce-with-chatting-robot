@@ -3,6 +3,9 @@
 @section('content')
 
 <!-- Info boxes -->
+@if ($user->status !="free")
+
+
 <div class="row mt-2 mb-5">
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
@@ -65,7 +68,9 @@
 </div>
 <!-- /.row -->
 
-
+@else
+<marquee behavior="" direction=""> <h3 class="text-danger font-weight-bold">Your Account is Not Yet Approved</h3></marquee>
+@endif
 
 <!-- Content Wrapper. Contains page content -->
 <div class="container-fluid">
@@ -77,7 +82,7 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle" src="{{ url($user->picture->file) }}"
-                            alt="User profile picture">
+                            alt="{{ $user->name }}">
                     </div>
 
                     <h3 class="profile-username text-center">{{ ucwords(Auth::user()->name) }}</h3>

@@ -80,6 +80,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/Admin/customersInformation', 'Admin\AdminController@buyersInformation')->name('customersInformtion');
     Route::get('/Admin/Customers/Messages', 'ContactUs@index')->name('custmersMessages');
     Route::post('showmessage', 'ContactUs@shows')->name('readmessage');
+    Route::get('Admin/Marketers/Request', 'Admin\AdminController@marketerRequest')->name('marketerRequest');
+    Route::post('acceptMarketer', 'Admin\AdminController@acceptMarketer')->name('acceptMarketer');
 
 });
 

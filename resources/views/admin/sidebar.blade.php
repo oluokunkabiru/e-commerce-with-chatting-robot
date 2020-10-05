@@ -29,11 +29,24 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="{{ route('dashboard') }}" class="nav-link active">
+            <a href="{{ route('admin') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard | Admin
                 {{--  <i class="right fas fa-angle-left"></i>  --}}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('marketerRequest') }}" class="nav-link">
+        <i class=" nav-icon fas fa-users"></i>
+              <p>
+               Marketer Request
+                @if (count(Auth::user()->where(['role'=>'marketer', 'status'=>'free'])->get()) > 0)
+
+
+               <sup><span  class="badge badge-pill badge-danger p-1"><b>{{ count(Auth::user()->where(['role'=>'marketer', 'status'=>'free'])->get()) }}</b></span></sup>
+                @endif
               </p>
             </a>
           </li>
@@ -109,7 +122,12 @@
               <i class="nav-icon fas fa-comments"></i>
               <p>
                 Messages
+                @if (count(App\Contact::where('status', "unread")->get()) > 0)
+
+
+                <sup><span  class="badge badge-pill badge-danger p-1"><b>{{ count(App\Contact::where('status', "unread")->get()) }}</b></span></sup>
                 {{-- <i class="fas fa-angle-left right"></i> --}}
+                 @endif
               </p>
             </a>
           </li>

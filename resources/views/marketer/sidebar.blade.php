@@ -37,6 +37,9 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->status != "free")
+
+
           <li class="nav-item">
             <a href="{{ route('marketerProduct') }}" class="nav-link">
         <i class=" nav-icon fas fa-shopping-basket"></i>
@@ -68,7 +71,15 @@
             <!-----Brand----->
 
           </li>
-
+          @else
+          <li class="nav-item">
+            <a href="#">
+              <p class="text-danger">
+               Pending Account
+              </p>
+            </a>
+        </li>
+          @endif
 
            <li class="nav-item">
             <a href="{{ route('logout') }}"
