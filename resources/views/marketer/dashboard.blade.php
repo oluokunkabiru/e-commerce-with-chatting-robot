@@ -72,7 +72,21 @@
 <a href="{{ route('marketer-fee') }}" class="btn btn-lg btn-warning btn-rounded">Pay Marketer fee now</a>
 <marquee behavior="" direction=""> <h3 class="text-danger font-weight-bold">Your Account is Not Yet Approved</h3></marquee>
 @endif
+<div class="text-center">
+    <small>
+        <a href="{{ route('store', Auth::user()->username?Auth::user()->username:"vboy") }}">{{ route('store', Auth::user()->username?Auth::user()->username:"vboy") }}
+        </a>
+        <p class="fa fa-copy badge badge-pill badge-light p-2 " id="copiedme" copiedme="{{ route('store',  Auth::user()->username?Auth::user()->username:"vboy") }}">
+        </p>
+    </small>
+    <div class="toast">
+        <div class="toast-header">
+        </div>
+        <div class="toast-body">
+        </div>
+    </div>
 
+</div>
 <!-- Content Wrapper. Contains page content -->
 <div class="container-fluid">
     <div class="row">

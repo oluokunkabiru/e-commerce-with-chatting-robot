@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Services;
 use App\Models\Setting;
+use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class PagesController extends Controller
 {
     //
      //
+
+
      public function index(){
         $category = Product::orderBy('id','DESC')->first()->paginate(10)->unique('category_id');
         $products = Product::inRandomOrder()->paginate(20);
@@ -44,6 +47,20 @@ class PagesController extends Controller
          return view('pages.shopgrid', compact(['category','minprice','maxprice', 'categor','products','latest','latestrated', 'latestreview']));
      }
 
+     public function mystore($username){
+         $user = User::where('username', $username)->first();
+        $products =  Product::inRandomOrder()->where('user_id', $user->id)->paginate(20);
+        $category = Product::orderBy('id','desc')->first()->paginate(10)->unique('category_id');
+        $latest = Product::orderBy('id','desc')->paginate(18);
+        $latestrated = Product::orderBy('id','desc')->paginate(18);
+        $latestreview = Product::orderBy('id','desc')->paginate(18);
+        $categor = Category::orderBy('id', 'desc')->paginate(10);
+        $minprice = Product::min('newprice');
+        $maxprice  = Product::max('newprice');
+
+
+        return view('pages.store', compact(['category','user','minprice','maxprice', 'categor','products','latest','latestrated', 'latestreview']));
+    }
      public function headers(){
         $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
          return view('includes.header', compact(['setting']));

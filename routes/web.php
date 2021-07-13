@@ -82,6 +82,7 @@ Route::get('/marketer/payment/callback', 'PaystackPaymentController@marketerHand
 
 // register new user
 Route::post('/register', 'RegisterController@register')->name('register');
+Route::get('store/{username}', 'PagesController@mystore')->name('store');
 // admin content goew here
 Route::group(['middleware' => ['admin']], function () {
     Route::get('change-product/{id}/{status}', 'ProductController@changeProductMode')->name('changeprodctmode');
