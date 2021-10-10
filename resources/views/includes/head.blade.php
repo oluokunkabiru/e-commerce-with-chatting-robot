@@ -1,6 +1,6 @@
 @php
-    $setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
-    $producting= App\Product::get();
+    $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+    $producting= App\Models\Product::get();
 @endphp
 <head>
     <meta charset="UTF-8">

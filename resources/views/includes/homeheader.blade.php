@@ -1,5 +1,5 @@
 @php
-$setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+$setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 @endphp
 
  <!-- Page Preloder -->
@@ -212,7 +212,7 @@ $setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                     </div>
                     <ul>
                         @php
-                        $categories= App\Category::paginate(10);
+                        $categories= App\Models\Category::paginate(10);
                         @endphp
 
                         @foreach ( $categories as $category )

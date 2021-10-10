@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Marketer;
 
-use App\User;
-use App\Order;
-use App\Product;
-use App\Category;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;

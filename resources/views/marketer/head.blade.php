@@ -1,5 +1,5 @@
 @php
-        $setting = App\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+        $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 @endphp
 <meta charset="UTF-8">
 

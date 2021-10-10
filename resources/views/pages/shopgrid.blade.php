@@ -30,7 +30,7 @@
                         <h4>Department</h4>
                         <ul>
                                 @php
-                                $categories= App\Category::paginate(10);
+                                $categories= App\Models\Category::paginate(10);
                                 @endphp
 
                                 @foreach ( $categories as $category )

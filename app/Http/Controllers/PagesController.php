@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+// use App\Product;
+
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use\App\Category;
-use\App\Product;
-use App\Setting;
+
 
 class PagesController extends Controller
 {

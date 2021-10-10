@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+// use App\Product;
+
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -49,7 +51,7 @@ class CartController extends Controller
         {
             return redirect()->back()->with('fail', 'This item  was already added');
         }
-       Cart::add($id, $product->product_name, 1, $product->newprice)->associate('App\Product');
+       Cart::add($id, $product->product_name, 1, $product->newprice)->associate('App\Models\Product');
 
        return redirect()->back()->with('cartsuccess', 'Product has been  added succefully');
 

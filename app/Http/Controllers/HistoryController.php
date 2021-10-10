@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use App\OrderHistory;
+// use App\Order;
+// use App\OrderHistory;
+
+use App\Models\Order;
+use App\Models\OrderHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +57,7 @@ class HistoryController extends Controller
         $id = $request->view;
         $history = Order::with(['picture'])->where('orderid', $id)->get();
         $status = Order::where('orderid', $id)->firstorFail();
+        // return $history;
         return view('pages.historydisplay', compact(['history', 'status']));
     }
 

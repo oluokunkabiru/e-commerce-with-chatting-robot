@@ -20,7 +20,6 @@
                 <div class="card">
                     <div class="card-header"><h3 class="m-2">Order Details <span class="fa fa-book mr-2 float-right text-success"></span></h3></div>
                     <div class="history">
-
                     </div>
                 </div>
             </div>
@@ -30,9 +29,7 @@
 @section('script')
     <script>
 
-// $(document).ready(function(){
 
-//   })
        $(document).ready(function(){
 
         $(".hist").click(function(e){
