@@ -4,6 +4,7 @@
 <body>
     @include('includes.homeheader')
    @yield('content')
+   @include('pages.chatting')
 
     @include('includes.footer')
 

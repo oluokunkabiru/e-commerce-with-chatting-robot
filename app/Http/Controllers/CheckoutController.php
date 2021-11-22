@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use App\OrderdProdct;
+use App\Models\Order;
+use App\Models\OrderdProdct;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
-use App\OrderHistory;
+use App\Models\OrderHistory;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 

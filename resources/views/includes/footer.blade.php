@@ -94,8 +94,10 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 <script src="{{ asset('asset/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
 
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initMap" async defer></script> --}}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initialize" async defer></script>
-{{-- <script src="{{asset('asset/js/ogajs.js')}}"></script> --}}
-<script src="{{asset('asset/js/mapinput.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initMap" async defer></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initialize" async defer></script> --}}
+<script src="{{asset('asset/js/ogajs.js')}}"></script>
+{{-- <script src="{{asset('asset/js/mapinput.js')}}"></script> --}}
+{{-- <script src="{{ asset('asset/js/mapInput.js') }}"></script> --}}
+{{-- <script src="{{ asset('asset/js/map.js') }}"></script> --}}
 @yield('script')

@@ -30,7 +30,14 @@ Route::get('/blog', 'PagesController@blog')->name('blog');
 
 // contact us view
 Route::get('/contact', 'PagesController@contact')->name('contact');
+
+
+// Chatting negotiation
+Route::match(['get', 'post'], '/botman', 'NegotiateController@robot');
 // shop details view
+Route::get('negotiate', 'NegotiateController@negotiate')->name('negotiate');
+
+
 Route::get('/shop-details', 'PagesController@shopDetails')->name('shopDetails');
 // shop chart view
 // Route::get('/shoping-cart', 'PagesController@shopCart')->name('shopingCart');
