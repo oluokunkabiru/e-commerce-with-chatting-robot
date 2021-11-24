@@ -6,9 +6,10 @@
 //   introMessage: "✋ Hi! I'm Okediya Kenny <br><br> How may I help you?"
 //   };
 
-        var avatar = "{{ asset('asset/images/1597916009b.jpg') }}"
+        var avatar = "{{ asset('asset/images/kenny.jpg') }}"
         var botmanWidget = {
-                // chatServer : "/botman"
+                chatServer : "{{ route('botman') }}",
+                frameEndpoint : "{{ url('botman/chat') }}",
                 title : "Negotiate this product",
                 timeFormat : "HH:MM",
                 dateTimeFormat : "d/m/yy HH:MM",
@@ -17,7 +18,7 @@
                 bubbleBackground : "#7fad39",
                 bubbleAvatarUrl :avatar,
                 aboutText : "OLUOKUN KABIRU ADESINA",
-                placeholderText : "Type message here to negotiate product or to ask question"
+                placeholderText : "Type message here ....."
             };
 </script>
  {{-- <script src="{{ asset('asset/widget.js') }}}"></script> --}}

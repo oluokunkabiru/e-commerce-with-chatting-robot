@@ -1,9 +1,11 @@
 @php
-$setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
+$setting = App\Models\Setting::with(['picture'])
+    ->where('id', 1)
+    ->firstOrFail();
 @endphp
 
- <!-- Page Preloder -->
-  <div id="preloder">
+<!-- Page Preloder -->
+<div id="preloder">
     <div class="loader"></div>
 </div>
 
@@ -11,7 +13,8 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="{{ route('home') }}"><img src="{{ url($setting->picture->file) }}" style="width: 119px; height:50px" alt="{{ $setting->company }}"></a>
+        <a href="{{ route('home') }}"><img src="{{ url($setting->picture->file) }}"
+                style="width: 119px; height:50px" alt="{{ $setting->company }}"></a>
         <!--<img src="" alt="">-->
     </div>
     <div class="humberger__menu__cart">
@@ -45,38 +48,37 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
             <li><a href="{{ route('blog') }}">Update</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
             <li><a href="{{ route('blog') }}">Update</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
-                        @guest
-                        <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                      @if (Route::has('register'))
-                      <li>
-                           <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                     </li>
-                       @endif
-                       @else
-                       <li><a  href="{{ route('dashboard') }}">
-                      {{ Auth::user()->name }} <span class="caret"></span>
-                       </a> </li>
-                       @if (Auth::user()->role=='admin')
-                       <li><a href="{{ route('admin') }}">Dashboard</a></li>
-                      @elseif(Auth::user()->role=='marketer')
-                      <li><a href="{{ route('marketer') }}">Dashboard</a></li>
-                      @else
-                       {{ "" }}
-                      @endif
-                      <li><a href="{{ route('history') }}">History</a></li>
-                      <li>
+            <li><a href="{{ route('contact') }}">Contact</a></li>
+            @guest
+                <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                @if (Route::has('register'))
+                    <li>
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li><a href="{{ route('dashboard') }}">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a> </li>
+                @if (Auth::user()->role == 'admin')
+                    <li><a href="{{ route('admin') }}">Dashboard</a></li>
+                @elseif(Auth::user()->role=='marketer')
+                    <li><a href="{{ route('marketer') }}">Dashboard</a></li>
+                @else
+                    {{ '' }}
+                @endif
+                <li><a href="{{ route('history') }}">History</a></li>
+                <li>
 
-                          <a class="text-center" href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                           {{ __('Logout') }}
-                       </a>
-                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                           @csrf
-                       </form>
-                      </li>
-                  @endguest
+                    <a class="text-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            @endguest
 
         </ul>
     </nav>
@@ -135,62 +137,63 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="home"><img src="{{ url($setting->picture->file) }}" style="width: 119px; height:50px" alt="{{ $setting->company }}"></a>
+                    <a href="home"><img src="{{ url($setting->picture->file) }}" style="width: 119px; height:50px"
+                            alt="{{ $setting->company }}"></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                            <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('shop') }}">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="{{ url('/shop') }}">Shop Details</a></li>
-                                    <li><a href="{{ route('shopingCart') }}">Shoping Cart</a></li>
-                                    <li><a href="{{ route('Checkout.index') }}">Check Out</a></li>
-                                    <li><a href="{{ route('blogDetails') }}">Update Details</a></li>
+                        <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('shop') }}">Shop</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="header__menu__dropdown">
+                                <li><a href="{{ url('/shop') }}">Shop Details</a></li>
+                                <li><a href="{{ route('shopingCart') }}">Shoping Cart</a></li>
+                                <li><a href="{{ route('Checkout.index') }}">Check Out</a></li>
+                                <li><a href="{{ route('blogDetails') }}">Update Details</a></li>
                             </ul>
                         </li>
                         <li><a href="blog">Update</a></li>
                         <li><a href="contact">Contact</a></li>
                         @guest
-                        <li><a href="login">{{ __('Login') }}</a></li>
-                      @if (Route::has('register'))
-                      <li>
-                           <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                     </li>
-                       @endif
-                       @else
-                       <li><a  href="{{ route('dashboard') }}">
-                      {{ Auth::user()->name }} <span class="caret"></span>
-                       </a>
-                    </li>
-                    @if (Auth::user()->role=='admin')
-                    <li><a href="{{ route('admin') }}">Dashboard</a></li>
-                   @elseif(Auth::user()->role=='marketer')
-                   <li><a href="{{ route('marketer') }}">Dashboard</a></li>
-                   @else
-                   {{ "" }}
-                   @endif
-                   <li><a href="{{ route('history') }}">History</a></li>
+                            <li><a href="login">{{ __('Login') }}</a></li>
+                            @if (Route::has('register'))
+                                <li>
+                                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li><a href="{{ route('dashboard') }}">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                            </li>
+                            @if (Auth::user()->role == 'admin')
+                                <li><a href="{{ route('admin') }}">Dashboard</a></li>
+                            @elseif(Auth::user()->role=='marketer')
+                                <li><a href="{{ route('marketer') }}">Dashboard</a></li>
+                            @else
+                                {{ '' }}
+                            @endif
+                            <li><a href="{{ route('history') }}">History</a></li>
 
-                       <li>
-                          <a class="text-center" href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                           {{ __('Logout') }}
-                       </a>
-                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                           @csrf
-                       </form>
-                      </li>
-                  @endguest
+                            <li>
+                                <a class="text-center" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endguest
 
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
-                {{--  inclde area  --}}
+                {{-- inclde area --}}
                 @include('includes.cart')
             </div>
         </div>
@@ -204,7 +207,7 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 <section class="hero">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-md-3 col-lg-3">
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
@@ -212,18 +215,21 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                     </div>
                     <ul>
                         @php
-                        $categories= App\Models\Category::paginate(10);
+                            $categories = App\Models\Category::paginate(10);
                         @endphp
 
-                        @foreach ( $categories as $category )
-                            <li><a href="{{ route('produtCategory',['id' => $category->category]) }}"> {{ $category->category }} </a></li>
+                        @foreach ($categories as $category)
+                            <li><a href="{{ route('produtCategory', ['id' => $category->category]) }}">
+                                    {{ $category->category }} </a></li>
                         @endforeach
 
 
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-9">
+
+            <div class="col-lg-9 col-md-9">
+
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form action="#">
@@ -240,36 +246,48 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            {{--  <h5>+2347032446095</h5>  --}}
+                            {{-- <h5>+2347032446095</h5> --}}
                             <h5>{{ $setting->phone }}</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>
                 </div>
 
-                {{-- <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
+                <div id="address-map-container" style="width:100%;height:400px; ">
+                    <div style="width: 100%; height: 100%" id="map"></div>
+                    {{--  <div style="height:100%; " id="map"></div>  --}}
+                </div>
+                {{--  <div id="address-map-container" style="width:100%;heigh:400px; ">
+                    <div style="width: 100%; height: 100%" id="address-map"></div>
+                    <div style="height:100%; " id="map"></div>
+                </div>  --}}
+
+                {{--  <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
                     <div class="hero__text">
                         <span><strong>Your Access to Food</strong></span>
                         <h6>Buy now and pay later <br />100% convenience</h6>
-                        <p><strong>Plan your event with our accurate<br/> food planner </strong></p>
+                        <p><strong>Plan your event with our accurate<br /> food planner </strong></p>
                         <a href="#" class="primary-btn">SHOP NOW</a>
                     </div>
-                </div> --}}
-                {{-- <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}"> --}}
-                    {{-- <div class="hero__text"> --}}
+                </div>  --}}
+
+                {{--  <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
+                    <div class="hero__text">
                         <div class="form-group">
-                        <label for="address_address">Search Location</label>
-                        <input type="text" id="address-input" name="address_address" class="form-control map-input">
-                        <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                        <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                            <label for="address_address">Search Location</label>
+                            <input type="text" id="address-input" name="address_address" class="form-control map-input">
+                            <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                            <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                        </div>
+                        <div id="address-map-container" style="width:100%;height:400px; ">
+                            <div style="width: 100%; height: 100%" id="map"></div>
+                            <div style="height:100%; " id="map"></div>
+                        </div>
                     </div>
-                    <div id="address-map-container" style="width:100%;height:400px; ">
-                        <div style="width: 100%; height: 100%" id="address-map"></div>
-                        {{-- <div style="height:100%; " id="map"></div> --}}
-                    {{-- </div> --}}
+                </div>  --}}
             </div>
         </div>
     </div>
+
 </section>
 <!-- Hero Section End -->
-

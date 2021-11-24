@@ -32,7 +32,7 @@
         <div class="small-box bg-warning">
         <div class="inner">
             <h3 ><span class="fa">&#8358;</span> {{ $view->oldprice }} </h3>
-            <p>Product Old Price</p>
+            <p>Product Last Price</p>
         </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div class="small-box bg-success">
         <div class="inner">
             <h3 ><span class="fa">&#8358;</span>{{ $view->newprice }}</h3>
-            <p>Product New Price</p>
+            <p>Product Normal Price</p>
         </div>
         </div>
     </div>

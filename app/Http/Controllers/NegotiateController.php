@@ -152,7 +152,7 @@ public function negotiate($botman, $message, $custmername){
 
     $message = OutgoingMessage::create(html_entity_decode($msg))
                 ->withAttachment($attachment);
-
+$productid = $product->id;
 
     // $botman->reply("write 'hi' for testing...");
         $botman->reply($message);
@@ -163,15 +163,19 @@ public function negotiate($botman, $message, $custmername){
             Button::create('Of course')->value('yes'),
             Button::create('Hell no!')->value('no'),
         ]);
-        $botman->ask($question, function (Answer $answer) use($botman){
+        $botman->ask($question, function (Answer $answer) use($botman, $productid, $custmername){
             //   return  $answer->getText();
             // Detect if button was clicked:
                 // $name = $this->custmername;
             if ($answer->isInteractiveMessageReply()) {
                 $selectedValue = $answer->getText(); // will be either 'yes' or 'no'
                 if($selectedValue == "yes"){
+                    // $this->say(ucwords($selectedValue)." ". $productid);
+                    $this->ask("hello");
 
-                        $botman->startConversation(new Negotiate(9, "jhjskhdajhdjkahkd"));
+                //         $botman->startConversation(new Negotiate(9, "jhjskhdajhdjkahkd"));
+                }else{
+                    $this->say("Your negotion is terminated");
                 }
             }
 

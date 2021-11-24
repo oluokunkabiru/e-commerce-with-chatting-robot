@@ -33,7 +33,7 @@ Route::get('/contact', 'PagesController@contact')->name('contact');
 
 
 // Chatting negotiation
-Route::match(['get', 'post'], '/botman', 'NegotiateController@robot');
+Route::match(['get', 'post'], '/botman', 'NegotiateController@robot')->name('botman');
 // shop details view
 Route::get('negotiate', 'NegotiateController@negotiate')->name('negotiate');
 
@@ -134,7 +134,7 @@ Route::put('/Cart/update/{cart}', 'CartController@update')->name('cartupdate');
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+// Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/ShoppingCart', 'CartController@index')->name('shopingCart');
 // Route::post('cart','AddtoCart@store')->name('addtocart');
 // locate
@@ -142,7 +142,7 @@ Route::view('/locate', 'users.locate' );
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('dash');
 
 // Route::get('/test', 'MarketerMarketerController@test');
 Route::get('/test', 'PagesController@heads');

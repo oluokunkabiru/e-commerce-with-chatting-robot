@@ -128,7 +128,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{ asset($picture) }}">
-                            <ul class="product__item__pic__hover">
+                            {{--  <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li>
@@ -139,7 +139,7 @@
                                     <button type="submit"><i class="fa fa-shopping-cart"></i></button>
                                     </form>
                                 </li>
-                            </ul>
+                            </ul>  --}}
                         </div>
                         <div class="product__item__text">
                                 <h6><a href="{{ route('productDetails' , ['id' => $product->slug]) }}">{{ $product->product_name }}</a></h6>

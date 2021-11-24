@@ -94,10 +94,15 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 <script src="{{ asset('asset/plugins/summernote/summernote-bs4.min.js') }}"></script>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initMap" async defer></script>
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initialize" async defer></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnS3dXsyLG_Ihtjs7_QUbh8b0mzMReP34&libraries=places&callback=initMap&q=Eiffel+Tower
++Paris+France" async defer></script>
+{{--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtCXlzGS3pcKccsTKdgt1zOYFKCd7fTdI&libraries=places&callback=initMap" async defer></script>  --}}
+{{--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdyIo7lzrFeK_hWM17Nj7PuK8gF46natk&libraries=places&callback=initialize" async defer></script>  --}}
+{{--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZib4Lvp0g1L8eskVBFJ0SEbnENB6cJ-g&callback=initialize"></script>  --}}
+{{-- AIzaSyAnS3dXsyLG_Ihtjs7_QUbh8b0mzMReP34 --}}
 <script src="{{asset('asset/js/ogajs.js')}}"></script>
 {{-- <script src="{{asset('asset/js/mapinput.js')}}"></script> --}}
-{{-- <script src="{{ asset('asset/js/mapInput.js') }}"></script> --}}
-{{-- <script src="{{ asset('asset/js/map.js') }}"></script> --}}
+
+{{--  <script src="{{ asset('asset/js/mapInput.js') }}"></script>  --}}
+{{--  <script src="{{ asset('asset/js/map.js') }}"></script>  --}}
 @yield('script')

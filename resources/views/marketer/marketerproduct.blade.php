@@ -206,8 +206,8 @@
                           </div>
                         </div>
                       <div class="col-md-3">
-                          <label for="">Old Price</label>
-                          <input type="number" placeholder="Old price" name="oldprice" id="oldprice" step="0.01" class="form-control {{ $errors->has('oldprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                          <label for="">Last price</label>
+                          <input type="number" placeholder="Last price" name="oldprice" id="oldprice" step="0.01" class="form-control {{ $errors->has('oldprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
                           @if ($errors->has('oldprice'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('oldprice') }}</strong>
@@ -215,8 +215,8 @@
                                 @endif
                       </div>
                       <div class="col-md-3">
-                        <label for="">New Price</label>
-                        <input type="number" placeholder="New price" name="newprice" id="newprice" step="0.01" class="form-control {{ $errors->has('newprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
+                        <label for="">Normal price</label>
+                        <input type="number" placeholder="Normal price" name="newprice" id="newprice" step="0.01" class="form-control {{ $errors->has('newprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
                         @if ($errors->has('newprice'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('newprice') }}</strong>

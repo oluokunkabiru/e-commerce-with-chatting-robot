@@ -106,7 +106,7 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <input type="text" name="name" value="{{ Auth::user()->name, old('name') }}" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Your name">
+                    <input type="text" name="name" value="{{isset(Auth::user()->name)?Auth::user()->name:"", old('name') }}" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Your name">
                     @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -114,7 +114,7 @@
                 @endif
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <input type="email" name="email" value="{{ Auth::user()->email, old('email') }}" placeholder="Your Email"  class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}">
+                    <input type="email" name="email" value="{{ isset(Auth::user()->email) ? Auth::user()->email :"", old('email') }}" placeholder="Your Email"  class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}">
                     @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>

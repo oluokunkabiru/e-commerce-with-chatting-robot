@@ -1,0 +1,57 @@
+0000000000000000000000000000000000000000 3628e3467516439c61683d7e607af91a33358e5f OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1596998986 -0700	commit (initial): i wanna add
+3628e3467516439c61683d7e607af91a33358e5f 1853f01a9e5fe67c081028975474695295a78a5b OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597001476 -0700	commit: wannan add
+1853f01a9e5fe67c081028975474695295a78a5b c4848f62a014f459e366109a797433f2a474d86f OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597091206 -0700	merge copy: Fast-forward
+c4848f62a014f459e366109a797433f2a474d86f cd0d118530b0b16d5a757c62cde5b3622d51c00c OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597182705 -0700	merge location: Fast-forward
+cd0d118530b0b16d5a757c62cde5b3622d51c00c 9c138d89f770a4e2e706ba97fb09c089b7cfd5d5 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597218054 -0700	commit: done with product view with modal
+9c138d89f770a4e2e706ba97fb09c089b7cfd5d5 c618f0a39bfeeb259b28ff149d48ff52148f68ae OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597277730 -0700	commit: finally display delete button
+c618f0a39bfeeb259b28ff149d48ff52148f68ae 2f6f9939c0668639ee1e9df952d24ae5e5550fdc OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597285407 -0700	commit: adding delete successfully
+2f6f9939c0668639ee1e9df952d24ae5e5550fdc 03d92ab07029d09bcfbd19e17a1a92d63f89fd02 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597289516 -0700	commit: change description textarea
+03d92ab07029d09bcfbd19e17a1a92d63f89fd02 d1f41648545c9493f513af401f1aea728b3a2332 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597442313 -0700	commit: change modal view to blade view
+d1f41648545c9493f513af401f1aea728b3a2332 d37d9a381d89149a84941d08b00c18ced643faf3 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597509117 -0700	commit: finally update admin product
+d37d9a381d89149a84941d08b00c18ced643faf3 902bb28077609212845e2ac0c67643d80dbbe475 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597512530 -0700	commit: marketer add product
+902bb28077609212845e2ac0c67643d80dbbe475 55f14052cad6354bd32325bfa40684ec5faef929 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597518333 -0700	commit: add all product to admin
+55f14052cad6354bd32325bfa40684ec5faef929 a2ea9c1ee855b00374c8d3197656e51238fdf8dd OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597528124 -0700	commit: redirect error
+a2ea9c1ee855b00374c8d3197656e51238fdf8dd e2e309c10e1dac9b2ad2000e30f83d7752d9cecb OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597619884 -0700	merge redirect: Fast-forward
+e2e309c10e1dac9b2ad2000e30f83d7752d9cecb 1ade6566409212fbc28103a66ac7aea3a75d6504 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597627372 -0700	commit: edit category
+1ade6566409212fbc28103a66ac7aea3a75d6504 08c726a37aca904b701cc8f579434edb7b0035b1 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597637788 -0700	commit: add category
+08c726a37aca904b701cc8f579434edb7b0035b1 9f8184d389f451044e57d30aa42e42d7c1265109 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597645246 -0700	commit: amend the database
+9f8184d389f451044e57d30aa42e42d7c1265109 297d782eeaf3439673b38f62c6c66fbcde742d7a OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597653261 -0700	commit: done with users
+297d782eeaf3439673b38f62c6c66fbcde742d7a 77927c2ef711209129447abbf78f9c09dc27c8df OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597653339 -0700	commit: done with users update
+77927c2ef711209129447abbf78f9c09dc27c8df c782a940472ddf8b1e1f2f7606548a34b93a8a92 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597782774 -0700	commit: try to increase product quantity
+c782a940472ddf8b1e1f2f7606548a34b93a8a92 0001de6be7f52e6d7ced3ec9405eb6d1ec4a7786 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597816621 -0700	commit: update cart item
+0001de6be7f52e6d7ced3ec9405eb6d1ec4a7786 b4abee288e94f71573874ceda1abf07bb2f6f06b OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597881052 -0700	commit: update cart display
+b4abee288e94f71573874ceda1abf07bb2f6f06b ea88e38e93d36e7b153fa77930e34b3477bca851 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597909745 -0700	commit: add payment method to checkout
+ea88e38e93d36e7b153fa77930e34b3477bca851 c66f400b6a8666b17db77d3eab0da80f2a184b0e OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1597972513 +0100	commit: order prodcts
+c66f400b6a8666b17db77d3eab0da80f2a184b0e 019f19b16980f24b030637ae701b5d26b741f937 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598067610 +0100	commit: want to add history page
+019f19b16980f24b030637ae701b5d26b741f937 0d7fc8d7af6a0e0146318668719c47bb391b1097 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598104491 +0100	commit: add history for users order
+0d7fc8d7af6a0e0146318668719c47bb391b1097 9dfd047a92cf6370df2526bcb7444f96c36ea05d OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598225313 +0100	commit: adjust product display
+9dfd047a92cf6370df2526bcb7444f96c36ea05d dd90cdc3f5f0a251b36d6ad0e8d3ba9569512a38 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598227438 +0100	commit: changes the header and footr look
+dd90cdc3f5f0a251b36d6ad0e8d3ba9569512a38 cea2f3c68b01be9abdfd9059a34eab724fc780db OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598420177 +0100	commit: setting count for marketers dashboard
+cea2f3c68b01be9abdfd9059a34eab724fc780db a934d73432e2ae85ae52b49421b13e40a2f3e28c OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598587988 +0100	commit: finally solve pending order on marketer
+a934d73432e2ae85ae52b49421b13e40a2f3e28c 741de6f8f3aa2da86fcdb2ef277e613ef7477bac OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598787200 +0100	commit: add logout button for admin and marketers
+741de6f8f3aa2da86fcdb2ef277e613ef7477bac 69aebbc6a9723ceec65618dd755b01db1e5e9ec1 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598789839 +0100	commit: add orders view to marketers
+69aebbc6a9723ceec65618dd755b01db1e5e9ec1 c8785c006821524912809493562345e0cbc6e465 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1598806426 +0100	commit: marketers deliered product successfully
+c8785c006821524912809493562345e0cbc6e465 786036cba15ee1b619bf390e387781a17fa73656 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599011864 +0100	commit: add marketers all and recent orders
+786036cba15ee1b619bf390e387781a17fa73656 e611ada101f79f0300426e24407de0732b3dec04 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599271003 +0100	commit: finally getting the customers for each marketer
+e611ada101f79f0300426e24407de0732b3dec04 1384cf58bb5cdcddc082d6d5d2856aa33b852c5e OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599279698 +0100	commit: add reasonable customers details to marketer
+1384cf58bb5cdcddc082d6d5d2856aa33b852c5e 9de819e97667b0c0a7dc8a231f71f5d519d4f760 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599307622 +0100	commit: about to done with marketers
+9de819e97667b0c0a7dc8a231f71f5d519d4f760 6a6ae9974d4ef5de5d8464f084808237d33cc826 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599319489 +0100	commit: admin orders
+6a6ae9974d4ef5de5d8464f084808237d33cc826 2c2716a75140293c254d64195759a2270e34c392 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599322783 +0100	commit: admin view all ordeers and theire status
+2c2716a75140293c254d64195759a2270e34c392 a936638c961c87b6a07932b9b44b47e68d03c00f OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599358653 +0100	commit: All customers solved
+a936638c961c87b6a07932b9b44b47e68d03c00f 37b3a4d65222181737de9bf94facbf9036e2a8ac OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599360439 +0100	commit: solve customers for both
+37b3a4d65222181737de9bf94facbf9036e2a8ac aa92b9425e40352bf4991c58316c2a1bb8576f24 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599361974 +0100	commit: add image to sidebar
+aa92b9425e40352bf4991c58316c2a1bb8576f24 070925887652e36f0f1a37d8029dd0c3f9709a36 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599362647 +0100	commit: change admin pitures to url
+070925887652e36f0f1a37d8029dd0c3f9709a36 b33c3f30add1177a3756f20779dd52e1426720b8 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599438004 +0100	commit: solve image display to url
+b33c3f30add1177a3756f20779dd52e1426720b8 015568c4b696c79eb3d37396085d161b96978d25 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599438856 +0100	commit: change pages image to url
+015568c4b696c79eb3d37396085d161b96978d25 6b45a0cac414e4075ecc41938c4b70be18cf7a96 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599619751 +0100	commit: latest post, latetes review amended
+6b45a0cac414e4075ecc41938c4b70be18cf7a96 5a7d83c0b7e5358b2df594d84fd55aee2a5e99e6 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599719479 +0100	commit: header settings approved
+5a7d83c0b7e5358b2df594d84fd55aee2a5e99e6 cba4df097b10c2c49e855bbab12944a3cf27c33f OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599724045 +0100	commit: heading and header settings done
+cba4df097b10c2c49e855bbab12944a3cf27c33f b2026728ac2127782753bf82e6fed99d76859450 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599935156 +0100	commit: add watermark to the images
+b2026728ac2127782753bf82e6fed99d76859450 0518a2f59e94d6edb81b018ccbbd70f81f9bfaf4 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1599945287 +0100	commit: about settings set
+0518a2f59e94d6edb81b018ccbbd70f81f9bfaf4 4444ac3372bb2e6308df6777f3e2ea93b14d5238 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1601333543 +0100	commit: add price range
+4444ac3372bb2e6308df6777f3e2ea93b14d5238 575d21ac516643a619d25679fe1e47087b9248a4 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1601814023 +0100	commit: contact us done
+575d21ac516643a619d25679fe1e47087b9248a4 f2425f32f0fec3317fbeac51385486ae87f51c23 OLUOKUN KABIRU ADESINA <oluokunkabiru2015@gmail.com> 1601880032 +0100	commit: Marketers Reques Done
+f2425f32f0fec3317fbeac51385486ae87f51c23 0e47c0586aaba5912a7e7282f85bfbd96b03da8b OLUOKUN KABIRU ADESINA <villageboy@villageboy.koadit.com> 1633848116 +0100	commit: merge previouse work with laravel 8
+0e47c0586aaba5912a7e7282f85bfbd96b03da8b eb22714cb7e0683f1b8163cae8ac2bdd7553cf1f OLUOKUN KABIRU ADESINA <villageboy@villageboy.koadit.com> 1637584780 +0100	commit: Configure the robot response
+eb22714cb7e0683f1b8163cae8ac2bdd7553cf1f 8ac57d521a25b2e19a2782d7dc32654c555f073e OLUOKUN KABIRU ADESINA <villageboy@villageboy.koadit.com> 1637624913 +0100	commit: Add random negotiation to the roboot
+8ac57d521a25b2e19a2782d7dc32654c555f073e ae12677fae8f13fbd653521558f2091c60bbc1a3 OLUOKUN KABIRU ADESINA <villageboy@villageboy.koadit.com> 1637666003 +0100	commit: restructure the dashboad route

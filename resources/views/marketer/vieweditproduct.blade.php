@@ -44,14 +44,14 @@
                         </div>
                       <div class="col-md-3">
                       <div class="form-group">
-                          <label for="">Old Price</label>
-                          <input type="number" placeholder="Old price" min="1"  value="{{ $edit->oldprice }}"  name="oldprice" id="oldprice" step="0.01" class="form-control" autocomplete="" autofocus>
+                          <label for="">Last Price</label>
+                          <input type="number" placeholder="Last Price" min="1"  value="{{ $edit->oldprice }}"  name="oldprice" id="oldprice" step="0.01" class="form-control" autocomplete="" autofocus>
                         </div>
                       </div>
                       <div class="col-md-3">
                       <div class="form-group">
-                        <label for="">New Price</label>
-                        <input type="number" placeholder="New price" min="1"  value="{{ $edit->newprice }}"  name="newprice" id="newprice" step="0.01" class="form-control" autocomplete="" autofocus>
+                        <label for="">Normal Price</label>
+                        <input type="number" placeholder="Normal Price" min="1"  value="{{ $edit->newprice }}"  name="newprice" id="newprice" step="0.01" class="form-control" autocomplete="" autofocus>
                     </div>
                     </div>
                     <div class="col-md-3">
