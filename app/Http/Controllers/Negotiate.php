@@ -44,8 +44,9 @@ class Negotiate extends Conversation
         $product = Product::where('id', $id)->first();
         $least = $product->oldprice;
         $price = $product->newprice;
+        $productid = $product->id;
 
-        $this->ask('How much do you want pay for <b>' . ucwords($product->product_name)."</b>", function(Answer $answer) use ($price, $least){
+        $this->ask('How much do you want pay for <b>' . ucwords($product->product_name)."</b>", function(Answer $answer) use ($price, $least, $productid){
 
             // while(! $accept){
 
@@ -61,10 +62,9 @@ class Negotiate extends Conversation
             $unaccept = array('This price is not accepted', 'This product is worth more than this price', 'Added more to this price',
              'You can get it the product by adding more price', 'Please there is this money now, let spend it. So add more price');
             // $i++;
-            shuffle($unaccept);
-            $que = $unaccept[0];
 
 
+            $accept = ['Negotiaon accepted', 'Continue to order', 'Accepted', 'Pay now', 'Yes, order now', 'Dear beautiful/handsome customer, pay now', 'Ordering is sure'];
             $t10m = ['OOPs, this price is very small customer', 'This is too small', 'Ahhhh, its not accepted', 'Why this small, increase your price'];
             $t20m = ['This price is small 2', 'Dear customer 2', 'please add more price 2', 'Let continue adding price 2'];
             $t30m = ['This price is small 3', 'Dear customer 3', 'please add more price 3', 'Let continue adding price 3'];
@@ -73,6 +73,8 @@ class Negotiate extends Conversation
             $t60m = ['This price is small 6', 'Dear customer 6', 'please add more price 6', 'Let continue adding price 6'];
             $t70m = ['This price is small 7', 'Dear customer 7', 'please add more price 7', 'Let continue adding price 7'];
             $t80m = ['This price is small 8', 'Dear customer 8', 'please add more price 8', 'Let continue adding price 8'];
+            shuffle($unaccept);
+            // $que = $unaccept[0];
             shuffle($t10m);
             shuffle($t20m);
             shuffle($t30m);
@@ -81,6 +83,7 @@ class Negotiate extends Conversation
             shuffle($t60m);
             shuffle($t70m);
             shuffle($t80m);
+            shuffle($accept);
 
             if(is_numeric($price)){
                 if($price < $t10)
@@ -107,7 +110,15 @@ class Negotiate extends Conversation
                 //     $this->repeat($que .'<span class=="fa">&#8358;</span>'. $least);
                 // }
                 else{
-                    $this->say('You can proceed to pay  .'. $price);
+                    $this->say( $accept[0]  .' with .'. $price);
+                    $productid = $productid;
+                    $this->ask("Are you want to continue with the ordering of this product <br> <b>Yes</b> to continue ordering <br> <b>No</b> to continue negotiation", function(Answer $answer) use ($price, $productid){
+                        if(strtolower($answer->getText())=="yes"){
+                            $this->say("hello ". $productid);
+                        }else{
+                            $this->askPrice($this->productid, $this->customer);
+                        }
+                    });
                 }
 
             }else{

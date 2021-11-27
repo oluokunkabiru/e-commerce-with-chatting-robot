@@ -16,7 +16,7 @@ class NegotiateController extends Controller
 {
     //
     protected $custmername = "oluokun";
-    protected $product = "45";
+    protected $product = "28";
 
     public function robot(){
         $botman = app('botman');
@@ -179,7 +179,7 @@ public function negotiate($botman, $message, $custmername){
                         $botman->startConversation(new Negotiate($productid, $custmername));
                 }else{
                     $this->say("Your negotion is terminated");
-                    
+
                 }
             }
 
