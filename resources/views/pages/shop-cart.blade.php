@@ -73,10 +73,10 @@
                                     <td>{{ $i }}</td>
                                     <td class="shoping__cart__item">
                                         <img src="{{ url($item->model->picture->file) }}" alt="{{ $item->model->product_name }}" style="width: 120px">
-                                        <h5>{{ $item->model->product_name }}</h5>
+                                        <h5>{{ ucwords($item->name) }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        <i class="fa">&#8358;</i> {{ $item->model->newprice}}
+                                        <i class="fa">&#8358;</i> {{ $item->price}}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
@@ -88,7 +88,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        <i class="fa">&#8358;</i> {{ $item->model->newprice *$item->qty }}
+                                        <i class="fa">&#8358;</i> {{ $item->price *$item->qty }}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <form action="{{route('AddtoCart.destroy', $item->rowId )}}" method="post" id="delete-form{{$item->rowId}}" style="display:none">

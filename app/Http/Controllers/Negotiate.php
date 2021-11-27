@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Incoming\Answer;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Hamcrest\Type\IsNumeric;
 
 class Negotiate extends Conversation
@@ -114,7 +115,28 @@ class Negotiate extends Conversation
                     $productid = $productid;
                     $this->ask("Are you want to continue with the ordering of this product <br> <b>Yes</b> to continue ordering <br> <b>No</b> to continue negotiation", function(Answer $answer) use ($price, $productid){
                         if(strtolower($answer->getText())=="yes"){
-                            $this->say("hello ". $productid);
+
+                            $this->ask("Please provide the numbers of quantity", function(Answer $answer) use($price){
+                                if(is_numeric($answer->getText())){
+                                    $qty = $answer->getText();
+                                    $product = Product::where('id', $this->productid)->first();
+
+                                    $dublicate = Cart::search(function($cartItem, $rowId) use($product)
+                                    {
+                                        return $cartItem->id === $product->id;
+                                    });
+                                    if($dublicate->isNotEmpty())
+                                    {
+                                        $this->say('<b>Fail</b> :  This item  was already added');
+                                    }
+                                   Cart::add($product->id, $product->product_name, $qty, $price)->associate('App\Models\Product');
+                                    $this->say("<h3>Product added to cart successfully</h3>");
+                                    
+                                }else{
+                                    $this->repeat("Please enter the quantity in number format like <b>5</b>");
+                                }
+                            });
+
                         }else{
                             $this->askPrice($this->productid, $this->customer);
                         }
