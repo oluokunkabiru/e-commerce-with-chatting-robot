@@ -126,8 +126,8 @@
                                         <tr>
                                             <td>{{ $item->model->product_name }}</td>
                                             <td>{{ $item->qty }}</td>
-                                            <td><i class="fa">&#8358;</i> {{ $item->model->newprice}}</td>
-                                            <td><i class="fa">&#8358;</i> {{ $item->model->newprice*$item->qty}}</td>
+                                            <td><i class="fa">&#8358;</i> {{ $item->price}}</td>
+                                            <td><i class="fa">&#8358;</i> {{ $item->price*$item->qty}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
