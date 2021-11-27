@@ -131,7 +131,8 @@ class Negotiate extends Conversation
                                     }
                                    Cart::add($product->id, $product->product_name, $qty, $price)->associate('App\Models\Product');
                                     $this->say("<h3>Product added to cart successfully</h3>");
-                                    
+                                    $this->say('<h3>Thanks for your patronage</h3> <br><p>Type <b>stop</b> to end this conversation</p>');
+
                                 }else{
                                     $this->repeat("Please enter the quantity in number format like <b>5</b>");
                                 }

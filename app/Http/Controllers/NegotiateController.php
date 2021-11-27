@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
@@ -41,6 +42,10 @@ class NegotiateController extends Controller
 
         });
 
+        $botman->hears('stop', function(BotMan $bot) {
+            $bot->reply('Conversation ended');
+        })->stopsConversation();
+
 
 
         $botman->listen();
@@ -66,79 +71,8 @@ class NegotiateController extends Controller
     }
 
 
-    public function askNameme($botman)
-
-    {
-
-        $botman->ask('Hello! Village boy?', function(Answer $answer) {
 
 
-
-            $name = $answer->getText();
-
-
-
-            $this->say('Nice one '.$name);
-
-        });
-
-    }
-
-    // public function vb($custmername, $product){
-    //     $custmername = $this->custmername;
-    //     $product = $this->product;
-
-    // }
- public function askNegotion($botman, $prouctname, $productid, $custmername){
-
-
-    $question = Question::create(html_entity_decode("Are you want to continue to negotiate ".$prouctname. " ". $productid ))
-    ->fallback('Unable to create negotiation link')
-    ->callbackId('negotiatingstatus')
-    ->addButtons([
-        Button::create('Of course')->value('yes'),
-        Button::create('Hell no!')->value('no'),
-    ]);
-
-$id = 43;
-// $custmername = $name;
-// $productid = $product;
-
-$botman->ask($question, function (Answer $answer) use ( $botman, $prouctname, $productid){
-    //   return  $answer->getText();
-    // Detect if button was clicked:
-        // $name = $this->custmername;
-    if ($answer->isInteractiveMessageReply()) {
-        $selectedValue = $answer->getText(); // will be either 'yes' or 'no'
-        if($selectedValue == "yes"){
-
-                $botman->startConversation(new Negotiate(9, "jhjskhdajhdjkahkd"));
-        }
-    }
-
-});
-
-// $botman->ask($vb, function (Answer $answer){
-
-// });
-
-// $botman->reply();
-// $reply->say($reply);
-
-// if($reply == "yes"){
-//     $botman->say("hello");
-// }
-    //  $botman->ask($question, function (Answer $answer){
-    //     $neg = $answer->getText();
-    //     $this->say($neg ." ". $this->name );
-
-    //  });
-
-
-
-
-
- }
 public function negotiate($botman, $message, $custmername){
     $product = Product::with(['picture', 'category'])->where('id', $message)->first();
     $picture= $product->picture ? $product->picture->file :"";
@@ -184,19 +118,6 @@ public function negotiate($botman, $message, $custmername){
             }
 
         });
-        // $question = Question::create(html_entity_decode("Are you want to continue to negotiate ".$prouctname. " ". $productid ))
-    // ->fallback('Unable to create negotiation link')
-    // ->callbackId('negotiatingstatus')
-    // ->addButtons([
-    //     Button::create('Of course')->value('yes'),
-    //     Button::create('Hell no!')->value('no'),
-    // ]);
+       }
 
-
-    // $this->askNegotion($botman, ucwords($product->product_name), $product->id, $custmername);
-
-}
-    // public function negotiate(){
-    //     return view('pages.negotiate');
-    // }
 }
