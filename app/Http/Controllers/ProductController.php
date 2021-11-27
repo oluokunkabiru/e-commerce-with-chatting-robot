@@ -90,7 +90,7 @@ class ProductController extends Controller
 
         $product = new Product();
         if ($file = $request->file('image')) {
-            $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+            $file_name = str_replace(" ", "_", time());
 
             $file->move('asset/images', $file_name);
             $photo = new Picture();
@@ -146,7 +146,7 @@ class ProductController extends Controller
 
         $product = new Product();
         if ($file = $request->file('image')) {
-            $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+            $file_name = str_replace(" ", "_", time() );
 
             $file->move('asset/images', $file_name);
             $photo = new Picture();
@@ -301,7 +301,7 @@ class ProductController extends Controller
                     return redirect()->back()->with('typeerror', "This must be of Image of type JPG, PNG, GIF etc.");
                 }
                 // save the image
-                $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+                $file_name = str_replace(" ", "_", time() );
                 $file->move('asset/images', $file_name);
                 $photo = new Picture();
                 $photo->file = $file_name;

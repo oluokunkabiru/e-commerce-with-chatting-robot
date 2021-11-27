@@ -36,7 +36,7 @@ class Negotiate extends Conversation
         // This will be called immediately
         // $productid = $this->productid;
         // $customer = $this->customer;$productid, $customer
-        $this->askPrice($this->productid, "Kabiru");
+        $this->askPrice($this->productid, $this->customer);
 
     }
 

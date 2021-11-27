@@ -16,7 +16,7 @@ class NegotiateController extends Controller
 {
     //
     protected $custmername = "oluokun";
-    protected $product = "4";
+    protected $product = "45";
 
     public function robot(){
         $botman = app('botman');
@@ -152,10 +152,13 @@ public function negotiate($botman, $message, $custmername){
 
     $message = OutgoingMessage::create(html_entity_decode($msg))
                 ->withAttachment($attachment);
-$productid = $product->id;
+        $productid = $product->id;
 
     // $botman->reply("write 'hi' for testing...");
         $botman->reply($message);
+        // $botman->startConversation(new Negotiate($productid, $custmername));
+
+
         $question =  Question::create(html_entity_decode("Are you want to continue to negotiate ".ucwords($product->product_name) ))
         ->fallback('Unable to create negotiation link')
         ->callbackId('negotiatingstatus')
@@ -170,17 +173,18 @@ $productid = $product->id;
             if ($answer->isInteractiveMessageReply()) {
                 $selectedValue = $answer->getText(); // will be either 'yes' or 'no'
                 if($selectedValue == "yes"){
-                    // $this->say(ucwords($selectedValue)." ". $productid);
-                    $this->ask("hello");
+                    $this->say(ucwords($custmername). ", How much do you want to pay");
+                    // $this->ask("hello");
 
-                //         $botman->startConversation(new Negotiate(9, "jhjskhdajhdjkahkd"));
+                        $botman->startConversation(new Negotiate($productid, $custmername));
                 }else{
                     $this->say("Your negotion is terminated");
+                    
                 }
             }
 
         });
-    //     $question = Question::create(html_entity_decode("Are you want to continue to negotiate ".$prouctname. " ". $productid ))
+        // $question = Question::create(html_entity_decode("Are you want to continue to negotiate ".$prouctname. " ". $productid ))
     // ->fallback('Unable to create negotiation link')
     // ->callbackId('negotiatingstatus')
     // ->addButtons([
