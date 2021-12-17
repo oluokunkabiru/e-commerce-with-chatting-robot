@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layout.mainlayout')
 @section('title', 'Page not found')
 @section('style')
     <style>

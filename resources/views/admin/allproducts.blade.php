@@ -113,9 +113,9 @@
                 </tfoot>
               </table>
             </div>
-            <div class="float-right">
+            {{-- <div class="float-right">
                 {{ $products->links() }}
-            </div>
+            </div> --}}
 
 
 {{-- view product --}}

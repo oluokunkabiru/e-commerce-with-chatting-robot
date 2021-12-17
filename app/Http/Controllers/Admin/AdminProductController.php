@@ -123,31 +123,40 @@ class AdminProductController extends Controller
         }
 
         $product = new Product();
-        if ($file = $request->file('image')) {
-            $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
-            $files = Image::make($file);
-            $imagepath = public_path().'/asset/images/';
+    //     if ($file = $request->file('image')) {
+    //         $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+    //         $files = Image::make($file);
+    //         $imagepath = public_path().'/asset/images/';
 
-       $files->resize(320,300);
-       $watermark = public_path()."/asset/design/design.png";
-       $files->insert($watermark,  'bottom-right');
-      $files->text($setting->company,150,150, function($text){
-          $text->color('#00ff00');
-          $text->file(4);
-          $text->size(30);
-          $text->align('center');
-      });
-       $files->save($imagepath.str_replace(" ", "_",time().$file->getClientOriginalName()));
+    //    $files->resize(320,300);
+    //    $watermark = public_path()."/asset/design/design.png";
+    //    $files->insert($watermark,  'bottom-right');
+    //   $files->text($setting->company,150,150, function($text){
+    //       $text->color('#00ff00');
+    //       $text->file(4);
+    //       $text->size(30);
+    //       $text->align('center');
+    //   });
+    //    $files->save($imagepath.str_replace(" ", "_",time().$file->getClientOriginalName()));
 
-         $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+    //      $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
 
-            // $file->move('asset/images', $file_name);
-            $photo = new Picture();
-            $photo->file = $file_name;
-            $photo->save();
-            $product->picture_id = $photo->id;
-        }
+    //         // $file->move('asset/images', $file_name);
+    //         $photo = new Picture();
+    //         $photo->file = $file_name;
+    //         $photo->save();
+    //         $product->picture_id = $photo->id;
+    //     }
 
+    if ($file = $request->file('image')) {
+        $file_name = str_replace(" ", "_", time());
+
+        $file->move('asset/images', $file_name);
+        $photo = new Picture();
+        $photo->file = $file_name;
+        $photo->save();
+        $product->picture_id = $photo->id;
+    }
         $product->product_name = $request->input('name');
         $product->category_id = $request->input('category');
         $product->oldprice = $request->input('oldprice');

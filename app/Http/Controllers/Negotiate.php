@@ -67,13 +67,13 @@ class Negotiate extends Conversation
 
             $accept = ['Negotiaon accepted', 'Continue to order', 'Accepted', 'Pay now', 'Yes, order now', 'Dear beautiful/handsome customer, pay now', 'Ordering is sure'];
             $t10m = ['OOPs, this price is very small customer', 'This is too small', 'Ahhhh, its not accepted', 'Why this small, increase your price'];
-            $t20m = ['This price is small 2', 'Dear customer 2', 'please add more price 2', 'Let continue adding price 2'];
-            $t30m = ['This price is small 3', 'Dear customer 3', 'please add more price 3', 'Let continue adding price 3'];
-            $t40m = ['This price is small 4', 'Dear customer 4', 'please add more price 4', 'Let continue adding price 4'];
-            $t50m = ['This price is small 5', 'Dear customer 5', 'please add more price 5', 'Let continue adding price 5'];
-            $t60m = ['This price is small 6', 'Dear customer 6', 'please add more price 6', 'Let continue adding price 6'];
-            $t70m = ['This price is small 7', 'Dear customer 7', 'please add more price 7', 'Let continue adding price 7'];
-            $t80m = ['This price is small 8', 'Dear customer 8', 'please add more price 8', 'Let continue adding price 8'];
+            $t20m = ['I m going to need a better price', 'This product worth more than what you are offering, add to the price', 'please add more price', 'Let continue adding price'];
+            $t30m = ['The price offer is unacceptable', 'This product worth more than what you are offering, add to the price', 'This price is not accepted', 'Let continue adding price'];
+            $t40m = ['Wow, that price is too low for this product', 'This product worth more than what you are offering, add to the price', 'please add more price', 'Let continue adding price'];
+            $t50m = ['Can you please add more value to the price', 'This price is not accepted', 'This product worth more than what you are offering, add to the price', 'This product worth more than what you are offering'];
+            $t60m = ['Can you please go higher about the price', 'This product has 99.7% reliability rate, so please add more to the value of the product', 'please add more price', 'Let continue adding price'];
+            $t70m = ['This product has 99.7% reliability rate, so please add more to the value of the product', 'This product worth more than what you are offering', 'please add more price', 'Let continue adding price'];
+            $t80m = ['This product worth more than what you are offering, add to the price', 'This price is not accepted', 'please add more price', 'Let continue adding price'];
             shuffle($unaccept);
             // $que = $unaccept[0];
             shuffle($t10m);
@@ -89,22 +89,22 @@ class Negotiate extends Conversation
             if(is_numeric($price)){
                 if($price < $t10)
                 {
-                    $this->repeat($t10m[0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t60), 2, '.', ','). '</b>');
+                    $this->repeat($t10m[0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t80), 2, '.', ','). '</b>');
 
                 }elseif ($price < $t20) {
-                    $this->repeat($t20m[0] .' <b>pay  <span class=="fa">&#8358;</span>'.number_format(($least+$t50), 2, '.', ','). '</b>');
+                    $this->repeat($t20m[0] .' <b>pay  <span class=="fa">&#8358;</span>'.number_format(($least+$t70), 2, '.', ','). '</b>');
                 }elseif ($price < $t30) {
-                    $this->repeat($t30m[0] .'<b> pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t40), 2, '.', ','). '</b>');
+                    $this->repeat($t30m[0] .'<b> pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t60), 2, '.', ','). '</b>');
                 }elseif ($price < $t40) {
-                    $this->repeat($t40m [0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t30), 2, '.', ','). '</b>');
+                    $this->repeat($t40m [0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t50), 2, '.', ','). '</b>');
                 }elseif ($price < $t50) {
-                    $this->repeat($t50m[0] .' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t20), 2, '.', ','). '</b>');
+                    $this->repeat($t50m[0] .' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t40), 2, '.', ','). '</b>');
                 }elseif ($price < $t60) {
-                    $this->repeat($t60m[0] .' <b>pay  <span class=="fa">&#8358;</span>'.number_format(($least+$t10), 2, '.', ','). '</b>');
+                    $this->repeat($t60m[0] .' <b>pay  <span class=="fa">&#8358;</span>'.number_format(($least+$t30), 2, '.', ','). '</b>');
                 }elseif ($price < $t70) {
-                    $this->repeat($t70m [0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+(0.5*$least)), 2, '.', ','). '</b>');
+                    $this->repeat($t70m [0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+(0.2*$least)), 2, '.', ','). '</b>');
                 }elseif ($price < $t80) {
-                    $this->repeat($t80m[0] .' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+(0.7*$least)), 2, '.', ','). '</b>');
+                    $this->repeat($t80m[0] .' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+(0.1*$least)), 2, '.', ','). '</b>');
                 }
                 // elseif($least > $price ){
 

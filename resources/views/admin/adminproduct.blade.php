@@ -110,9 +110,9 @@
                 </tfoot>
               </table>
             </div>
-            <div class="float-right">
+            {{-- <div class="float-right">
                 {{ $products->links() }}
-            </div>
+            </div> --}}
 
 
 {{-- view product --}}
@@ -206,7 +206,7 @@
                           </div>
                         </div>
                       <div class="col-md-3">
-                          <label for="">Old Price</label>
+                          <label for="">Last Price</label>
                           <input type="number" placeholder="Old price" name="oldprice" id="oldprice" step="0.01" class="form-control {{ $errors->has('oldprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
                           @if ($errors->has('oldprice'))
                                     <span class="invalid-feedback" role="alert">
@@ -215,7 +215,7 @@
                                 @endif
                       </div>
                       <div class="col-md-3">
-                        <label for="">New Price</label>
+                        <label for="">Normal Price</label>
                         <input type="number" placeholder="New price" name="newprice" id="newprice" step="0.01" class="form-control {{ $errors->has('newprice') ? ' is-invalid' : '' }}" autocomplete="" autofocus>
                         @if ($errors->has('newprice'))
                         <span class="invalid-feedback" role="alert">

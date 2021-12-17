@@ -22,7 +22,7 @@ class CategoryController extends Controller
     }
 
     public function showCategory($category){
-        return \view('pages.productdetails', compact(['category']));
+        return view('pages.productdetails', compact(['category']));
     }
     public function show(Request $request){
         $id = $request->input('edit');
