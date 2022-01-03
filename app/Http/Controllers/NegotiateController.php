@@ -31,7 +31,8 @@ class NegotiateController extends Controller
 
             }elseif($message == "hello"){
                 // $this->say("hi dear");
-                $botman->startConversation(new Negotiate($this->product, $this->custmername));
+                $this->askName($botman);
+                // $botman->startConversation(new Negotiate($this->product, $this->custmername));
             }
             elseif(explode(",", $message)[0]=="negotiateme"){
                 $this->negotiate($botman, explode(",", $message)[1], $this->custmername);
@@ -93,12 +94,12 @@ public function negotiate($botman, $message, $custmername){
         // $botman->startConversation(new Negotiate($productid, $custmername));
 
 
-        $question =  Question::create(html_entity_decode("Are you want to continue to negotiate ".ucwords($product->product_name) ))
+        $question =  Question::create(html_entity_decode("Are you sure you want to continue to negotiate ".ucwords($product->product_name) ))
         ->fallback('Unable to create negotiation link')
         ->callbackId('negotiatingstatus')
         ->addButtons([
-            Button::create('Of course')->value('yes'),
-            Button::create('Hell no!')->value('no'),
+            Button::create('Yes')->value('yes'),
+            Button::create('No')->value('no'),
         ]);
         $botman->ask($question, function (Answer $answer) use($botman, $productid, $custmername){
             //   return  $answer->getText();

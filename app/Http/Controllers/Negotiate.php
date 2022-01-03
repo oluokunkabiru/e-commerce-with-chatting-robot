@@ -87,24 +87,26 @@ class Negotiate extends Conversation
             shuffle($accept);
 
             if(is_numeric($price)){
+               
                 if($price < $t10)
                 {
-                    $this->repeat($t10m[0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t80), 2, '.', ','). '</b>');
+                    $this->repeat($t10m[0]);
+                          }elseif ($price < $t20) {
+                    $this->repeat($t20m[0] );
+                        }elseif ($price < $t30) {
+                    $this->repeat($t30m[0] );
+                         }elseif ($price < $t40) {
+                    $this->repeat($t40m [0]);
+                         }elseif ($price < $t50) {
+                    $this->repeat($t50m[0] );
+                         }elseif ($price < $t60) {
+                    $this->repeat($t60m[0] );
+                        }elseif ($price < $t70) {
+                    $this->repeat($t70m [0]);
 
-                }elseif ($price < $t20) {
-                    $this->repeat($t20m[0] .' <b>pay  <span class=="fa">&#8358;</span>'.number_format(($least+$t70), 2, '.', ','). '</b>');
-                }elseif ($price < $t30) {
-                    $this->repeat($t30m[0] .'<b> pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t60), 2, '.', ','). '</b>');
-                }elseif ($price < $t40) {
-                    $this->repeat($t40m [0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t50), 2, '.', ','). '</b>');
-                }elseif ($price < $t50) {
-                    $this->repeat($t50m[0] .' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+$t40), 2, '.', ','). '</b>');
-                }elseif ($price < $t60) {
-                    $this->repeat($t60m[0] .' <b>pay  <span class=="fa">&#8358;</span>'.number_format(($least+$t30), 2, '.', ','). '</b>');
-                }elseif ($price < $t70) {
-                    $this->repeat($t70m [0].' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+(0.2*$least)), 2, '.', ','). '</b>');
                 }elseif ($price < $t80) {
-                    $this->repeat($t80m[0] .' <b>pay  <span class=="fa">&#8358;</span>'. number_format(($least+(0.1*$least)), 2, '.', ','). '</b>');
+                    $this->repeat($t80m[0] );
+
                 }
                 // elseif($least > $price ){
 

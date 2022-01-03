@@ -19,6 +19,7 @@ class CartController extends Controller
     {
         //
         return view('pages.shop-cart');
+        
 
     }
 
