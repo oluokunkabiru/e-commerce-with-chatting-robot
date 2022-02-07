@@ -6,6 +6,8 @@
     background-image: linear-gradient(rgba(127, 173, 57,0.3), rgba(127, 173, 57, 0.467));
     background-size: 100%;
     /* color: white; */
+    /* height: 200px; */
+    object-fit: cover;
 }
 .capdata h2{
     font-size: 60px;

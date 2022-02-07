@@ -54,7 +54,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $categorys }} fresh-meat">
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="{{ url($picture) }}">
-                                {{-- <ul class="featured__item__pic__hover">
+                                <ul class="featured__item__pic__hover">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                             <li>
@@ -65,7 +65,7 @@
                                 </form>
 
                             </li>
-                        </ul> --}}
+                        </ul>
                             </div>
 
                             <div class="product__item__text">
@@ -74,22 +74,22 @@
                                 <div class="card-">
                                     <div class="card-header">
                                         <h4><span class="fa">&#8358;</span>{{ $product->newprice }}</h4>
-                                        <br>
-                                        <form action="{{ route('AddtoCart.store') }}" method="post"
+                                        {{--  <br>  --}}
+                                        {{--  <form action="{{ route('AddtoCart.store') }}" method="post"
                                             style="display: inline">
                                             <input type="hidden" name="id" value="{{ $product->id }}">
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-sm btn-rounded btn-primary"> Order now <i
                                                     class="fa fa-shopping-cart"></i></button>
-                                        </form>
+                                        </form>  --}}
                                         {{-- <button type="submit" class="btn btn-sm btn-rounded btn-success">Order now <i  class="fa fa-shopping-cart"></i></button> --}}
-                                        {{-- <span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span> --}}
-                                        <span class="btn btn-sm btn-rounded btn-success negotiate"
+                                        <span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span>
+                                        {{--  <span class="btn btn-sm btn-rounded btn-success negotiate"
                                             name="{{ ucwords($product->product_name) }}"
                                             productid="{{ $product->id }}" oldprice="{{ $product->oldprice }}"
                                             newprice="{{ $product->newprice }}"
                                             slug="{{ route('productDetails', ['id' => $product->slug]) }}"
-                                            img="{{ url($picture) }}">Negotiate</span>
+                                            img="{{ url($picture) }}">Negotiate</span>  --}}
 
                                     </div>
                                     <div class="card-body text-left">
