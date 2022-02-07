@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Services;
 use App\Models\Setting;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 
@@ -20,8 +22,10 @@ class PagesController extends Controller
         $latest = Product::orderBy('id','DESC')->paginate(16);
         $latestrated = Product::inRandomOrder()->paginate(18);
          $latestreview = Product::inRandomOrder()->paginate(18);
-        return view('pages.index', compact(['category','products','latest','latestrated', 'latestreview']));
+         $services = Services::orderBy('id', 'desc')->get();
+        return view('pages.index', compact(['category','services','products','latest','latestrated', 'latestreview']));
      }
+
 
      public function shop(){
          $products =  Product::inRandomOrder()->paginate(20);

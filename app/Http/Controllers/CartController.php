@@ -19,7 +19,7 @@ class CartController extends Controller
     {
         //
         return view('pages.shop-cart');
-        
+
 
     }
 
@@ -58,6 +58,12 @@ class CartController extends Controller
 
      }
 
+
+     public function clearCart(){
+        Cart::destroy();
+        return redirect()->back()->with('cartsuccess', 'Product has been  added succefully');
+
+    }
     /**
      * Display the specified resource.
      *
@@ -89,7 +95,11 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Cart::update($id, $request->qty);
+        // return $request;
+       $product = Product::where('id', $request->proId)->first();
+
+       Cart::update($id, ['price'=>$product->newprice, 'qty'=>$request->qty]);
+
         session()->flash('cartsuccess', 'Quantity was succefully updated');
         return response()->json(['success'=>true]);
     }

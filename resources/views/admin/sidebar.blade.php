@@ -120,6 +120,16 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="{{ route('services.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Services
+                            {{-- <i class="fas fa-angle-left right"></i> --}}
+                        </p>
+                    </a>
+                </li>
                 {{-- messages  --}}
                 <li class="nav-item has-treeview">
                     <a href="{{ route('custmersMessages') }}" class="nav-link">

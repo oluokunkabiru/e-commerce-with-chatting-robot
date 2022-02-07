@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 17, 2021 at 01:17 PM
+-- Generation Time: Jan 03, 2022 at 02:27 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -291,7 +291,6 @@ INSERT INTO `pictures` (`id`, `file`, `created_at`, `updated_at`) VALUES
 (37, '16057760057C2E0356-A7EF-4ECB-BC74-39D21BB615FA.jpeg', '2020-11-19 07:53:25', '2020-11-19 07:53:25'),
 (39, '1605776790IMG_20191023_075809_0.jpg', '2020-11-19 08:06:30', '2020-11-19 08:06:30'),
 (40, '1605776818DSCN0170_-_Copy.JPG', '2020-11-19 08:06:58', '2020-11-19 08:06:58'),
-(44, '1637667135_First Practice.jpg', '2021-11-23 10:32:15', '2021-11-23 10:32:15'),
 (45, '1637770267top2.png', '2021-11-24 15:11:07', '2021-11-24 15:11:07'),
 (46, '16377763932.jpg', '2021-11-24 16:53:13', '2021-11-24 16:53:13'),
 (47, '16377765411.jpg', '2021-11-24 16:55:41', '2021-11-24 16:55:41'),
@@ -310,7 +309,8 @@ INSERT INTO `pictures` (`id`, `file`, `created_at`, `updated_at`) VALUES
 (62, '1637778357download.jpeg', '2021-11-24 17:25:57', '2021-11-24 17:25:57'),
 (63, '1637780722images.jpeg', '2021-11-24 18:05:22', '2021-11-24 18:05:22'),
 (64, '1639725389', '2021-12-17 06:16:29', '2021-12-17 06:16:29'),
-(65, '1639725882', '2021-12-17 06:24:42', '2021-12-17 06:24:42');
+(65, '1639725882', '2021-12-17 06:24:42', '2021-12-17 06:24:42'),
+(66, '1641216144_basic.jpeg', '2022-01-03 12:22:24', '2022-01-03 12:22:24');
 
 -- --------------------------------------------------------
 
@@ -398,7 +398,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `supportemail`, `phone`, `picture_id`, `shipping`, `facebook`, `twitter`, `instagram`, `linkedin`, `company`, `address`, `about`, `policy`, `aboutshop`, `who-we-are`, `created_at`, `updated_at`) VALUES
-(1, 'okediyakenny@gmail.com', '08141239778', '44', 'Free Shipping for All Products', 'https://facebook.com/oluokunkabir.adeshina/', 'https://twitter.com/DevOluokunKabir', 'https://instagram.com', 'https://www.linkedin.com/in/oluokun-kabir-adesina-58125b163', 'OKEDIYA KEHINDE REBECCA', 'No 5, Oja Agbe Street', 'Isalu Iseyin', NULL, NULL, NULL, NULL, '2021-11-23 10:32:15');
+(1, 'okediyakenny@gmail.com', '08130584550', '66', 'Free Shipping for All Products', 'https://facebook.com/oluokunkabir.adeshina/', 'https://twitter.com/DevOluokunKabir', 'https://instagram.com', 'https://www.linkedin.com/in/oluokun-kabir-adesina-58125b163', 'KOADIT SOFTWARE', 'No 5, Oja Agbe Street', 'Isalu Iseyin', NULL, NULL, NULL, NULL, '2022-01-03 12:22:24');
 
 -- --------------------------------------------------------
 
@@ -558,7 +558,7 @@ ALTER TABLE `order_histories`
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `products`

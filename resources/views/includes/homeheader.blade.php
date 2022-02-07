@@ -1,3 +1,4 @@
+
 @php
 $setting = App\Models\Setting::with(['picture'])
     ->where('id', 1)
@@ -211,7 +212,7 @@ $setting = App\Models\Setting::with(['picture'])
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>All Category</span>
                     </div>
                     <ul>
                         @php
@@ -252,39 +253,50 @@ $setting = App\Models\Setting::with(['picture'])
                         </div>
                     </div>
                 </div>
+                <div class="container-fluid">
+                    <div id="demo" class="carousel slide" data-ride="carousel">
+                        @if ($services)
 
-                <div id="address-map-container" style="width:100%;height:400px; ">
-                    <div style="width: 100%; height: 100%" id="map"></div>
-                    {{--  <div style="height:100%; " id="map"></div>  --}}
+
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{{ asset($services[0]->picture->file) }}" alt="Los Angeles" width="1100" height="500">
+                            <div class="carousel-caption capdata ">
+                                <h3 class="text-white font-weight-bold">{{ $services[0]->title }}</h3>
+                                <p class="text-light  font-weight-bold">{{ $services[0]->description }} </p>
+                                <p><a href=""> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
+                                </strong></h4>
+                              </div>
+                          </div>
+                          @foreach ( $services as $item )
+                          <div class="carousel-item">
+                            <img src="{{ asset($item->picture->file) }}" alt="Los Angeles" width="1100" height="500">
+                            <div class="carousel-caption capdata ">
+                                <h3 class="text-white font-weight-bold">{{ $item->title }}</h3>
+                                <p class="text-light  font-weight-bold">{{ $item->description }} </p>
+                                <p><a href=""> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
+                                </strong></h4>
+                              </div>
+                          </div>
+                          @endforeach
+
+                        </div>
+                        @endif
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                          <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                          <span class="carousel-control-next-icon"></span>
+                        </a>
+                      </div>
+
                 </div>
-                {{--  <div id="address-map-container" style="width:100%;heigh:400px; ">
-                    <div style="width: 100%; height: 100%" id="address-map"></div>
-                    <div style="height:100%; " id="map"></div>
+
+                {{--  <div id="address-map-container" style="width:100%;height:400px; ">
+                    <div style="width: 100%; height: 100%" id="map"></div>
                 </div>  --}}
 
-                {{--  <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
-                    <div class="hero__text">
-                        <span><strong>Your Access to Food</strong></span>
-                        <h6>Buy now and pay later <br />100% convenience</h6>
-                        <p><strong>Plan your event with our accurate<br /> food planner </strong></p>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
-                    </div>
-                </div>  --}}
 
-                {{--  <div class="hero__item set-bg" data-setbg="{{ asset('asset/img/hero/banner-6.jpg') }}">
-                    <div class="hero__text">
-                        <div class="form-group">
-                            <label for="address_address">Search Location</label>
-                            <input type="text" id="address-input" name="address_address" class="form-control map-input">
-                            <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                            <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
-                        </div>
-                        <div id="address-map-container" style="width:100%;height:400px; ">
-                            <div style="width: 100%; height: 100%" id="map"></div>
-                            <div style="height:100%; " id="map"></div>
-                        </div>
-                    </div>
-                </div>  --}}
             </div>
         </div>
     </div>

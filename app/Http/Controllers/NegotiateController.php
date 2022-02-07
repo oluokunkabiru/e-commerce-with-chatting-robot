@@ -108,7 +108,7 @@ public function negotiate($botman, $message, $custmername){
             if ($answer->isInteractiveMessageReply()) {
                 $selectedValue = $answer->getText(); // will be either 'yes' or 'no'
                 if($selectedValue == "yes"){
-                    $this->say(ucwords($custmername). ", How much do you want to pay");
+                    $this->say(ucwords($custmername). ", How many Quantity(s) do you want to buy");
                     // $this->ask("hello");
 
                         $botman->startConversation(new Negotiate($productid, $custmername));

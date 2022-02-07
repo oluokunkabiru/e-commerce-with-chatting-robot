@@ -48,6 +48,7 @@ Route::get('/blog-details', 'PagesController@blogDetails')->name('blogDetails');
 // socialite route
 Route::get('login/{provider}', 'SocialLite@redirect')->name('login');
 Route::get('login/{provider}/callback','SocialLite@Callback')->name('login');
+Route::get('/clear-cart', 'CartController@clearCart')->name('clearCart');
 // product type route
 Route::get('/Category/{id}','Admin\CategoryController@showCategory' )->name('produtCategory');
 Route::get('/Product/{id}','PagesController@productDetails' )->name('productDetails');
@@ -60,6 +61,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/Admin/Product', 'Admin\AdminProductController@adminproductpage')->name('adminproduct');
     Route::get('/Admin/All Product', 'Admin\AdminProductController@allproduct')->name('allproduct');
     // Route::post('Admin/product', 'Admin\AdminProductController@store' );
+    Route::resource('services', 'ServicesController');
     Route::get('/Admin/Category', 'Admin\CategoryController@index')->name('category');
     Route::post('editcategory', 'Admin\CategoryController@show' )->name('editcategory');
     Route::post('deletecategory', 'Admin\CategoryController@delete' )->name('deletecategory');

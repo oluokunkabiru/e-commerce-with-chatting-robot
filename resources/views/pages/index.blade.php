@@ -24,14 +24,13 @@
             </div>
     </section>
     <!-- Categories Section End -->
-    @include('pages.test')
     <!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product {{ PHP_VERSION }}</h2>
+                        <h2>Featured Product</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>

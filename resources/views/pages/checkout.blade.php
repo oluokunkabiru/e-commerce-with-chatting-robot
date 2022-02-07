@@ -203,8 +203,8 @@
 @section('script')
 <script>
 
-    $(".payment_method").change(function() {
-    $(".payment_method").prop('checked', false);
+$(".payment_method").change(function() {
+$(".payment_method").prop('checked', false);
     $(this).prop('checked', true);
 });
 

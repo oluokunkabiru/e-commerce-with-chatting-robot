@@ -119,8 +119,9 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="{{ route('shop') }}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a>
+                        <a href="{{ route('clearCart') }}" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                            Clear Cart
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -166,6 +167,7 @@ var proQty = $('.pro-qty');
     proQty.on('click', '.qtybtn', function () {
         var $button = $(this);
         var oldValue = $button.parent().find('#upCart').val();
+        // alert(oldValue)
         if ($button.hasClass('inc')) {
             var newVal = parseFloat(oldValue) + 1;
         } else {
@@ -194,7 +196,7 @@ var proQty = $('.pro-qty');
             success:function(response){
         //    console.log(response);
                 window.location.href = "{{ route('AddtoCart.index')  }}";
-            //$('#updateDiv').html(response);
+            // $('#updateDiv').html(response);
 
             }
     });
