@@ -213,7 +213,7 @@
                     <ul>
                             <ul>
                                     @php
-                                    $categories= App\Models\Category::paginate(10);
+                                    $categories= App\Models\Category::orderBy('category', 'asc')->paginate(10);
                                     @endphp
 
                                     @foreach ( $categories as $category )
