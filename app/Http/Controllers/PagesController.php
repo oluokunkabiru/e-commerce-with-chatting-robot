@@ -26,6 +26,9 @@ class PagesController extends Controller
         return view('pages.index', compact(['category','services','products','latest','latestrated', 'latestreview']));
      }
 
+     public function marketerpayment(){
+         return view('pages.marketer-fee-payment');
+     }
 
      public function shop(){
          $products =  Product::inRandomOrder()->paginate(20);

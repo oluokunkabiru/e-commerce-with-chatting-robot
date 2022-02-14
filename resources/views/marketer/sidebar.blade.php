@@ -73,9 +73,9 @@
           </li>
           @else
           <li class="nav-item">
-            <a href="#">
+            <a href="{{ route('marketer-fee') }}">
               <p class="text-danger">
-               Pending Account
+               Marketer fee
               </p>
             </a>
         </li>

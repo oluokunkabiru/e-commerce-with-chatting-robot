@@ -47,6 +47,7 @@
                    <th>Image</th>
                   <th>Name</th>
                   <th>New Price</th>
+                  <th>Status</th>
                   <th>Location</th>
                   <th>Description</th>
                   <th>Action</th>
@@ -69,6 +70,18 @@
                   <td> <img src="{{url($picture)}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
                   <td>{{ $product->newprice}}</td>
+                  <td>
+                      @if ($product->status=="pending")
+
+                      <a href="#approve" class="btn btn-danger btn-rounded">Pending</a>
+
+                      @elseif ($product->status=="disable")
+                      <a href="#approve" class="btn btn-warning btn-rounded">Warning</a>
+                    @else
+                    <a href="#approve" class="btn btn-success btn-rounded">Active</a>
+
+                      @endif
+                  </td>
                   <td>{{ $product->location }}</td>
                   <td>{{ $product->description }}</td>
                   <td>
@@ -91,6 +104,7 @@
                     <th>Image</th>
                    <th>Name</th>
                    <th>New Price</th>
+                   <th>Status</th>
                    <th>Location</th>
                    <th>Description</th>
                    <th>Action</th>
@@ -98,9 +112,9 @@
                 </tfoot>
               </table>
             </div>
-            <div class="float-right">
+            {{--  <div class="float-right">
                 {{ $products->links() }}
-            </div>
+            </div>  --}}
 
 
 {{-- view product --}}

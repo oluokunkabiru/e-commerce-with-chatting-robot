@@ -141,7 +141,7 @@
                     <a href="home"><img src="{{ url($setting->picture->file) }}" style="width: 119px; height:50px" alt="{{ $setting->company }}"></a>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-9 col-md-9">
                 <nav class="header__menu">
                     <ul>
                             <li class="active"><a href="{{ route('home') }}">Home</a></li>

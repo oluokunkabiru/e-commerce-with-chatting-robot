@@ -15,6 +15,7 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
+                    <th>Deliver Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,15 @@
                     <td><span class="fa">&#8358;</span> {{ $item->billing_price}}</td>
                     <td>{{ $item->quantity }}</td>
                     <td><span class="fa">&#8358;</span> {{ $item->billing_total_price }}</td>
+                    <td>
+                        @if ($item->status=="Pending")
+                            <span class="btn btn-danger">Pending</span>
+                        @elseif ($item->status=="Processing")
+                            <span class="btn btn-info">Processing <span class="spinner-grow text-white"></span></span>
+                        @else
+                            <span class="btn btn-success">Delivered</span>
+                        @endif
+                    </td>
                     @php
                         $total_amount+=$item->billing_total_price;
                     @endphp

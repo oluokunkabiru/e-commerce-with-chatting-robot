@@ -311,6 +311,11 @@
                                     </div>
 
                                     <div class="col">
+                                        @if (Auth::user()->role=="marketer" && Auth::user()->status=="free")
+                                            <a href="{{ route('marketer-fee') }}">Pay your marketer fee</a>
+                                        @elseif (Auth::user()->role=="marketer" && Auth::user()->status=="paid")
+                                            <a href="">Go to Dashboard</a>
+                                        @else
                                         <label for="" class="btn btn-info">Become a Marketer</label>
                                         <div class="input-group mb-3">
                                             <select name="role" class="custom-select">
@@ -323,12 +328,16 @@
                                                 <span class="fa fa-shopping-basket"></span>
                                             </div>
                                         </div>
+                                        @endif
 
-                                        @if ($errors->has('state'))
+
+                                        @if ($errors->has('role'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('state') }}</strong>
+                                                <strong>{{ $errors->first('role') }}</strong>
                                             </span>
                                         @endif
+
+
                                     </div>
                                 </div>
                                 <div class="row">

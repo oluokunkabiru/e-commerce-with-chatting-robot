@@ -13,11 +13,13 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "hardevine/shoppingcart": "^3.0",
         "intervention/image": "^2.7",
+        "kingflamez/laravelrave": "^4.2",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3"
+        "laravel/ui": "^3.3",
+        "unicodeveloper/laravel-paystack": "^1.0"
     },
     "require-dev": {
         "andyabih/laravel-to-uml": "^1.0",

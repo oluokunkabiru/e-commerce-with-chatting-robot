@@ -142,7 +142,7 @@ $setting = App\Models\Setting::with(['picture'])
                             alt="{{ $setting->company }}"></a>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-9 col-md-9">
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="{{ route('home') }}">Home</a></li>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Picture;
-use App\Product;
-use App\Category;
+use App\Models\Picture;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
@@ -27,10 +27,30 @@ class ProductController extends Controller
         //
         $categories = Category::get();
 
-        $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->paginate(10);
+        $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->get();
         return view('marketer.product', compact(['products', 'categories']));
     }
 
+    public function pendingProduct(){
+        $categories = Category::get();
+        $products = Product::with(['picture', 'category'])->where('status', 'pending')->get();
+        return view('admin.pending-product', compact(['products', 'categories']));
+    }
+
+    public function disabledProduct(){
+        $categories = Category::get();
+        $products = Product::with(['picture', 'category'])->where('status', 'disable')->get();
+        return view('admin.disabled-product', compact(['products', 'categories']));
+    }
+
+
+    public function changeProductMode($id, $status){
+        $product = Product::where('id', $id)->first();
+        // return $status;
+        $product->status = $status;
+        $product->update();
+        return redirect()->back()->with('success', $product->name. ' '. $status. ' successfully');
+    }
     public function admin()
     {
         //
@@ -102,6 +122,7 @@ class ProductController extends Controller
         $product->product_name = $request->input('name');
         $product->category_id = $request->input('category');
         $product->oldprice = $request->input('oldprice');
+        $product->status = "active";
         $product->newprice = $request->input('newprice');
         $product->quantity = $request->input('quantity');
         $product->location = $request->input('location');

@@ -53,10 +53,40 @@ Route::get('/clear-cart', 'CartController@clearCart')->name('clearCart');
 Route::get('/Category/{id}','Admin\CategoryController@showCategory' )->name('produtCategory');
 Route::get('/Product/{id}','PagesController@productDetails' )->name('productDetails');
 
+
+// The page that displays the payment form for flutterwave
+
+// The route that the button calls to initialize payment
+Route::get('marketer-fee', 'PagesController@marketerpayment')->name('marketer-fee');
+Route::post('/pay', [FlutterwaveController::class, 'initialize'])->name('pay');
+// The callback url after a payment
+Route::get('/rave/callback', [FlutterwaveController::class, 'callback'])->name('callback');
+
+
+// The route that the button calls to initialize payment
+Route::get('marketer-fee', 'PagesController@marketerpayment')->name('marketer-fee');
+Route::post('/marketer-fee-flutterwave', 'FlutterPaymentController@initializemarketer')->name('flutterwave-marketer-fee');
+// The callback url after a payment
+Route::get('/marketer-fee/rave/callback', 'FlutterPaymentController@marketerFee')->name('fluterwavemarkerfeecallback');
+
+
+
+
+// Payment With Paystack
+
+Route::post('/pay', 'PaystackPaymentController@redirectToGateway')->name('pay');
+Route::get('/payment/callback', 'PaystackPaymentController@handleGatewayCallback');
+
+Route::post('/marketer-fee-paystack', 'PaystackPaymentController@marketerFee')->name('paystack-marketer-fee');
+Route::get('/marketer/payment/callback', 'PaystackPaymentController@marketerHandleGatewayCallback');
+
 // register new user
 Route::post('/register', 'RegisterController@register')->name('register');
 // admin content goew here
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('change-product/{id}/{status}', 'ProductController@changeProductMode')->name('changeprodctmode');
+    Route::get('pending-product', 'ProductController@pendingProduct')->name('pending-product');
+    Route::get('disabled-product', 'ProductController@disabledProduct')->name('disabled-product');
     Route::get('/Admin', 'Admin\AdminController@index' )->name('admin');
     Route::get('/Admin/Product', 'Admin\AdminProductController@adminproductpage')->name('adminproduct');
     Route::get('/Admin/All Product', 'Admin\AdminProductController@allproduct')->name('allproduct');

@@ -69,6 +69,7 @@
 <!-- /.row -->
 
 @else
+<a href="{{ route('marketer-fee') }}" class="btn btn-lg btn-warning btn-rounded">Pay Marketer fee now</a>
 <marquee behavior="" direction=""> <h3 class="text-danger font-weight-bold">Your Account is Not Yet Approved</h3></marquee>
 @endif
 

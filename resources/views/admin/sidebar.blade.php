@@ -72,6 +72,25 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('pending-product') }}" class="nav-link">
+                        <i class="text-danger nav-icon fas fa-shopping-basket"></i>
+                        <p>
+                            Pending Product
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('disabled-product') }}" class="nav-link">
+                        <i class="text-warning nav-icon fas fa-shopping-basket"></i>
+                        <p>
+                            Disabled Product
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('adminorders') }}" class="nav-link">
                         <i class="nav-icon fas fa-shopping-basket"></i>
@@ -89,6 +108,8 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                         </p>
                     </a>
                 </li>
+
+
 
                 <li class="nav-item">
                     <a href="{{ route('adminBuyers') }}" class="nav-link">

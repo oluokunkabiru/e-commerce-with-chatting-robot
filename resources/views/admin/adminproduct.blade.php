@@ -48,6 +48,7 @@
                   <th>Name</th>
                   <th>New Price</th>
                   <th>Location</th>
+                  <th>Status</th>
                   <th>Description</th>
                   <th>Action</th>
                 </tr>
@@ -70,6 +71,38 @@
                   <td>{{ $product->product_name }}</td>
                   <td>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
+                  <td>
+                    @if ($product->status=="pending")
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                         Pending
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('changeprodctmode', [$product->id, 'active']) }}">Approved</a>
+                      </div>
+                    </div>
+
+                    @elseif ($product->status=="disable")
+
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                         Disabled
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('changeprodctmode', [$product->id, 'active']) }}">Enable</a>
+                      </div>
+                    </div>
+                    @else
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                         Active
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('changeprodctmode', [$product->id, 'disable']) }}">Disabled</a>
+                      </div>
+                    </div>
+                    @endif
+                </td>
                   <td>{{ $product->description }}</td>
                   <td>
                         {{-- <a href="#orderfood" class ="btn btn-primary orderfood float-right btn-block" data-toggle="modal" dataid=""><span class="fas fa-shopping-cart" style="font-size: 25px;"></span></a>                                     </form> --}}
@@ -104,6 +137,7 @@
                    <th>Name</th>
                    <th>New Price</th>
                    <th>Location</th>
+                   <th>Status</th>
                    <th>Description</th>
                    <th>Action</th>
                 </tr>

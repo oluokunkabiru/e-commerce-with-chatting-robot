@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        KingFlamez\Rave\RaveServiceProvider::class,
     ],
 
     /*
@@ -230,7 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
+        'Rave' => KingFlamez\Rave\Facades\Rave::class,
 
     ],
 
