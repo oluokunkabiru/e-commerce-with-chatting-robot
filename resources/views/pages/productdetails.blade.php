@@ -12,7 +12,7 @@
 
                     @php
                         $categoryid = App\Models\Category::where('category',$category)->firstOrfail();
-                        $products = App\Models\Product::with(['picture', 'category'])->where('category_id',$categoryid->id)->paginate(10);
+                        $products = App\Models\Product::with(['picture', 'category'])->where('status', 'active')->where('category_id',$categoryid->id)->paginate(10);
 
                     @endphp
                 </div>

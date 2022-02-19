@@ -137,11 +137,11 @@
                                 @endif
                             </div>
                         </div>
-                        <h3 class="font-weight-bold text-center">Social Medials</h3>
+                        <h3 class="font-weight-bold text-center">Social Media</h3>
                         <div class="row">
 
                             <div class="col-md-6">
-                                <label for="">Facebook Link</label>
+                                <label for="">Facebook</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fab fa-facebook-square"
@@ -155,6 +155,44 @@
                                 @if ($errors->has('facebook'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('facebook') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="">WhatsApp</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fab fa-whatsapp-square"
+                                                style="font-size: 20px"></i> </span>
+                                    </div>
+                                    <input type="url"
+                                        class="form-control{{ $errors->has('whatsapp') ? ' is-invalid' : '' }}"
+                                        placeholder="Facebook link" name="whatsapp"
+                                        value="{{ old("whatsapp", $setting->whatsapp) }}">
+                                </div>
+                                @if ($errors->has('whatsapp'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('whatsapp') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="">Telegram</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fab fa-telegram"
+                                                style="font-size: 20px"></i> </span>
+                                    </div>
+                                    <input type="url"
+                                        class="form-control{{ $errors->has('telegram') ? ' is-invalid' : '' }}"
+                                        placeholder="telegram link" name="telegram"
+                                        value="{{ old("telegram", $setting->telegram) }}">
+                                </div>
+                                @if ($errors->has('telegram'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('telegram') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -214,6 +252,51 @@
                                 </span>
                                 @endif
                             </div>
+                        </div>
+
+
+                        <h3 class="font-weight-bold text-center">Marketer</h3>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <label for="">Marketers due</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"
+                                                style="font-size: 20px"></i> </span>
+                                    </div>
+                                    <input type="number"
+                                        class="form-control{{ $errors->has('due') ? ' is-invalid' : '' }}"
+                                        placeholder="Marketer due" name="due"
+                                        value="{{ old("due", $setting->marketer_due) }}">
+                                </div>
+                                @if ($errors->has('due'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('due') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="">Marketer Charges (%)</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fab fa-whatsapp-square"
+                                                style="font-size: 20px"></i> </span>
+                                    </div>
+                                    <input type="number"
+                                        class="form-control{{ $errors->has('charges') ? ' is-invalid' : '' }}"
+                                        placeholder="Marketer Charges" name="charges"
+                                        value="{{ old("charges", $setting->marketer_sale_charge) }}">
+                                </div>
+                                @if ($errors->has('charges'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('charges') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+
                         </div>
                         <button type="submit" class="btn btn-primary float-right btn-lg">Submitt</button>
                     </form>

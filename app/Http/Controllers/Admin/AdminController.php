@@ -24,9 +24,11 @@ class AdminController extends Controller
         $totalproduct = Product::count('id');
         $totalorders = Order::count('id');
         $totalusers = User::count('id');
+        $totalrevenue = Order::where('payoutstatus', 'paid')->sum('billing_total_price');
+        $totalunpaid = Order::where('payoutstatus', 'pending')->sum('billing_total_price');
         $totaldelivered = Order::where('status', 'Delivered')->count('id');
         $user = User::with(['picture'])->where('id', Auth::user()->id)->firstOrFail();
-        return view('admin.dashboard', compact(['totalproduct', 'totalusers', 'totalorders',
+        return view('admin.dashboard', compact(['totalproduct', 'totalunpaid', 'totalrevenue', 'totalusers', 'totalorders',
         'totaldelivered', 'user']));
     }
     public function adminorders()

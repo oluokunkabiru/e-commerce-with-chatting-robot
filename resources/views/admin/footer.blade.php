@@ -53,4 +53,6 @@
 
 
 <script src="{{ asset('asset/plugins/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('asset/plugins/select2/js/select2.full.min.js') }}"></script>
+
 @yield('script')

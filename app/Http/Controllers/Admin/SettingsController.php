@@ -86,6 +86,11 @@ class SettingsController extends Controller
         $setting->instagram = $request->instagram;
         $setting->twitter = $request->twitter;
         $setting->linkedin = $request->linkedin;
+        $setting->whatsapp = $request->whatsapp;
+        $setting->marketer_sale_charge = $request->charges;
+        $setting->telegram = $request->telegram;
+        $setting->marketer_due = $request->due;
+
         $setting->company =ucwords($request->company);
         // $logo = "";
         if($request->file('logo')){

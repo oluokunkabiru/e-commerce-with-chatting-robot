@@ -69,7 +69,7 @@
                   @endphp
                   <td> <img src="{{url($picture)}}" alt="{{$picture }}" style="width:100px"> </td>
                   <td>{{ $product->product_name }}</td>
-                  <td>{{ $product->newprice}}</td>
+                  <td><span class="fa">&#8358;</span>{{ $product->newprice}}</td>
                   <td>{{ $product->location }}</td>
                   <td>
                     @if ($product->status=="pending")

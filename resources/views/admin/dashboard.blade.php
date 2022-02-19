@@ -68,6 +68,49 @@
             <!-- ./col -->
           </div>
 
+            <!-- ./card-body -->
+            <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                      <h5 class="description-header"><span class="fa">&#8358;</span>{{  number_format($totalrevenue,2,".",",")     }}</h5>
+                      <span class="description-text">TOTAL REVENUE</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                      <h5 class="description-header"><span class="fa">&#8358;</span>{{ number_format($totalunpaid,2,".",",")  }}</h5>
+                      <span class="description-text">UNPAID BALANCE</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                      <h5 class="description-header"><span class="fa">&#8358;</span>{{  number_format($totalrevenue,2,".",",")     }}</h5>
+                      <span class="description-text">TOTAL PAYOUT</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block">
+                      <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                      <h5 class="description-header"><span class="fa">&#8358;</span>1200</h5>
+                      <span class="description-text">THIS MONTH SALES</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+
 <!-- Content Wrapper. Contains page content -->
 <div class="container-fluid">
     <div class="row">
@@ -231,37 +274,51 @@
                         <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">City</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="city" value="{{ Auth::user()->city }}"
-                                    placeholder="City">
-                                @if ($errors->has('city'))
+                                @php
+                                $country = App\Models\Country::orderBy('name', 'asc')->get();
+                            @endphp
+                            <select name="country" id="country"  style="width: 100%;" class="form-control  {{ $errors->has('country') ? ' is-invalid' : '' }}">
+                                <option value="">Choose Your Country</option>
+                                @foreach ($country as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+
+                              </select>
+
+
+
+                            @if ($errors->has('country'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('city') }}</strong>
+                                    <strong>{{ $errors->first('country') }}</strong>
                                 </span>
-                                @endif
+                            @endif
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">State</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="state" value="{{ Auth::user()->state }}"
-                                    placeholder="State">
+                            <div class="col-sm-10" id="statelist">
+                                <select name="state" id="state"  style="width: 100%;" class="form-control  {{ $errors->has('state') ? ' is-invalid' : '' }}">
+                                    <option value="">Choose Your State</option>
+                                  </select>
                                 @if ($errors->has('state'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('state') }}</strong>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('state') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">Country</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="country"
-                                    value="{{ Auth::user()->country}}" placeholder="Country">
-                                @if ($errors->has('country'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('country') }}</strong>
-                                </span>
+                            <div class="col-sm-10" id="citylist">
+                                <select name="city" id="city"  style="width: 100%;" class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}">
+                                    <option value="">Choose Your City</option>
+                                  </select>
+                                @if ($errors->has('city'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -298,7 +355,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
-                                <label>
+                                <label class="text-danger">
                                     If you dont want to change your password,leave it as blank. </label>
                             </div>
                         </div>
@@ -319,4 +376,89 @@
 {{-- @endsection  --}}
 
 @endsection
+
+
+@section('script')
+<script>
+    function pageLoading(){
+            $(".loader-wrapper.loader-off, body.is-loaded .loader-wrapper").css('visibility', 'visible').css('opacity', '1');
+
+        }
+
+        function pageLoaded(){
+            $(".loader-wrapper.loader-off, body.is-loaded .loader-wrapper").css('visibility', 'hidden').css('opacity', '0');
+
+        }
+
+
+
+    $(document).ready(function() {
+
+
+     $('select').select2()
+
+
+$(document).on('change', '#country', function() {
+    var country = $(this).val();
+    // alert(country)
+    $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    type: 'POST',
+    url: '{{ route('state-list') }}',
+    data: 'country=' + country,
+    success: function(data) {
+        $("#statelist").html(data)
+
+    },
+        beforeSend:function(){
+           pageLoading();
+        },
+
+        complete:function(){
+            pageLoaded();
+        }
+
+    })
+
+})
+
+
+
+
+
+    $(document).on('change', '#state', function() {
+    var state = $(this).val();
+    // alert(country)
+    $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    type: 'POST',
+    url: '{{ route('cities-list') }}',
+    data: 'state=' + state,
+    success: function(data) {
+        $("#citylist").html(data)
+
+    },
+        beforeSend:function(){
+           pageLoading();
+        },
+
+        complete:function(){
+            pageLoaded();
+        }
+
+    })
+
+})
+
+
+
+    })
+</script>
+
+@endsection
+
 

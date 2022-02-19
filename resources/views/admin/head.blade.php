@@ -14,3 +14,5 @@
 <link rel="stylesheet" href="{{ asset('asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 <link rel="stylesheet" href="{{ asset('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
 <link rel="icon" href="{{ url($setting->picture->file) }}">
+<link rel="stylesheet" href="{{ asset('asset/plugins/select2/css/select2.min.css') }}">
+
