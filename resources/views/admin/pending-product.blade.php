@@ -71,16 +71,36 @@
                   <td>{{ $product->product_name }}</td>
                   <td>{{ $product->newprice}}</td>
                   <td>
-                      @if ($product->status=="pending")
+                    @if ($product->status=="pending")
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                         Pending
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('changeprodctmode', [$product->id, 'active']) }}">Approved</a>
+                      </div>
+                    </div>
 
-                      <a href="#approve" class="btn btn-danger btn-rounded">Pending</a>
+                    @elseif ($product->status=="disable")
 
-                      @elseif ($product->status=="disable")
-                      <a href="#approve" class="btn btn-warning btn-rounded">Warning</a>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                         Disabled
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('changeprodctmode', [$product->id, 'active']) }}">Enable</a>
+                      </div>
+                    </div>
                     @else
-                    <a href="#approve" class="btn btn-success btn-rounded">Active</a>
-
-                      @endif
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                         Active
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('changeprodctmode', [$product->id, 'disable']) }}">Disabled</a>
+                      </div>
+                    </div>
+                    @endif
                   </td>
                   <td>{{ $product->location }}</td>
                   <td>{{ $product->description }}</td>
