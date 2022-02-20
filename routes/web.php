@@ -54,31 +54,36 @@ Route::get('/Category/{id}','Admin\CategoryController@showCategory' )->name('pro
 Route::get('/Product/{id}','PagesController@productDetails' )->name('productDetails');
 Route::get('consultant', 'PagesController@consultant')->name('consultant');
 Route::post('consult-us', 'PagesController@consultantus')->name('consult-us');
+Route::get('counsult-thank/{name}', 'PagesController@consultantThanks')->name('consult-thanks');
 // The page that displays the payment form for flutterwave
 
 // The route that the button calls to initialize payment
 Route::get('marketer-fee', 'PagesController@marketerpayment')->name('marketer-fee');
-Route::post('/pay', [FlutterwaveController::class, 'initialize'])->name('pay');
+
+
+Route::post('/payment/flutterwave', [FlutterwaveController::class, 'initialize'])->name('product-flutterwave');
 // The callback url after a payment
-Route::get('/rave/callback', [FlutterwaveController::class, 'callback'])->name('callback');
+Route::get('/payment/flutterwave/callback', [FlutterwaveController::class, 'callback'])->name('product-flutterwve-callback');
 
 
 // The route that the button calls to initialize payment
-Route::get('marketer-fee', 'PagesController@marketerpayment')->name('marketer-fee');
+// Route::get('marketer-fee', 'PagesController@marketerpayment')->name('marketer-fee');
 Route::post('/marketer-fee-flutterwave', 'FlutterPaymentController@initializemarketer')->name('flutterwave-marketer-fee');
 // The callback url after a payment
 Route::get('/marketer-fee/rave/callback', 'FlutterPaymentController@marketerFee')->name('fluterwavemarkerfeecallback');
 
-
-
-
+Route::get('continue-payment/paystack/{id}', 'CheckoutController@paystackPayment')->name('continue-with-paystack');
+Route::get('continue-payment/flutterwave/{id}', 'CheckoutController@flutterwavePayment')->name('continue-with-flutterwave');
 // Payment With Paystack
 
-Route::post('/pay', 'PaystackPaymentController@redirectToGateway')->name('pay');
+Route::post('/pay', 'PaystackPaymentController@redirectToGateway')->name('product-paystack');
 Route::get('/payment/callback', 'PaystackPaymentController@handleGatewayCallback');
 
-Route::post('/marketer-fee-paystack', 'PaystackPaymentController@marketerFee')->name('paystack-marketer-fee');
+
+Route::post('/marketer', 'PaystackPaymentController@marketerFee')->name('paystack-marketer-fee');
 Route::get('/marketer/payment/callback', 'PaystackPaymentController@marketerHandleGatewayCallback');
+
+
 Route::post('get-state', 'PagesController@states')->name('state-list');
 Route::post('get-cities', 'PagesController@cities')->name('cities-list');
 // register new user

@@ -16,10 +16,11 @@ class FlutterPaymentController extends Controller
         // Enter the details of the payment
         $data = [
             'payment_options' => 'card,banktransfer',
-            'amount' => 500,
+            'amount' => request()->amount,
             'email' => request()->email,
-            'tx_ref' => $reference,
-            'currency' => "NGN",
+            'tx_ref' => request()->reference,
+            'currency' => request()->currency,
+            'logo' => request()->logo,
             'redirect_url' => route('callback'),
             'customer' => [
                 'email' => request()->email,
@@ -27,10 +28,10 @@ class FlutterPaymentController extends Controller
                 "name" => request()->name
             ],
 
-            "customizations" => [
-                "title" => 'Movie Ticket',
-                "description" => "20th October"
-            ]
+            // "customizations" => [
+            //     "title" => 'Movie Ticket',
+            //     "description" => "20th October"
+            // ]
         ];
 
         $payment = Flutterwave::initializePayment($data);

@@ -35,7 +35,7 @@ class OrderRequest extends FormRequest
             'phone'   =>  'required|digits_between:6,15',
             'email'   =>  'required|email',
             'payment_method'   =>  'required|string',
-            'address1'   =>  'sometimes|string',
+            'address1'   =>  'sometimes|nullable|string',
 
 
 

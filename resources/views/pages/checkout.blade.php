@@ -148,8 +148,8 @@
                             <p>Select your payment method below</p>
                             <div class="checkout__input__checkbox">
                                 <label for="credit">
-                                    Loan/Credit
-                                    <input type="checkbox" id="credit" value="Credit" class="payment_method" name="payment_method">
+                                    Flutterwave
+                                    <input type="checkbox" id="credit" value="flutterwave" class="payment_method" name="payment_method">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -167,20 +167,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="bitcoin">
-                                    Bitcoin
-                                    <input value="Bitcoin" type="checkbox" id="bitcoin" class="payment_method" name="payment_method">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="paypal">
-                                    Paypal
-                                    <input type="checkbox" id="paypal" value="Paypal" class="payment_method" name="payment_method">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+
                             <button type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>

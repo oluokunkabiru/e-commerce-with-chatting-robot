@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Consultants;
 use App\Models\Lga;
 use App\Models\Product;
 use App\Models\Services;
@@ -72,10 +73,34 @@ class PagesController extends Controller
             'name' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|email',
-            ''
+            'practice' => 'required|string',
+            'state' => 'required|string',
+            'city' => 'required|string',
+            'mode' => 'required|string',
+            'address' => 'required|string',
+            'country' => 'required|string',
         ]);
-        return $request;
+        // return $request;
+        $consult =  new Consultants();
+        $consult->name = $request->name;
+        $consult->email = $request->email;
+        $consult->phone = $request->phone;
+        $consult->practice = $request->practice;
+        $consult->mode = $request->mode;
+        $consult->address = $request->address;
+        $consult->other = $request->other;
+        $consult->country_id = $request->country;
+        $consult->state_id = $request->state;
+        $consult->city_id = $request->country ==161 ? '': $request->city;
+        $consult->lga_id = $request->country !=161 ?  $request->city : '';
+        $consult->save();
+        return redirect()->route('consult-thanks', $consult->name);
 
+
+     }
+
+     public function consultantThanks($name){
+         return view('pages.consult-thanks', compact('name'));
      }
      public function cities(Request $request){
         $id = $request->state;

@@ -49,6 +49,11 @@ class CheckoutController extends Controller
         {
             return redirect()->route('home')->with('fail', 'Shop before you submit orders');
         }
+
+
+
+
+
          foreach(Cart::content() as $item)
          {
             $orders = new Order;
@@ -84,8 +89,36 @@ class CheckoutController extends Controller
             $ordersproduct->save();
          }
     Cart::destroy();
-  return redirect()->route('thanks');
+
+    if(strtolower($request->payment_method)=="paystack"){
+        return redirect()->route('continue-with-paystack', $orderid);
+
+    }elseif (strtolower($request->payment_method)=="flutterwave") {
+        return redirect()->route('continue-with-flutterwave', $orderid);
+
+    }else{
+        return redirect()->route('thanks');
     }
+
+
+    }
+
+
+    public function paystackPayment($id){
+        $payment = Order::with(['picture'])->where('orderid', $id)->get();
+
+        return view('pages.paystack-product-payment', compact(['payment', 'id']));
+
+    }
+
+    public function flutterwavePayment($id){
+        $payment = Order::with(['picture'])->where('orderid', $id)->get();
+
+        return view('pages.flutterwave-product-payment', compact(['payment', 'id']));
+
+    }
+
+
 
     /**
      * Display the specified resource.
