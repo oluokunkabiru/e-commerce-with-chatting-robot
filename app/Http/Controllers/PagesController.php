@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Lga;
 use App\Models\Product;
 use App\Models\Services;
 use App\Models\Setting;
@@ -60,9 +61,32 @@ class PagesController extends Controller
      }
 
 
+     public function consultant(){
+        $setting = Setting::where('id', 1)->firstOrFail();
+
+         return view('pages.consultant', compact(['setting']));
+     }
+
+     public function consultantus(Request $request){
+        $request->validate([
+            'name' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            ''
+        ]);
+        return $request;
+
+     }
      public function cities(Request $request){
         $id = $request->state;
-        $city = City::where('state_id', $id)->get();
+        $state = State::where('id', $id)->first();
+        // return $state;
+        if($state->country_id==161){
+            $city = Lga::where('state_id', $id)->orderBy('name', 'asc')->get();
+        }else{
+
+        $city = City::where('state_id', $id)->orderBy('name', 'asc')->get();
+        }
         // return $city;
         return view('pages.city-list', compact(['city']));
     }

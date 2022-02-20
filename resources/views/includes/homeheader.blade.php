@@ -38,6 +38,8 @@ $setting = App\Models\Setting::with(['picture'])
         <ul>
             <li class="active"><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('shop') }}">Shop</a></li>
+            <li><a href="{{ route('consultant') }}">Consultant</a></li>
+
             <li><a href="#">Pages</a>
                 <ul class="header__menu__dropdown">
                     <li><a href="{{ route('shopDetails') }}">Shop Details</a></li>
@@ -147,6 +149,8 @@ $setting = App\Models\Setting::with(['picture'])
                     <ul>
                         <li class="active"><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('shop') }}">Shop</a></li>
+                        <li><a href="{{ route('consultant') }}">Consultant</a></li>
+
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="{{ url('/shop') }}">Shop Details</a></li>

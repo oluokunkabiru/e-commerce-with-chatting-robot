@@ -52,8 +52,8 @@ Route::get('/clear-cart', 'CartController@clearCart')->name('clearCart');
 // product type route
 Route::get('/Category/{id}','Admin\CategoryController@showCategory' )->name('produtCategory');
 Route::get('/Product/{id}','PagesController@productDetails' )->name('productDetails');
-
-
+Route::get('consultant', 'PagesController@consultant')->name('consultant');
+Route::post('consult-us', 'PagesController@consultantus')->name('consult-us');
 // The page that displays the payment form for flutterwave
 
 // The route that the button calls to initialize payment
