@@ -85,14 +85,15 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 <!-- Bootstrap 4 -->
 <script src="{{ asset('asset/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<script src="{{ asset('asset/js/jquery.nice-select.min.js') }}"></script>
+{{--  <script src="{{ asset('asset/js/jquery.nice-select.min.js') }}"></script>  --}}
 <script src="{{ asset('asset/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('asset/plugins/select2/js/select2.full.min.js') }}"></script>
+
 <script src="{{ asset('asset/js/jquery.slicknav.js') }}"></script>
 <script src="{{ asset('asset/js/mixitup.min.js') }}"></script>
 <script src="{{ asset('asset/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('asset/js/main.js')}}"></script>
 <script src="{{ asset('asset/plugins/summernote/summernote-bs4.min.js') }}"></script>
-
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnS3dXsyLG_Ihtjs7_QUbh8b0mzMReP34&libraries=places&callback=initMap&q=Eiffel+Tower
 +Paris+France" async defer></script>

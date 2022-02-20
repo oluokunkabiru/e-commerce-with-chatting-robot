@@ -7,6 +7,6 @@
    @include('pages.chatting')
 
     @include('includes.footer')
-
+    @yield('script')
 </body>
 </html>

@@ -91,16 +91,25 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="city"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('City/Town') }}</label>
+                                            class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                                         <div class="col-md-8">
-                                            <input id="city" type="text"
-                                                class="form-control {{ $errors->has('city') ? ' is-invalid' : '' }}" name="city"
-                                                value="{{ old('city') }}" autocomplete="city" autofocus>
+                                            @php
+                                                $country = App\Models\Country::orderBy('name', 'asc')->get();
+                                            @endphp
+                                            <select name="country" id="country"  style="width: 100%;" class="form-control  {{ $errors->has('country') ? ' is-invalid' : '' }}">
+                                                <option value="">Choose Your Country</option>
+                                                @foreach ($country as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
 
-                                            @if ($errors->has('city'))
+                                              </select>
+
+
+
+                                            @if ($errors->has('country'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('city') }}</strong>
+                                                    <strong>{{ $errors->first('country') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -113,11 +122,10 @@
                                         <label for="state"
                                             class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
 
-                                        <div class="col-md-8">
-                                            <input id="state" type="text"
-                                                class="form-control {{ $errors->has('state') ? ' is-invalid' : '' }}"
-                                                name="state" value="{{ old('state') }}" autocomplete="name" autofocus>
-
+                                        <div class="col-md-8" id="statelist">
+                                            <select name="state" id="state"  style="width: 100%;" class="form-control  {{ $errors->has('state') ? ' is-invalid' : '' }}">
+                                                <option value="">Choose Your State</option>
+                                              </select>
                                             @if ($errors->has('state'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('state') }}</strong>
@@ -130,23 +138,21 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="country"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+                                        <label for="state"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
-                                        <div class="col-md-8">
-                                            <input id="country" type="text"
-                                                class="form-control {{ $errors->has('country') ? ' is-invalid' : '' }}"
-                                                name="country" value="{{ old('country') }}" autocomplete="zipcode" autofocus>
-
-                                            @if ($errors->has('country'))
+                                        <div class="col-md-8" id="citylist">
+                                            <select name="city" id="city"  style="width: 100%;" class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}">
+                                                <option value="">Choose Your City</option>
+                                              </select>
+                                            @if ($errors->has('city'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('country') }}</strong>
+                                                    <strong>{{ $errors->first('city') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -263,4 +269,86 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script>
+    function pageLoading(){
+            $(".loader-wrapper.loader-off, body.is-loaded .loader-wrapper").css('visibility', 'visible').css('opacity', '1');
+
+        }
+
+        function pageLoaded(){
+            $(".loader-wrapper.loader-off, body.is-loaded .loader-wrapper").css('visibility', 'hidden').css('opacity', '0');
+
+        }
+
+
+
+    $(document).ready(function() {
+
+
+     $('select').select2()
+
+
+$(document).on('change', '#country', function() {
+    var country = $(this).val();
+    // alert(country)
+    $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    type: 'POST',
+    url: '{{ route('state-list') }}',
+    data: 'country=' + country,
+    success: function(data) {
+        $("#statelist").html(data)
+
+    },
+        beforeSend:function(){
+           pageLoading();
+        },
+
+        complete:function(){
+            pageLoaded();
+        }
+
+    })
+
+})
+
+
+
+
+
+    $(document).on('change', '#state', function() {
+    var state = $(this).val();
+    // alert(country)
+    $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    type: 'POST',
+    url: '{{ route('cities-list') }}',
+    data: 'state=' + state,
+    success: function(data) {
+        $("#citylist").html(data)
+
+    },
+        beforeSend:function(){
+           pageLoading();
+        },
+
+        complete:function(){
+            pageLoaded();
+        }
+
+    })
+
+})
+
+
+
+    })
+</script>
+
 @endsection

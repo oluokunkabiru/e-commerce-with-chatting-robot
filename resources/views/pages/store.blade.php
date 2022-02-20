@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', $user->name. ' Store')
+@section('title', $user !=NULL ? $user->name :"". ' Store')
 @section('content')
 
 <!-- Breadcrumb Section Begin -->
@@ -11,7 +11,7 @@
                     <h2>Store</h2>
                     <div class="breadcrumb__option">
                         <a href="{{ route('home') }}">Home</a>
-                        <span>{{ $user->name }}</span>
+                        <span>{{ $user?$user->name:"No User found" }}</span>
                     </div>
                 </div>
             </div>
@@ -336,10 +336,11 @@
                             @endforeach
 
                         </div>
+
                     </div>
                 </div>
                 <div class="filter__item">
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-4 col-md-5">
                             <div class="filter__sort">
                                 <span>Sort By</span>
@@ -360,76 +361,83 @@
                                 <span class="icon_ul"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
+                @if ($user )
+
+                @if (count($products) > 0)
                 <div class="row">
-                        @foreach ($products as $product)
-                        @php
-                           $picture= $product->picture ? $product->picture->file :"";
-                           $categorys = $product->category ? $product->category->category:"";
-                        @endphp
+                    @foreach ($products as $product)
+                    @php
+                       $picture= $product->picture ? $product->picture->file :"";
+                       $categorys = $product->category ? $product->category->category:"";
+                    @endphp
 
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{ url($picture)}}">
-                                 <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{{ url($picture)}}">
+                             <ul class="product__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
 
-                                    <li>
+                                <li>
 
-                                        <form action="{{ route('AddtoCart.store')}}" method="post">
-                                            <input type="hidden" name="id" value="{{ $product->id }}">
-                                            {{ csrf_field() }}
-                                            <button type="submit"><i class="fa fa-shopping-cart"></i></button>
-                                        </form>
+                                    <form action="{{ route('AddtoCart.store')}}" method="post">
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                        {{ csrf_field() }}
+                                        <button type="submit"><i class="fa fa-shopping-cart"></i></button>
+                                    </form>
 
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h4><a href="{{ route('productDetails' , ['id' => $product->slug]) }}" class="text-dark font-weight-bold">{{ $product->product_name }}</a></h4>
-                                <div class="card-">
-                                    <div class="card-header">
-                                        <h4><span class="fa">&#8358;</span>{{ $product->newprice }}</h4>
-                                        <br>
-                                        <form action="{{ route('AddtoCart.store') }}" method="post"
-                                            style="display: inline">
-                                            <input type="hidden" name="id" value="{{ $product->id }}">
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-sm btn-rounded btn-primary"> Order now <i
-                                                    class="fa fa-shopping-cart"></i></button>
-                                        </form>
-                                        {{-- <button type="submit" class="btn btn-sm btn-rounded btn-success">Order now <i  class="fa fa-shopping-cart"></i></button> --}}
-                                        {{-- <span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span> --}}
-                                        <span class="btn btn-sm btn-rounded btn-success negotiate"
-                                            name="{{ ucwords($product->product_name) }}"
-                                            productid="{{ $product->id }}" oldprice="{{ $product->oldprice }}"
-                                            newprice="{{ $product->newprice }}"
-                                            slug="{{ route('productDetails', ['id' => $product->slug]) }}"
-                                            img="{{ url($picture) }}">Negotiate</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h4><a href="{{ route('productDetails' , ['id' => $product->slug]) }}" class="text-dark font-weight-bold">{{ $product->product_name }}</a></h4>
+                            <div class="card-">
+                                <div class="card-header">
+                                    <h4><span class="fa">&#8358;</span>{{ $product->newprice }}</h4>
+                                    <br>
+                                    <form action="{{ route('AddtoCart.store') }}" method="post"
+                                        style="display: inline">
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-sm btn-rounded btn-primary"> Order now <i
+                                                class="fa fa-shopping-cart"></i></button>
+                                    </form>
+                                    {{-- <button type="submit" class="btn btn-sm btn-rounded btn-success">Order now <i  class="fa fa-shopping-cart"></i></button> --}}
+                                    {{-- <span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span> --}}
+                                    {{-- <span class="btn btn-sm btn-rounded btn-success negotiate"
+                                        name="{{ ucwords($product->product_name) }}"
+                                        productid="{{ $product->id }}" oldprice="{{ $product->oldprice }}"
+                                        newprice="{{ $product->newprice }}"
+                                        slug="{{ route('productDetails', ['id' => $product->slug]) }}"
+                                        img="{{ url($picture) }}">Negotiate</span> --}}
 
-                                    </div>                                        <div class="card-body text-left">
-                                            <p>Owner : <b>{{ucwords($product->user->name) }}</b></p>
-                                            <p>Contact : <b>{{ $product->user->phone }}</b></p>
-                                            <p>Location : <b>{{ ucwords($product->location) }}</b></p>
-                                        </div>
+                                </div>                                        <div class="card-body text-left">
+                                        <p>Owner : <b>{{ucwords($product->user->name) }}</b></p>
+                                        <p>Contact : <b>{{ $product->user->phone }}</b></p>
+                                        <p>Location : <b>{{ ucwords($product->location) }}</b></p>
                                     </div>
+                                </div>
 
 
-                            </div>
                         </div>
                     </div>
-                    @endforeach
-
                 </div>
+                @endforeach
+
+            </div>
+                @else
+                        <h3 class="text-center text-danger font-weight-bold">No Product Available</h3>
+                @endif
+@else
+<h3 class="text-center  text-danger font-weight-bold">No User found with this store name</h3>
+
+                @endif
+
                 <div class="product__pagination">
                     {{ $products->links() }}
-                    {{--<a href="#">1</a>
 
-                      <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>  --}}
                 </div>
             </div>
         </div>

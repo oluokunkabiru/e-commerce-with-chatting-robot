@@ -79,7 +79,8 @@ Route::get('/payment/callback', 'PaystackPaymentController@handleGatewayCallback
 
 Route::post('/marketer-fee-paystack', 'PaystackPaymentController@marketerFee')->name('paystack-marketer-fee');
 Route::get('/marketer/payment/callback', 'PaystackPaymentController@marketerHandleGatewayCallback');
-
+Route::post('get-state', 'PagesController@states')->name('state-list');
+Route::post('get-cities', 'PagesController@cities')->name('cities-list');
 // register new user
 Route::post('/register', 'RegisterController@register')->name('register');
 Route::get('store/{username}', 'PagesController@mystore')->name('store');
