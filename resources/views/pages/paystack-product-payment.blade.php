@@ -8,9 +8,7 @@
             <div class="card">
                 <div class="card-header bg-white">
                     <h3 class="text-center font-weight-bold">{{ __('Continue payment with paystack') }}</h3>
-                    <h2><span class="fa">&#8358;
-                    {{--  </span>{{ number_format(2000, 2, '.', ',') }}</th>  --}}
-         </h2>
+
                 </div>
 
                 <div class="card-body">
@@ -24,7 +22,7 @@
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Total Price</th>
-                                        <th>Deliver Status</th>
+                                        <th>Payment Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,10 +37,10 @@
                                         <td>{{ $item->quantity }}</td>
                                         <td><span class="fa">&#8358;</span> {{ $item->billing_total_price }}</td>
                                         <td>
-                                            @if ($item->status=="Pending")
+                                            @if ($item->payoutstatus=="pending")
                                                 <span class="btn btn-danger">Pending</span>
-                                            @elseif ($item->status=="Processing")
-                                                <span class="btn btn-info">Processing <span class="spinner-grow text-white"></span></span>
+                                            @elseif ($item->payoutstatus=="paid")
+                                            <span class="btn btn-success">Paid </span>
                                             @else
                                                 <span class="btn btn-success">Delivered</span>
                                             @endif
@@ -60,7 +58,7 @@
                         </div>
                         {{--  <div class="">  --}}
 
-                            <form method="POST" action="{{ route('product-paystack') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                            <form method="POST" action="{{ route('productpaywithpaystack') }}" id="paystackPaymentForm" accept-charset="UTF-8" class="form-horizontal" role="form">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="name" value="{{ Auth::user()->name }}">
@@ -68,8 +66,8 @@
                                 <input type="hidden" name="phone" value="{{ Auth::user()->phone }}">
                                 <input type="hidden" name="amount" value="{{ $total_amount *100 }}">
                                 <input type="hidden" name="currency" value="NGN">
-                                <input type="hidden" name="reference" value="{{ str_replace(" ","_", env('APP_NAME').'_'. $id ) }}">
-                                <button type="submit" class="btn btn-info btn-rounded btn-block">Pay With Paystack</button>
+                                <input type="hidden" id="reference" name="reference">
+                                <button type="button" onclick="payWithPaystack()" class="btn btn-info btn-rounded btn-block">Pay With Paystack</button>
                             </form>
                         {{--  </div>  --}}
 
@@ -85,3 +83,46 @@
     </div>
 </div>
 @endsection
+@section('script')
+<script>
+
+    function payWithPaystack() {
+		var handler = PaystackPop.setup({
+			key: '{{ env('PAYSTACK_PUBLIC_KEY') }}',
+			email: "{{ Auth::user()->email }}",
+			amount: parseInt("{{ $total_amount *100 }}"),
+			currency: "NGN",
+			ref: "{{ $id }}",
+			firstname: "{{ Auth::user()->name }}",
+			lastname: "{{ Auth::user()->name }}",
+			// label: "Optional string that replaces customer email"
+			metadata: {
+				custom_fields: [
+					{
+						display_name: "Mobile Number",
+						variable_name: "mobile_number",
+						value: "{{ Auth::user()->phone }}"
+					}
+				]
+			},
+			callback: function (response) {
+                // console.log(response);
+                if(response.status=="success"){
+                    $('#reference').val(response.reference);
+                    if ($('#reference').val() != '') {
+                        $("#paystackPaymentForm").submit();
+                    }
+                }
+
+			},
+			onClose: function () {
+				//alert('window closed');
+			}
+		});
+		handler.openIframe();
+	}
+
+</script>
+
+@endsection
+

@@ -15,6 +15,7 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
+                    <th>Payment Status</th>
                     <th>Deliver Status</th>
                 </tr>
             </thead>
@@ -29,6 +30,17 @@
                     <td><span class="fa">&#8358;</span> {{ $item->billing_price}}</td>
                     <td>{{ $item->quantity }}</td>
                     <td><span class="fa">&#8358;</span> {{ $item->billing_total_price }}</td>
+                    <td>
+                        @if ($item->payoutstatus=="pending")
+
+                        <a href="{{ $item->billing_payment_method =="paystack" ? route('continue-with-paystack', $item->orderid):route('continue-with-flutterwave', $item->orderid) }}" class="btn btn-danger btn-sm">Pay now</a>
+
+                        @elseif ($item->payoutstatus=="paid")
+                            <span class="btn btn-success">Paid </span>
+                        @else
+                            <span class="btn btn-success">Delivered</span>
+                        @endif
+                    </td>
                     <td>
                         @if ($item->status=="Pending")
                             <span class="btn btn-danger">Pending</span>
@@ -46,7 +58,7 @@
 
             </tbody>
         </table>
-            <h2 class="m-4 font-weight-bold">Total Amount : <span class="fa">&#8358;</span> {{ $total_amount }} </h2>
+            <h2 class="m-4 font-weight-bold">Total Amount : <span class="fa">&#8358;</span> {{ number_format($total_amount,2,".",",") }} </h2>
 
     </div>
 

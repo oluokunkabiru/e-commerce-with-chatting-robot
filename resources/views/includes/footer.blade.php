@@ -94,6 +94,7 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
 <script src="{{ asset('asset/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('asset/js/main.js')}}"></script>
 <script src="{{ asset('asset/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnS3dXsyLG_Ihtjs7_QUbh8b0mzMReP34&libraries=places&callback=initMap&q=Eiffel+Tower
 +Paris+France" async defer></script>

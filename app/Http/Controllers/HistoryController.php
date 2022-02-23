@@ -20,7 +20,7 @@ class HistoryController extends Controller
     public function index()
     {
         //
-        $history = OrderHistory::where('users_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
+        $history = OrderHistory::where('users_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(5);
         return view('pages.history')->with('histories', $history);
     }
 

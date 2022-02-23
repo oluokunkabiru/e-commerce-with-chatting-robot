@@ -8,9 +8,7 @@
             <div class="card">
                 <div class="card-header bg-white">
                     <h3 class="text-center font-weight-bold">{{ __(' Flutterwave Payment') }}</h3>
-                    <h2><span class="fa">&#8358;
-                    </span>{{ number_format(2000, 2, '.', ',') }}</th>
-         </h2>
+
                 </div>
 
                 <div class="card-body">
@@ -24,7 +22,7 @@
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Total Price</th>
-                                        <th>Deliver Status</th>
+                                        <th>Payment Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,10 +37,11 @@
                                         <td>{{ $item->quantity }}</td>
                                         <td><span class="fa">&#8358;</span> {{ $item->billing_total_price }}</td>
                                         <td>
-                                            @if ($item->status=="Pending")
+                                            @if ($item->payoutstatus=="pending")
+                                            
                                                 <span class="btn btn-danger">Pending</span>
-                                            @elseif ($item->status=="Processing")
-                                                <span class="btn btn-info">Processing <span class="spinner-grow text-white"></span></span>
+                                            @elseif ($item->payoutstatus=="paid")
+                                            <span class="btn btn-success">Paid </span>
                                             @else
                                                 <span class="btn btn-success">Delivered</span>
                                             @endif
@@ -59,7 +58,7 @@
 
                         </div>
                         {{--  <div class="col-md-6">  --}}
-                            <form method="POST" action="{{ route('flutterwave-marketer-fee') }}">
+                            <form method="POST" action="{{ route('product-flutterwave') }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                                 <input type="hidden" name="email" value="{{ Auth::user()->email }}">

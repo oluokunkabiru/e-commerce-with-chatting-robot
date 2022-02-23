@@ -61,9 +61,9 @@ Route::get('counsult-thank/{name}', 'PagesController@consultantThanks')->name('c
 Route::get('marketer-fee', 'PagesController@marketerpayment')->name('marketer-fee');
 
 
-Route::post('/payment/flutterwave', [FlutterwaveController::class, 'initialize'])->name('product-flutterwave');
+Route::post('/payment/flutterwave', 'FlutterPaymentController@initialize')->name('product-flutterwave');
 // The callback url after a payment
-Route::get('/payment/flutterwave/callback', [FlutterwaveController::class, 'callback'])->name('product-flutterwve-callback');
+Route::get('/payment/flutterwave/callback', 'FlutterPaymentController@callback')->name('product-flutterwve-callback');
 
 
 // The route that the button calls to initialize payment
@@ -76,9 +76,9 @@ Route::get('continue-payment/paystack/{id}', 'CheckoutController@paystackPayment
 Route::get('continue-payment/flutterwave/{id}', 'CheckoutController@flutterwavePayment')->name('continue-with-flutterwave');
 // Payment With Paystack
 
-Route::post('/pay', 'PaystackPaymentController@redirectToGateway')->name('product-paystack');
-Route::get('/payment/callback', 'PaystackPaymentController@handleGatewayCallback');
-
+// Route::post('/pay', 'PaystackPaymentController@redirectToGateway')->name('product-paystack');
+// Route::get('/payment/callback', 'PaystackPaymentController@handleGatewayCallback');
+Route::post('/product/pay-with-paystack', 'PaystackPaymentController@paystackPayment')->name('productpaywithpaystack');
 
 Route::post('/marketer', 'PaystackPaymentController@marketerFee')->name('paystack-marketer-fee');
 Route::get('/marketer/payment/callback', 'PaystackPaymentController@marketerHandleGatewayCallback');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
@@ -21,17 +22,17 @@ class FlutterPaymentController extends Controller
             'tx_ref' => request()->reference,
             'currency' => request()->currency,
             'logo' => request()->logo,
-            'redirect_url' => route('callback'),
+            'redirect_url' => route('product-flutterwve-callback'),
             'customer' => [
                 'email' => request()->email,
                 "phone_number" => request()->phone,
                 "name" => request()->name
             ],
 
-            // "customizations" => [
-            //     "title" => 'Movie Ticket',
-            //     "description" => "20th October"
-            // ]
+            "customizations" => [
+                "title" => 'Product payment',
+                "description" => "20th October"
+            ]
         ];
 
         $payment = Flutterwave::initializePayment($data);
@@ -53,19 +54,25 @@ class FlutterPaymentController extends Controller
     {
 
         $status = request()->status;
+        // return $status;
 
         //if payment is successful
         if ($status ==  'successful') {
 
         $transactionID = Flutterwave::getTransactionIDFromCallback();
+        // return $transactionID;
         $data = Flutterwave::verifyTransaction($transactionID);
+        $order = Order::where('orderid', $data['data']['tx_ref'])->update(['payoutstatus'=>'paid', 'billing_payment_method' => 'flutterwave']);
 
-        dd($data);
+        return redirect()->route('thanks');
+        // dd($data['data']['tx_ref']);
         }
         elseif ($status ==  'cancelled'){
+            return redirect()->back()->with('error', 'Transaction cancel');
             //Put desired action/code after transaction has been cancelled here
         }
         else{
+            return redirect()->route('history');
             //Put desired action/code after transaction has failed here
         }
         // Get the transaction from your DB using the transaction reference (txref)

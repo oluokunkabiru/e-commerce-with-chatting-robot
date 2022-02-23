@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Unicodeveloper\Paystack\Facades\Paystack;
@@ -22,6 +23,13 @@ class PaystackPaymentController extends Controller
         }
     }
 
+
+    public function paystackPayment(Request $request){
+        // return $request;
+        $order = Order::where('orderid', $request->reference)->update(['payoutstatus'=>'paid', 'billing_payment_method' => 'paystack']);
+
+        return redirect()->route('thanks');
+    }
     /**
      * Obtain Paystack payment information
      * @return void

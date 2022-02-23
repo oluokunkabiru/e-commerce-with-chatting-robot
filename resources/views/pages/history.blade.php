@@ -12,7 +12,9 @@
                             {{--  <input type="hidden" value="oka" id="kb">  --}}
                             <a href="#" dataid="{{ $history->history }}" data-toggle="collapse" class="list-group-item hist list-group-item-action">{{ $history->created_at }}</a>
                             @endforeach
+
                         </div>
+                        {{ $histories->links() }}
                     </div>
                 </div>
             </div>
