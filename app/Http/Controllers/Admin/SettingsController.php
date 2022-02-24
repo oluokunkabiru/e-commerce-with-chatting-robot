@@ -123,9 +123,14 @@ class SettingsController extends Controller
     }
      public function about(AboutRequest $request)
      {
+        //  return $request;
         $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
         $setting->about = ucwords($request->about);
         $setting->address =ucwords($request->address);
+        $setting->mission =ucwords($request->mission);
+        $setting->vision =ucwords($request->vision);
+        $setting->services =ucwords($request->services);
+        $setting->who  =ucwords($request->who);
         $setting->update();
         return redirect()->back()->with('success', 'Settings Updated Successfully');
 

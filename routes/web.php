@@ -30,7 +30,7 @@ Route::get('/blog', 'PagesController@blog')->name('blog');
 
 // contact us view
 Route::get('/contact', 'PagesController@contact')->name('contact');
-
+Route::get('/about-us', 'PagesController@about')->name('about');
 
 // Chatting negotiation
 Route::match(['get', 'post'], '/botman', 'NegotiateController@robot')->name('botman');

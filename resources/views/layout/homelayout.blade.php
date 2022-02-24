@@ -9,7 +9,7 @@
     /* height: 200px; */
     object-fit: cover;
 }
-.capdata h2{
+.capdata h3{
     font-size: 60px;
     /* color: white; */
 
@@ -19,12 +19,21 @@
     height: 500px;
 }
 @media screen and (max-width:768px){
-    .capdata h2{
-        font-size: 6px;
-    }
-    .capdata h4{
+    .capdata h3{
         font-size: 20px;
     }
+    .capdata p{
+        font-size: 15px;
+    }
+    .capdata{
+
+    height: 300px;
+    }
+    .carousel-item img{
+    width: 100%;
+    height: 300px;
+}
+
 }
 </style>
 <body>

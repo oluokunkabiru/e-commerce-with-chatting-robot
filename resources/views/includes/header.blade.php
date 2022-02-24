@@ -26,31 +26,31 @@
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
             {{--  <img src="img/language.png" alt="">  --}}
-            <div>English</div>
+            {{--  <div>English</div>
             <span class="arrow_carrot-down"></span>
             <ul>
                 <li><a href="#">English</a></li>
-            </ul>
+            </ul>  --}}
         </div>
 
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li class="active"><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="{{ route('shop') }}">Shop</a></li>
+            <li><a href="{{ route('about') }}">About Us</a></li>
             <li><a href="{{ route('consultant') }}">Consultant</a></li>
 
-            <li><a href="#">Pages</a>
+            <li><a href="#">Store</a>
                 <ul class="header__menu__dropdown">
                     <li><a href="{{ url('/shop') }}">Shop Details</a></li>
                     <li><a href="{{ route('shopingCart') }}">Shoping Cart</a></li>
                     <li><a href="{{ route('Checkout.index') }}">Check Out</a></li>
-                    <li><a href="{{ route('blogDetails') }}">Update Details</a></li>
+                    {{--  <li><a href="{{ route('blogDetails') }}">Update Details</a></li>  --}}
                 </ul>
             </li>
             <li><a href="{{ route('blog') }}">Update</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
-            <li><a href="{{ route('blog') }}">Update</a></li>
+            {{--  <li><a href="{{ route('blog') }}">Update</a></li>  --}}
                         <li><a href="{{ route('contact') }}">Contact</a></li>
                         @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -87,11 +87,37 @@
     </nav>
     <div id="mobile-menu-wrap"></div>
     <div class="header__top__right__social">
+        @if ($setting->facebook)
         <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+
+        @endif
+        @if ($setting->telegram)
+        <a href="{{ $setting->telegram }}" target="_blank"><i class="fa fa-telegram"></i></a>
+
+        @endif
+
+
+        @if ($setting->twitter)
         <a href="{{ $setting->twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+
+        @endif
+
+        @if ($setting->linkedin)
         <a href="{{ $setting->linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+        @endif
+
+        @if ($setting->instagram)
         <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
-    </div>
+
+        @endif
+
+        @if ($setting->whatsapp)
+        <a href="{{ $setting->whatsapp }}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+
+        @endif
+
+        </div>
     <div class="humberger__menu__contact">
         <ul>
             <li><i class="fa fa-envelope"></i> {{ $setting->supportemail }}</li>
@@ -117,18 +143,48 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__right">
                         <div class="header__top__right__social">
-                            <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+        @if ($setting->facebook)
+        <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+
+        @endif
+        @if ($setting->telegram)
+        <a href="{{ $setting->telegram }}" target="_blank"><i class="fa fa-telegram"></i></a>
+
+        @endif
+
+
+        @if ($setting->twitter)
+        <a href="{{ $setting->twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+
+        @endif
+
+        @if ($setting->linkedin)
+        <a href="{{ $setting->linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+        @endif
+
+        @if ($setting->instagram)
+        <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+
+        @endif
+
+        @if ($setting->whatsapp)
+        <a href="{{ $setting->whatsapp }}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+
+        @endif
+
+                            {{--  <a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="{{ $setting->twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
                             <a href="{{ $setting->linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="{{ $setting->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>  --}}
                         </div>
                         <div class="header__top__right__language">
                             {{--  <img src="img/language.png" alt="">  --}}
-                            <div>English</div>
+                            {{--  <div>English</div>
                             <span class="arrow_carrot-down"></span>
                             <ul>
                                 <li><a href="#">English</a></li>
-                            </ul>
+                            </ul>  --}}
                         </div>
 
                     </div>
@@ -147,17 +203,17 @@
                 <nav class="header__menu">
                     <ul>
                             <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('shop') }}">Shop</a></li>
+                            <li><a href="{{ route('about') }}">About</a></li>
                             <li><a href="{{ route('consultant') }}">Consultant</a></li>
-                            <li><a href="#">Pages</a>
+                            <li><a href="#">Store</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="{{ url('/shop') }}">Shop Details</a></li>
                                     <li><a href="{{ route('shopingCart') }}">Shoping Cart</a></li>
                                     <li><a href="{{ route('Checkout.index') }}">Check Out</a></li>
-                                    <li><a href="{{ route('blogDetails') }}">Update Details</a></li>
+                                    {{--  <li><a href="{{ route('blogDetails') }}">Update Details</a></li>  --}}
                             </ul>
                         </li>
-                        <li><a href="blog">Update</a></li>
+                        {{--  <li><a href="blog">Update</a></li>  --}}
                         <li><a href="contact">Contact</a></li>
                         @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>

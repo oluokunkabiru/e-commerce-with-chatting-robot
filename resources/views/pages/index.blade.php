@@ -1,5 +1,6 @@
 @extends('layout.homelayout')
 @section('title', 'Home')
+
 @section('content')
     <!-- Categories Section Begin -->
 
