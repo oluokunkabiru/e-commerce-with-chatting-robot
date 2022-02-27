@@ -85,18 +85,16 @@
                         </form>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
-                            <li><b>Availability</b> <span>{{ $product->quantity }}</span></li>
+                            {{--  <li><b>Availability</b> <span>{{ $product->quantity }}</span></li>  --}}
                             <li><b>Contact Phone</b><span>{{ $product->user->phone }}</span></li>
                             <li><b>Marketer Name</b><span>{{ $product->user->name }}</span></li>
-                            <li><b>Location </b><span>{{ucwords($product->location) }}</span></li>
-                            <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+                            {{--  <li><b>Location </b><span>{{ucwords($product->location) }}</span></li>  --}}
+                            {{--  <li><b>Shipping</b> <span>01 day shippin->text($product->description)g. <samp>Free pickup today</samp></span></li>  --}}
 
                             <li><b>Share on</b>
                                 <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    {!! Share::page(route('productDetails', ['id' => $product->slug]), $product->description)->facebook()->whatsapp()->twitter()->pinterest()->reddit()->telegram()->linkedin() !!}
+
                                 </div>
                             </li>
                         </ul>
@@ -127,31 +125,28 @@
 
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{{ asset($picture) }}">
-                            {{--  <ul class="product__item__pic__hover">
+                        <div class="product__item__pic set-bg" data-setbg="{{ url($picture) }}">
+                            <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                 <li>
                                     <form action="{{ route('AddtoCart.store')}}" method="post">
                                         <input type="hidden" name="id" value="{{ $product->id }}">
                                         {{ csrf_field() }}
-
-                                    <button type="submit"><i class="fa fa-shopping-cart"></i></button>
+                                        <button type="submit"><i class="fa fa-shopping-cart"></i></button>
                                     </form>
+
                                 </li>
-                            </ul>  --}}
+                            </ul>
                         </div>
                         <div class="product__item__text">
-                                <h6><a href="{{ route('productDetails' , ['id' => $product->slug]) }}">{{ $product->product_name }}</a></h6>
-                                <div class="card-">
-                                    <div class="card-header"><h4><span class="fa">&#8358;</span>{{ $product->newprice }}<span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span></h4></div>
-                                    <div class="card-body text-left">
-                                        <p>Owner : <b>{{ucwords($product->user->name) }}</b></p>
-                                        <p>Contact : <b>{{ $product->user->phone }}</b></p>
-                                        <p>Location : <b>{{ ucwords($product->location) }}</b></p>
-                                    </div>
-                                </div>
+                            <h6><a href="{{ route('productDetails', ['id' => $product->slug]) }}">{{ ucwords($product->product_name) }}</a></h6>
+                            <h5><span class="fa">&#8358;</span>{{ number_format($product->newprice , 2, '.', ',') }}</h5>
+                            <h5 class="text-muted"> <del><span class="fa">&#8358;</span>{{ number_format($product->oldprice , 2, '.', ',') }}</del>
 
+                            </h5>
+
+                            <small>Store: <a href="{{ route('store', $product->user->username) }}">{{ ucwords($product->user->name) }}</a> </small>
                         </div>
                     </div>
                 </div>

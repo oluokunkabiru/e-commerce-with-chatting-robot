@@ -177,6 +177,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
         KingFlamez\Rave\RaveServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
     ],
 
     /*
@@ -234,6 +235,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'Rave' => KingFlamez\Rave\Facades\Rave::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 
