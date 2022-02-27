@@ -328,7 +328,7 @@ $setting = App\Models\Setting::with(['picture'])
                             <div class="carousel-caption capdata ">
                                 <h3 class="text-white font-weight-bold">{{ $services[0]->title }}</h3>
                                 <p class="text-light  font-weight-bold">{{ $services[0]->description }} </p>
-                                <p><a href=""> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
+                                <p><a href="{{ route('services-details', $services[0]->slug?$services[0]->slug:1) }}"> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
                                 </strong></h4>
                               </div>
                           </div>
@@ -338,7 +338,7 @@ $setting = App\Models\Setting::with(['picture'])
                             <div class="carousel-caption capdata ">
                                 <h3 class="text-white font-weight-bold">{{ $item->title }}</h3>
                                 <p class="text-light  font-weight-bold">{{ $item->description }} </p>
-                                <p><a href=""> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
+                                <p><a href="{{ route('services-details', $item->slug?$item->slug:1) }}"> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
                                 </strong></h4>
                               </div>
                           </div>

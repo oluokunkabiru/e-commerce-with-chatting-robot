@@ -55,6 +55,8 @@ class ServicesController extends Controller
             $service->picture_id = $photo->id;
         }
         $service->title = $request->title;
+        $service->slug = strtolower(str_replace(" ", '_', $request->title.'_'. time())); ;
+
         $service->description = $request->description;
         $service->save();
         return redirect()->back()->with('success', "New Services add successfully");
@@ -108,6 +110,7 @@ class ServicesController extends Controller
             $service->picture_id = $photo->id;
         }
         $service->title = $request->title;
+        $service->slug = strtolower(str_replace(" ", '_', $request->title.'_'. time())); ;
         $service->description = $request->description;
         $service->update();
         return redirect()->back()->with('success', "Services updated successfully");

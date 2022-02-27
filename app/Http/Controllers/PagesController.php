@@ -194,4 +194,10 @@ class PagesController extends Controller
      }
 
 
+     public function services($slug){
+         $slider = Services::where('slug', $slug)->firstOrFail();
+         return view('pages.services', compact(['slider']));
+     }
+
+
 }

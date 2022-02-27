@@ -75,14 +75,14 @@
                                 <div class="card-">
                                     <div class="card-header">
                                         <h4><span class="fa">&#8358;</span>{{ $product->newprice }}</h4>
-                                        {{--  <br>  --}}
-                                        {{--  <form action="{{ route('AddtoCart.store') }}" method="post"
+                                        <br>
+                                        <form action="{{ route('AddtoCart.store') }}" method="post"
                                             style="display: inline">
                                             <input type="hidden" name="id" value="{{ $product->id }}">
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-sm btn-rounded btn-primary"> Order now <i
                                                     class="fa fa-shopping-cart"></i></button>
-                                        </form>  --}}
+                                        </form>
                                         {{-- <button type="submit" class="btn btn-sm btn-rounded btn-success">Order now <i  class="fa fa-shopping-cart"></i></button> --}}
                                         <span class="ml-4 fa">&#8358;<del>{{ $product->oldprice }}</del></span>
                                         {{--  <span class="btn btn-sm btn-rounded btn-success negotiate"

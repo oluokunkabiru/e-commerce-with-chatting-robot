@@ -37,7 +37,7 @@ Route::match(['get', 'post'], '/botman', 'NegotiateController@robot')->name('bot
 // shop details view
 Route::get('negotiate', 'NegotiateController@negotiate')->name('negotiate');
 
-
+Route::get('service/{slug}', 'PagesController@services')->name('services-details');
 Route::get('/shop-details', 'PagesController@shopDetails')->name('shopDetails');
 // shop chart view
 // Route::get('/shoping-cart', 'PagesController@shopCart')->name('shopingCart');
