@@ -396,7 +396,7 @@
                                         <textarea
                                             class="form-control textarea {{ $errors->has('service') ? ' is-invalid' : '' }}"
                                             rows="10" name="service">
-                                    {{ old('service', $setting->mission) }}
+                                    {{ old('service', $setting->services) }}
                                 </textarea>
                                         @if ($errors->has('service'))
                                             <span class="invalid-feedback" role="alert">
@@ -415,7 +415,7 @@
                                         <textarea
                                             class="form-control textarea {{ $errors->has('who') ? ' is-invalid' : '' }}"
                                             rows="10" name="who">
-                                    {{ old('who', $setting->vision) }}
+                                    {{ old('who', $setting->who) }}
                                 </textarea>
                                         @if ($errors->has('who'))
                                             <span class="invalid-feedback" role="alert">

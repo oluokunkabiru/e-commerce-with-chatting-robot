@@ -40,7 +40,11 @@ class MarketerController extends Controller
 
     public function marketerOrders(){
         $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->where(['user_id'=>Auth::user()->id])->get();
-        return view('marketer.marketer_all_orders', compact(['products']));
+        // return Auth::user()->status;
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
+       return view('marketer.marketer_all_orders', compact(['products']));
     }
 
 
@@ -56,6 +60,9 @@ class MarketerController extends Controller
         $order = Order::whereIn('product_id', $product)->get();
         $customers = User::with(['picture'])->orderBy('id', 'DESC')->whereIn('id', $orders)->get();
         // return $order;
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.marketers_buyers', compact(['customers', 'order']));
     }
 // view product
@@ -98,7 +105,9 @@ $totaldeliveredforthiscustomer=0;
     }
 $customers = Order::where('user_id', $id)->OrderBy('id', 'DESC')->firstOrFail();
 
-
+if(Auth::user()->status =="free"){
+    return redirect()->route('dashboard');
+}
     return view('marketer.customer_details', compact(['customer', 'totalmyproductorder', 'totalproductorder',
     'totaldeliveredforthiscustomer', 'totalproductdelivered','customers']));
 }
@@ -106,6 +115,9 @@ public function marketerViewOrder(Request $request)
     {
         $id = $request->input('view');
         $view = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.view_order', compact(['view']));
     }
 // view deliver product
@@ -113,6 +125,9 @@ public function marketerViewOrder(Request $request)
         $id = $request->deliver;
         $view = Order::with(['picture', 'product','user'])->where('id', $id)->firstOrfail();
         $deliverby = Auth::user()->name;
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.process_order', compact(['view']));
     }
 
@@ -124,6 +139,9 @@ public function delivered(Request $request){
     $deliver->status = "Delivered";
     $deliver->delivered_by = Auth::user()->name;
     $deliver->update();
+    if(Auth::user()->status =="free"){
+        return redirect()->route('dashboard');
+    }
     return redirect()->back()->with('success', $deliver->product_name." Delivered Successfully");
 }
 
@@ -132,6 +150,9 @@ public function delivered(Request $request){
         $id = $request->input('edit');
         $categories = Category::get();
         $edit = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.vieweditproduct', compact(['id','categories','edit']));
         //,
     }
@@ -141,7 +162,9 @@ public function delivered(Request $request){
         $id = $request->input('delete');
 
         $delete = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
-
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.viewdeleteproduct',  compact(['delete','id']));
 
     }

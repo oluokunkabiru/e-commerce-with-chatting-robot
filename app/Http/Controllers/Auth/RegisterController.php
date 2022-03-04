@@ -94,11 +94,11 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'address'  => ['nullable','string','min:3'],
-            'state' => ['nullable','string','min:2'],
-            'city' => ['nullable','string','min:2'],
+            'state_id' => ['nullable','string','min:2'],
+            'city_id' => ['nullable','string','min:2'],
             'zipcode' => ['nullable','digits_between:6,6'],
             'phone' =>['nullable', 'digits_between:6,15','unique:users'],
-            'country' => ['nullable','min:2', 'string'],
+            'country_id' => ['nullable','min:2', 'string'],
         ]);
         // return $request->input();
         $picture = Picture::count('id');
@@ -111,9 +111,9 @@ class RegisterController extends Controller
         $user->email=$request->input('email');
         $user->phone=$request->input('phone');
         $user->address= ucwords($request->input('address'));
-        $user->city=ucwords($request->input('city'));
-        $user->state=ucwords($request->input('state'));
-        $user->country=ucwords($request->input('country'));
+        $user->city_id=ucwords($request->input('city_id'));
+        $user->state_id=ucwords($request->input('state_id'));
+        $user->country_id=ucwords($request->input('country_id'));
         $user->zipcode=$request->input('zipcode');
         $user->password=bcrypt($request->input('password'));
         $user->picture_id="1";

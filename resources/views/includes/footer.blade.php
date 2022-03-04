@@ -13,7 +13,7 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                         {{--  <a href="./index.html"><img src="img/logo.png" alt=""></a>  --}}
                     </div>
                     <ul>
-                        <li>Address: {{ $setting->address }}</li>
+                        <li>Address: {!! $setting->address !!}</li>
                         <li>Phone: {{ $setting->phone }}</li>
                         <li>Email:{{ $setting->supportemail }}</li>
                     </ul>

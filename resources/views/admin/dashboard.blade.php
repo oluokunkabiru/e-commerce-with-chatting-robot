@@ -160,17 +160,17 @@
 
                     <strong><i class="far fa-envelope mr-1"></i>City</strong>
 
-                    <p class="text-muted">{{ Auth::user()->city?Auth::user()->city:"Not Available" }}</p>
+                    <p class="text-muted">{{ Auth::user()->city?Auth::user()->city->name:"Not Available" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>State</strong>
 
-                    <p class="text-muted">{{ Auth::user()->state?Auth::user()->state:"Not Avilable" }}</p>
+                    <p class="text-muted">{{ Auth::user()->state?Auth::user()->state->name:"Not Avilable" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>Country</strong>
 
-                    <p class="text-muted">{{ Auth::user()->country?Auth::user()->country:"Not Available" }}</p>
+                    <p class="text-muted">{{ Auth::user()->country?Auth::user()->country->name:"Not Available" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>Zipcode</strong>
@@ -272,13 +272,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">City</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">Country</label>
                             <div class="col-sm-10">
                                 @php
                                 $country = App\Models\Country::orderBy('name', 'asc')->get();
                             @endphp
-                            <select name="country" id="country"  style="width: 100%;" class="form-control  {{ $errors->has('country') ? ' is-invalid' : '' }}">
-                                <option value="">Choose Your Country</option>
+                            <select name="country_id" id="country"  style="width: 100%;" class="form-control  {{ $errors->has('country') ? ' is-invalid' : '' }}">
+                                <option value="{{ Auth::user()->country?Auth::user()->country->id:"" }}">{{ Auth::user()->country?Auth::user()->country->name:"Choose Your Country" }}</option>
                                 @foreach ($country as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
@@ -298,9 +298,9 @@
                         <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">State</label>
                             <div class="col-sm-10" id="statelist">
-                                <select name="state" id="state"  style="width: 100%;" class="form-control  {{ $errors->has('state') ? ' is-invalid' : '' }}">
-                                    <option value="">Choose Your State</option>
-                                  </select>
+                                <select name="state_id" id="state"  style="width: 100%;" class="form-control  {{ $errors->has('state') ? ' is-invalid' : '' }}">
+                                    <option value="{{ Auth::user()->state?Auth::user()->state->id:"" }}">{{ Auth::user()->state?Auth::user()->state->name:"Choose Your State" }}</option>
+                                </select>
                                 @if ($errors->has('state'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('state') }}</strong>
@@ -310,11 +310,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Country</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">City</label>
                             <div class="col-sm-10" id="citylist">
-                                <select name="city" id="city"  style="width: 100%;" class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}">
-                                    <option value="">Choose Your City</option>
-                                  </select>
+                                <select name="city_id" id="city"  style="width: 100%;" class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}">
+                                    <option value="{{ Auth::user()->city?Auth::user()->city->id:"" }}">{{ Auth::user()->city?Auth::user()->city->name:"Choose Your city" }}</option>
+                                </select>
                                 @if ($errors->has('city'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('city') }}</strong>

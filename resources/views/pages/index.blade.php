@@ -4,6 +4,9 @@
 @section('content')
     <!-- Categories Section Begin -->
 
+@php
+    
+@endphp
     <section class="categories">
         <div class="container">
             <div class="row">

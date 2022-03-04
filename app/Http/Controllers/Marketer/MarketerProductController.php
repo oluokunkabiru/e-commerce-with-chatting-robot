@@ -33,6 +33,10 @@ class MarketerProductController extends Controller
             $pending = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
                          ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> Auth::user()->id, 'orders.status'=>'Pending'])->get();
             $totalpending = count($pending);
+
+            if(Auth::user()->status =="free"){
+                return redirect()->route('dashboard');
+            }
             return view('marketer.heading',  compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending',
             'pending']));
     }
@@ -41,12 +45,18 @@ class MarketerProductController extends Controller
         //
         $categories = Category::get();
         $products = Product::with(['picture', 'category'])->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.marketerproduct', compact(['products', 'categories']));
     }
     public function viewproduct(Request $request)
     {
         $id = $request->input('view');
         $view = Product::with(['picture', 'category'])->where('id', $id)->firstOrfail();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.viewproduct', compact(['view']));
     }
 
@@ -55,6 +65,9 @@ class MarketerProductController extends Controller
         $id = $request->input('edit');
         $categories = Category::get();
         $edit = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.vieweditproduct', compact(['id','categories','edit']));
         //,
     }
@@ -64,7 +77,9 @@ class MarketerProductController extends Controller
         $id = $request->input('delete');
 
         $delete = Product::with(['picture', 'category'])->where('id', $id)->firstOrFail();
-
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return view('marketer.viewdeleteproduct',  compact(['delete','id']));
 
     }
@@ -165,6 +180,9 @@ class MarketerProductController extends Controller
         $product->user_id = Auth::user()->id;
         //   Product::create($product);
         $product->save();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         return redirect()->back()->with('success', "New product add successfully");
 
 
@@ -236,37 +254,44 @@ class MarketerProductController extends Controller
             }
             $product = Product::findOrfail($id);
             if ($file = $request->file('image')) {
-    // get the validity of image
                 $file = $request->file('image');
                 $extension = array('jpg', 'JPG', 'png', 'PNG', 'gif', 'GIF', 'JPEG', 'jpeg');
                 $file_extension = $file->getClientOriginalExtension();
                 if (!in_array($file_extension, $extension)) {
                     return redirect()->back()->with('typeerror', "This must be of Image of type JPG, PNG, GIF etc.");
                 }
-                // save the image
-                $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
-                $files = Image::make($file);
-                $imagepath = public_path().'/asset/images/';
+                $file_name = str_replace(" ", "_", time());
 
-           $files->resize(320,300);
-           $watermark = public_path()."/asset/design/design.png";
-           $files->insert($watermark,  'bottom-right');
-          $files->text($setting->company,150,150, function($text){
-              $text->color('#00ff00');
-              $text->file(4);
-              $text->size(30);
-              $text->align('center');
-          });
-           $files->save($imagepath.str_replace(" ", "_",time().$file->getClientOriginalName()));
-
-             $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
-
+                $file->move('asset/images', $file_name);
                 $photo = new Picture();
                 $photo->file = $file_name;
                 $photo->save();
                 $product->picture_id = $photo->id;
-
             }
+                // save the image
+        //         $setting = Setting::with(['picture'])->where('id', 1)->firstOrFail();
+        //         $files = Image::make($file);
+        //         $imagepath = public_path().'/asset/images/';
+
+        //    $files->resize(320,300);
+        //    $watermark = public_path()."/asset/design/design.png";
+        //    $files->insert($watermark,  'bottom-right');
+        //   $files->text($setting->company,150,150, function($text){
+        //       $text->color('#00ff00');
+        //       $text->file(4);
+        //       $text->size(30);
+        //       $text->align('center');
+        //   });
+        //    $files->save($imagepath.str_replace(" ", "_",time().$file->getClientOriginalName()));
+
+        //      $file_name = str_replace(" ", "_", time() . $file->getClientOriginalName());
+
+            //     $photo = new Picture();
+            //     $photo->file = $file_name;
+            //     $photo->save();
+            //     $product->picture_id = $photo->id;
+
+            // }
 
         $product->product_name = $request->input('name');
         $product->category_id = $request->input('category');
@@ -283,6 +308,9 @@ class MarketerProductController extends Controller
         //   Product::create($product);
         // return print_r ($product->toArray) ;
         $product->update();
+        if(Auth::user()->status =="free"){
+            return redirect()->route('dashboard');
+        }
         // Product::findOrfail($id)->update($product);
         return redirect()->back()->with('success', 'product '. $product->product_name .' successfully update to '.$request->input('name'));
 

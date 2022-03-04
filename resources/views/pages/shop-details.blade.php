@@ -1,13 +1,30 @@
 @extends('layout.mainlayout')
-@section('title', 'Shop Details')
+@section('metadata')
+<meta property="og:description" content="{{ $product->description }}">
+    <meta name="keywords" content="{{ $product->product_name, $product->category->category }}">
+    <meta name="author" content="OLUOKUN KABIRU ADESINA">
+    <meta property="og:image" itemprop="image" content="{{ $product->picture->file }}" />
+      <meta property="og:url" content="{{ URL::current(); }}" />
+      <meta property="og:type" content="website" />
+       <meta property="og:image:secure_url" content="{{ $product->picture->file }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:title" content="{{$product->category->category .' '.  $product->product_name }} " />
+
+      <meta property="og:image:width" content="256" />
+      <meta property="og:image:height" content="256" />
+      <meta property="og:image:alt" content="{{ $product->product_name }}" />
+
+@endsection
+@section('title', $product->product_name)
+
 @section('content')
 
     <!-- Breadcrumb Section Begin -->
 
-    @if ($products)
 
 
-    @foreach ($products as $product )
+    {{--  @foreach ($products as $product )  --}}
         @php
             $picture= $product->picture ? $product->picture->file :"";
             $categorys = $product->category ? $product->category->category:"";
@@ -156,10 +173,7 @@
         </div>
     </section>
     <!-- Related Product Section End -->
-    @endforeach
-    @else
-    <h1>No Data</h1>
-    @endif
+
 
 @endsection
 @section('script')

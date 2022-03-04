@@ -29,4 +29,9 @@ class Order extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function productOwner($id){
+       $user = User::with('picture')->first();
+        return $user;
+    }
+
 }

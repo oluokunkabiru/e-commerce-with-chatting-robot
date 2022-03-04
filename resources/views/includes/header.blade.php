@@ -39,6 +39,8 @@
             <li class="active"><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('about') }}">About Us</a></li>
             <li><a href="{{ route('consultant') }}">Consultant</a></li>
+            <li><a href="{{ route('become-a-vendor') }}">Become a vendor</a></li>
+
 
             <li><a href="#">Store</a>
                 <ul class="header__menu__dropdown">
@@ -56,8 +58,8 @@
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                       @if (Route::has('register'))
                       <li>
-                           <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                     </li>
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
                        @endif
                        @else
                        <li><a  href="{{ route('dashboard') }}">
@@ -205,6 +207,8 @@
                             <li class="active"><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About</a></li>
                             <li><a href="{{ route('consultant') }}">Consultant</a></li>
+                            <li><a href="{{ route('become-a-vendor') }}">Become a vendor</a></li>
+
                             <li><a href="#">Store</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="{{ url('/shop') }}">Shop Details</a></li>
@@ -219,8 +223,8 @@
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                       @if (Route::has('register'))
                       <li>
-                           <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                     </li>
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
                        @endif
                        @else
                        <li><a  href="{{ route('dashboard') }}">

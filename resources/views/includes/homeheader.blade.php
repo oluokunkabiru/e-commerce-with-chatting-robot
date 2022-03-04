@@ -39,6 +39,8 @@ $setting = App\Models\Setting::with(['picture'])
             <li class="active"><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('about') }}">About</a></li>
             <li><a href="{{ route('consultant') }}">Consultant</a></li>
+            <li><a href="{{ route('become-a-vendor') }}">Become a vendor</a></li>
+
 
             <li><a href="#">Store</a>
                 <ul class="header__menu__dropdown">
@@ -210,6 +212,7 @@ $setting = App\Models\Setting::with(['picture'])
                         <li class="active"><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About</a></li>
                         <li><a href="{{ route('consultant') }}">Consultant</a></li>
+                        <li><a href="{{ route('become-a-vendor') }}">Become a vendor</a></li>
 
                         <li><a href="#">Store</a>
                             <ul class="header__menu__dropdown">
@@ -327,7 +330,7 @@ $setting = App\Models\Setting::with(['picture'])
                             <img src="{{ asset($services[0]->picture->file) }}" alt="{{ $services[0]->title }}</">
                             <div class="carousel-caption capdata ">
                                 <h3 class="text-white font-weight-bold">{{ $services[0]->title }}</h3>
-                                <p class="text-light  font-weight-bold">{{ $services[0]->description }} </p>
+                                <p class="text-light  font-weight-bold">{{ limitText($services[0]->description, 40) }} </p>
                                 <p><a href="{{ route('services-details', $services[0]->slug?$services[0]->slug:1) }}"> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
                                 </strong></h4>
                               </div>
@@ -337,7 +340,7 @@ $setting = App\Models\Setting::with(['picture'])
                             <img src="{{ asset($item->picture->file) }}" alt="{{ $item->title }}">
                             <div class="carousel-caption capdata ">
                                 <h3 class="text-white font-weight-bold">{{ $item->title }}</h3>
-                                <p class="text-light  font-weight-bold">{{ $item->description }} </p>
+                                <p class="text-light  font-weight-bold">{{ limitText($item->description, 40) }} </p>
                                 <p><a href="{{ route('services-details', $item->slug?$item->slug:1) }}"> <button class="btn btn-primary">Read More  <span class="icon"><i class="fa fa-angle-double-right"></i></span> </button></a></p>
                                 </strong></h4>
                               </div>

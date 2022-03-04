@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Whoops\Run;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +44,9 @@ Route::get('/shop-details', 'PagesController@shopDetails')->name('shopDetails');
 // Route::get('/shoping-cart', 'PagesController@shopCart')->name('shopingCart');
 // checkout view
 Route::get('/checkout', 'PagesController@blogDetails')->name('checkout');
+Route::get('/how-to-become-a-vendor', 'PagesController@becomeAvendor')->name('become-a-vendor');
 // blog view
-Route::get('/blog-details', 'PagesController@blogDetails')->name('blogDetails');
+// Route::get('/blog-details', 'PagesController@blogDetails')->name('blogDetails');
 // socialite route
 Route::get('login/{provider}', 'SocialLite@redirect')->name('login');
 Route::get('login/{provider}/callback','SocialLite@Callback')->name('login');
@@ -113,6 +115,10 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('allviewdeleteproduct', 'Admin\AdminProductController@viewdeleteproduct')->name('allviewdeleteproduct');
     Route::resource('Admin/adminproduct', 'Admin\AdminProductController');
     Route::resource('Admin/category', 'Admin\CategoryController');
+    Route::get('/All-users', 'Admin\AdminController@allUsers')->name('allusers');
+    Route::get('/All-marketer', 'Admin\AdminController@allMarketer')->name('allmarketers');
+    Route::get('/user/details/{id}/{name}', 'Admin\AdminController@userDetails')->name('users-details');
+
     Route::get('/Admin/Customer/Orders', 'Admin\AdminController@adminorders')->name('adminorders');
     Route::get('/Admin/Customer/AllOrders', 'Admin\AdminController@allOrders')->name('allOrders');
     Route::post('Admin/viewOrders', 'Admin\AdminController@adminViewOrder')->name('adminViewOrders');
@@ -126,6 +132,14 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('showmessage', 'ContactUs@shows')->name('readmessage');
     Route::get('Admin/Marketers/Request', 'Admin\AdminController@marketerRequest')->name('marketerRequest');
     Route::post('acceptMarketer', 'Admin\AdminController@acceptMarketer')->name('acceptMarketer');
+
+    Route::resource('/Admin/how-to-become-a-vendow', 'VendorController');
+    // Payment out
+    Route::get('Admin/payment/make-payment', 'Admin\AdminController@makePayout')->name('make-payout');
+    Route::get("payout-now/{id}/{status}", 'Admin\AdminController@acceptPayment')->name('payout-now');
+    Route::get('Admin/payment/history', 'Admin\AdminController@PayoutHistory')->name('payout-history');
+
+
 
 });
 

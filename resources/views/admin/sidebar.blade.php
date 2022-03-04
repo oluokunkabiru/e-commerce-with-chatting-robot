@@ -54,24 +54,88 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('adminproduct') }}" class="nav-link">
-                        <i class=" nav-icon fas fa-shopping-basket"></i>
-                        <p>
-                            My Product
-
-                        </p>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-users"></i>
+                      <p>
+                        Users
+                        <i class="fas fa-angle-left right"></i>
+                        {{-- <span class="badge badge-info right">6</span> --}}
+                      </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('allproduct') }}" class="nav-link">
-                        <i class=" nav-icon fas fa-shopping-basket"></i>
-                        <p>
-                            All Product
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('allusers') }}" class="nav-link">
+                                <i class=" nav-icon fas fa-user"></i>
+                                <p>
+                                    All Users
 
-                        </p>
+                                </p>
+                            </a>
+                        </li>
+
+                      <li class="nav-item">
+                        <a href="{{ route('allmarketers') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Marketers</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a href="{{ route('allBuyers') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                All Buyers
+                            </p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('adminBuyers') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                My Buyers
+                            </p>
+                        </a>
+                    </li>
+
+
+
+                    </ul>
+                  </li>
+
+
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-store"></i>
+                      <p>
+                        Products
+                        <i class="fas fa-angle-left right"></i>
+                      </p>
                     </a>
-                </li>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('allproduct') }}" class="nav-link">
+                                <i class=" nav-icon fas fa-shopping-basket"></i>
+                                <p>
+                                    All Product
+
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('adminproduct') }}" class="nav-link">
+                                <i class=" nav-icon fas fa-shopping-basket"></i>
+                                <p>
+                                    My Product
+
+                                </p>
+                            </a>
+                        </li>
+
 
                 <li class="nav-item">
                     <a href="{{ route('pending-product') }}" class="nav-link">
@@ -90,67 +154,123 @@ $setting = App\Models\Setting::with(['picture'])->where('id', 1)->firstOrFail();
                         </p>
                     </a>
                 </li>
+                    </ul>
+                  </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('adminorders') }}" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-basket"></i>
-                        <p>
-                            My Orders
-                        </p>
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-shopping-cart"></i>
+                      <p>
+                        Orders
+                        <i class="fas fa-angle-left right"></i>
+                      </p>
                     </a>
-                </li>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('allOrders') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p>
+                                    All Orders
+                                </p>
+                            </a>
+                        </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('allOrders') }}" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-basket"></i>
-                        <p>
-                            All Orders
-                        </p>
+
+                        <li class="nav-item">
+                            <a href="{{ route('adminorders') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-basket"></i>
+                                <p>
+                                    My Orders
+                                </p>
+                            </a>
+                        </li>
+
+                    </ul>
+                  </li>
+
+
+
+
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas ">&#8358;</i>
+                      <p>
+                        Payments
+                        <i class="fas fa-angle-left right"></i>
+                      </p>
                     </a>
-                </li>
+                    <ul class="nav nav-treeview">
+
+                      <li class="nav-item">
+                        <a href="{{ route('make-payout') }}" class="nav-link">
+                          <i class="fas fa-tag nav-icon"></i>
+                          <p>Make Payment</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a href="{{ route('payout-history') }}" class="nav-link">
+                          <i class="far fa-clock nav-icon"></i>
+                          <p>Payment History</p>
+                        </a>
+                      </li>
+
+
+                    </ul>
+                  </li>
 
 
 
-                <li class="nav-item">
-                    <a href="{{ route('adminBuyers') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            My Buyers
-                        </p>
-                    </a>
-                </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('allBuyers') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            All Buyers
-                        </p>
-                    </a>
-                </li>
+
                 <!----//staff----->
                 <!-----Brand----->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-users"></i>
+                      <p>
+                        Extra
+                        <i class="fas fa-angle-left right"></i>
+                        {{-- <span class="badge badge-info right">6</span> --}}
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('category') }}" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Categories
+                                    {{-- <i class="fas fa-angle-left right"></i> --}}
+                                </p>
+                            </a>
+                        </li>
 
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('services.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Services
+                                    {{-- <i class="fas fa-angle-left right"></i> --}}
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('how-to-become-a-vendow.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Become a vendor
+                                    {{-- <i class="fas fa-angle-left right"></i> --}}
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- Cateegories  -->
-                <li class="nav-item has-treeview">
-                    <a href="{{ route('category') }}" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Categories
-                            {{-- <i class="fas fa-angle-left right"></i> --}}
-                        </p>
-                    </a>
-                </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="{{ route('services.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Services
-                            {{-- <i class="fas fa-angle-left right"></i> --}}
-                        </p>
-                    </a>
-                </li>
+
                 {{-- messages  --}}
                 <li class="nav-item has-treeview">
                     <a href="{{ route('custmersMessages') }}" class="nav-link">

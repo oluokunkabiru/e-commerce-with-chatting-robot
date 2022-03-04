@@ -1,9 +1,9 @@
-@extends('marketer.layout')
+@extends('admin.layout')
 @section('title', 'Marketer Dashboard')
 @section('content')
 
 <!-- Info boxes -->
-@if ($user->status !="free")
+{{-- @if ($user->status !="free") --}}
 
 
 <div class="row mt-2 mb-5">
@@ -68,15 +68,15 @@
 </div>
 <!-- /.row -->
 
-@else
-{{--  <a href="{{ route('marketer-fee') }}" class="btn btn-lg btn-warning btn-rounded">Pay Marketer fee now</a>  --}}
+{{-- @else
+<a href="{{ route('marketer-fee') }}" class="btn btn-lg btn-warning btn-rounded">Pay Marketer fee now</a>
 <marquee behavior="" direction=""> <h3 class="text-danger font-weight-bold">Your Account is Not Yet Approved</h3></marquee>
-@endif
+@endif --}}
 <div class="text-center">
     <small>
-        <a href="{{ route('store', Auth::user()->username?Auth::user()->username:"vboy") }}">{{ route('store', Auth::user()->username?Auth::user()->username:"vboy") }}
+        <a href="{{ route('store', $user->username?$user->username:"vboy") }}">{{ route('store', $user->username?$user->username:"vboy") }}
         </a>
-        <p class="fa fa-copy badge badge-pill badge-light p-2 " id="copiedme" copiedme="{{ route('store',  Auth::user()->username?Auth::user()->username:"vboy") }}">
+        <p class="fa fa-copy badge badge-pill badge-light p-2 " id="copiedme" copiedme="{{ route('store',  $user->username?$user->username:"vboy") }}">
         </p>
     </small>
     <div class="toast">
@@ -100,10 +100,10 @@
                             alt="{{ $user->name }}">
                     </div>
 
-                    <h3 class="profile-username text-center">{{ ucwords(Auth::user()->name) }}</h3>
+                    <h3 class="profile-username text-center">{{ ucwords($user->name) }}</h3>
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Phone Number:</b> <a>{{ Auth::user()->phone?Auth::user()->phone:"Not Available" }}</a>
+                            <b>Phone Number:</b> <a>{{ $user->phone?$user->phone:"Not Available" }}</a>
                         </li>
                     </ul>
                 </div>
@@ -120,38 +120,38 @@
                 <div class="card-body">
                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                    <p class="text-muted">{{ Auth::user()->address? Auth::user()->address:"Not Available" }}</p>
+                    <p class="text-muted">{{ $user->address? $user->address:"Not Available" }}</p>
 
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>E-mail</strong>
 
-                    <p class="text-muted">{{ Auth::user()->email }}</p>
+                    <p class="text-muted">{{ $user->email }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>Address</strong>
 
-                    <p class="text-muted">{{ Auth::user()->address?Auth::user()->address:"Not Available" }}</p>
+                    <p class="text-muted">{{ $user->address?$user->address:"Not Available" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>City</strong>
 
-                    <p class="text-muted">{{ Auth::user()->city?Auth::user()->city:"Not Available" }}</p>
+                    <p class="text-muted">{{ $user->city?$user->city:"Not Available" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>State</strong>
 
-                    <p class="text-muted">{{ Auth::user()->state?Auth::user()->state:"Not Avilable" }}</p>
+                    <p class="text-muted">{{ $user->state?$user->state:"Not Avilable" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>Country</strong>
 
-                    <p class="text-muted">{{ Auth::user()->country?Auth::user()->country:"Not Available" }}</p>
+                    <p class="text-muted">{{ $user->country?$user->country:"Not Available" }}</p>
                     <hr>
 
                     <strong><i class="far fa-envelope mr-1"></i>Zipcode</strong>
 
-                    <p class="text-muted">{{ Auth::user()->zipcode?Auth::user()->zipcode:"Not Available" }}</p>
+                    <p class="text-muted">{{ $user->zipcode?$user->zipcode:"Not Available" }}</p>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -189,14 +189,14 @@
                 </div><!-- /.card-header -->
                 <div class="container-fluid">
                     <form class="form-horizontal" enctype="multipart/form-data" method="POST"
-                        action="{{route('Profile.update', Auth::user()->id)}}">
+                        action="{{route('Profile.update', $user->id)}}">
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label"> Full Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="name"
-                                    value="{{ ucwords(Auth::user()->name) }}" placeholder="Your Full Name">
+                                    value="{{ ucwords($user->name) }}" placeholder="Your Full Name">
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -209,7 +209,7 @@
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
                                 <input type="email" disabled class="form-control" name="email"
-                                    value="{{ Auth::user()->email }}" placeholder="Email">
+                                    value="{{ $user->email }}" placeholder="Email">
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -220,7 +220,7 @@
                         <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                             <div class="col-sm-10">
-                                <input type="tel" class="form-control" name="phone" value="{{ Auth::user()->phone }}"
+                                <input type="tel" class="form-control" name="phone" value="{{ $user->phone }}"
                                     placeholder="Phone Number">
                                 @if ($errors->has('phone'))
                                 <span class="invalid-feedback" role="alert">
@@ -238,7 +238,7 @@
                             <label for="inputExperience" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="inputExperience" name="address" placeholder="">
-                                {{ Auth::user()->address }}
+                                {{ $user->address }}
                                 </textarea>
                                 @if ($errors->has('address'))
                                 <span class="invalid-feedback" role="alert">
@@ -248,53 +248,39 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Country</label>
+                            <label for="inputName2" class="col-sm-2 col-form-label">City</label>
                             <div class="col-sm-10">
-                                @php
-                                $country = App\Models\Country::orderBy('name', 'asc')->get();
-                            @endphp
-                            <select name="country_id" id="country"  style="width: 100%;" class="form-control  {{ $errors->has('country') ? ' is-invalid' : '' }}">
-                                <option value="{{ Auth::user()->country?Auth::user()->country->id:"" }}">{{ Auth::user()->country?Auth::user()->country->name:"Choose Your Country" }}</option>
-                                @foreach ($country as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endforeach
-
-                              </select>
-
-
-
-                            @if ($errors->has('country'))
+                                <input type="text" class="form-control" name="city" value="{{ $user->city }}"
+                                    placeholder="City">
+                                @if ($errors->has('city'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('country') }}</strong>
+                                    <strong>{{ $errors->first('city') }}</strong>
                                 </span>
-                            @endif
-
+                                @endif
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">State</label>
-                            <div class="col-sm-10" id="statelist">
-                                <select name="state_id" id="state"  style="width: 100%;" class="form-control  {{ $errors->has('state') ? ' is-invalid' : '' }}">
-                                    <option value="{{ Auth::user()->state?Auth::user()->state->id:"" }}">{{ Auth::user()->state?Auth::user()->state->name:"Choose Your State" }}</option>
-                                </select>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="state" value="{{ $user->state }}"
+                                    placeholder="State">
                                 @if ($errors->has('state'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('state') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('state') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">City</label>
-                            <div class="col-sm-10" id="citylist">
-                                <select name="city_id" id="city"  style="width: 100%;" class="form-control  {{ $errors->has('city') ? ' is-invalid' : '' }}">
-                                    <option value="{{ Auth::user()->city?Auth::user()->city->id:"" }}">{{ Auth::user()->city?Auth::user()->city->name:"Choose Your city" }}</option>
-                                </select>
-                                @if ($errors->has('city'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
+                            <label for="inputName2" class="col-sm-2 col-form-label">Country</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="country"
+                                    value="{{ $user->country}}" placeholder="Country">
+                                @if ($errors->has('country'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('country') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -302,7 +288,7 @@
                             <label for="inputName2" class="col-sm-2 col-form-label">Zipcode</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="zipcode"
-                                    value="{{ Auth::user()->zipcode }}" placeholder="Zipcode">
+                                    value="{{ $user->zipcode }}" placeholder="Zipcode">
                                 @if ($errors->has('zipcode'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('zipcode') }}</strong>
@@ -331,7 +317,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="offset-sm-2 col-sm-10">
-                                <label class="text-danger">
+                                <label>
                                     If you dont want to change your password,leave it as blank. </label>
                             </div>
                         </div>

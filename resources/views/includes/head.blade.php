@@ -4,14 +4,9 @@
 @endphp
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="{{ $setting->company }}">
-    <meta name="keywords" content="
-        @foreach($producting as $product)
-        {{ $product->product_name ."," }}
-        @endforeach
-    ">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @yield('metadata')
+
+
     <title>{{ $setting->company }}::@yield('title')</title>
 
     <!-- Google Font -->
@@ -29,4 +24,5 @@
     <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('asset/plugins/summernote/summernote-bs4.css') }}">
     <link rel="icon" href="{{ url($setting->picture->file) }}">
+    @yield('style')
 </head>

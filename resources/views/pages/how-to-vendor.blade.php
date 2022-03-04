@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'About Us')
+@section('title', 'How to  become a vendor')
 @section('style')
 
 <style>
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="blog__details__hero__text">
-                    <h2>About Us</h2>
+                    <h2>How to become a vendor</h2>
                     {{--  <ul>
                         <li>By Michael Scofield</li>
                         <li>January 14, 2019</li>
@@ -48,100 +48,29 @@
                     <div class="blog__sidebar__item">
                         <h4>More</h4>
                         <ul>
-                            <li><a href="#mission">Our Mission</a></li>
-                            <li><a href="#vision">Our Vision</a></li>
-                            <li><a href="#services">Our Services</a></li>
-                            <li><a href="{{ route('consult-us') }}">Consult Us</a></li>
-                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                            @foreach ($vendors as $item)
+                            <li><a href="{{ route('become-a-vendor') }}#{{  str_replace(" ", "_", $item->topic) }}">{{ $item->topic }}</a></li>
+                            @endforeach
+
                         </ul>
                     </div>
-                    {{--  <div class="blog__sidebar__item">
-                        <h4>Recent News</h4>
-                        <div class="blog__sidebar__recent">
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{{ asset('asset/img/blog/sidebar/sr-1.jpg') }}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
-                                    <span>MAR 05, 2019</span>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{{ asset('asset/img/blog/sidebar/sr-2.jpg') }}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
-                                    <span>MAR 05, 2019</span>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{{ asset('asset/img/blog/sidebar/sr-3.jpg') }}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
-                                    <span>MAR 05, 2019</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="blog__sidebar__item">
-                        <h4>Search By</h4>
-                        <div class="blog__sidebar__item__tags">
-                            <a href="#">Apple</a>
-                            <a href="#">Beauty</a>
-                            <a href="#">Vegetables</a>
-                            <a href="#">Fruit</a>
-                            <a href="#">Healthy Food</a>
-                            <a href="#">Lifestyle</a>
-                        </div>
-                    </div>  --}}
+
                 </div>
             </div>
             <div class="col-lg-10 col-md-9 order-md-1 order-1 p-3" style="background-color: #7fad39; border-radius:5%;">
                 <div class="blog__details__text">
                     {{--  <img src="{{ asset('asset/img/blog/details/details-pic.jpg') }}" alt="">  --}}
-                    <div id="about-us" class="text-white" style="color: white ! important">
-                        <h3 class="text-center my-2 p-3 font-weight-bold text-white">About Us</h3>
-
-                        {!! $setting->about !!}
-
-                    </div>
+                    @foreach ($vendors as $item)
 
 
-                    <div class="card-deck my-2">
-                        <div id="mission" class="card my-2">
-                            <div class="card-body">
-                                <h3 class="text-center my-2">Our Mission</h3>
-                                {!! $setting->mission !!}
+                    <div id="{{  str_replace(" ", "_", $item->topic) }}" class="text-white" style="color: white ! important">
+                        <h3 class="text-center my-2 p-3 font-weight-bold text-white">{{ $item->topic }}</h3>
 
-                            </div>
-
-                        </div>
-
-
-
-                        <div id="mission" class="card my-2">
-                            <div class="card-body">
-                                <h3 class="text-center my-2">Our Vision</h3>
-                                {!! $setting->vision !!}
-
-                            </div>
-
-                        </div>
-                    </div>
-
-
-
-                    <div id="services" class="card my-2 p-1" >
-                        <div class="card-body">
-                            <h3 class="text-center my-2">Our Services</h3>
-                       {!! $setting->services !!}
-                        </div>
+                        {!! $item->description !!}
 
                     </div>
+                @endforeach
+
                 </div>
                 <div class="blog__details__content" style="color: white">
                     <div class="row" >

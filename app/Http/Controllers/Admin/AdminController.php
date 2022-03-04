@@ -64,8 +64,28 @@ public function delivered(Request $request){
 public function allOrders()
 {
     $products = Product::with(['picture', 'orders', 'user'])->orderBy('id', 'DESC')->get();
+    // return $products;
     return view('admin.all_orders', compact(['products']));
 }
+
+
+public function makePayout(){
+    $orders = Order::with(['picture', 'product', 'user'])->OrderBy('id','desc')->where('payoutstatus', 'pending')->get();
+    // return $orders;
+    return view('admin.all_pending_payouts', compact(['orders']));
+    // return $orders;
+}
+
+public function acceptPayment($id, $status){
+$order = Order::where('id', $id)->update(['payoutstatus'=> $status]);
+return redirect()->back()->with('success', 'Payment send out successfully');
+}
+
+public function PayoutHistory(){
+    $orders = Order::with(['picture', 'product', 'user'])->OrderBy('id','desc')->where('payoutstatus', 'paid')->get();
+    // return $orders;
+    return view('admin.all_payouts_history', compact(['orders']));}
+
 
 public function viewAllOrderStatus(Request $request)
 {
@@ -101,6 +121,41 @@ public function allBuyers()
     return view('admin.all_customers', compact(['customers', 'order']));
 }
 
+
+public function allUsers()
+{
+
+    $customers = User::with(['picture'])->orderBy('id', 'DESC')->get();
+    // return $order;
+    return view('admin.all_users', compact(['customers']));
+}
+
+
+public function allMarketer()
+{
+
+    $customers = User::with(['picture'])->orderBy('id', 'DESC')->where('role', 'marketer')->get();
+    // return $order;
+    return view('admin.all_users', compact(['customers']));
+}
+
+
+public function userDetails($id){
+    $product = Product::where('user_id', $id)->get();
+    $totalproductposted = count($product);
+    $order = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
+             ->join('users', 'products.user_id', 'users.id')->where('users.id', $id)->get();
+    $totalordered =count($order);
+    $deliver = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
+            ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> $id, 'orders.status'=>'Delivered'])->get();
+    $totaldelivered = count($deliver);
+    $pending = Order::with(['picture','product', 'user'])->join('products', 'products.id', 'orders.product_id')
+                 ->join('users', 'products.user_id', 'users.id')->where(['users.id'=> $id, 'orders.status'=>'Pending'])->get();
+    $totalpending = count($pending);
+    $user = User::with(['picture'])->where('id', $id)->firstOrFail();
+    return view('admin.user-dashboard', compact(['totalproductposted','totalordered', 'totaldelivered', 'totalpending',
+    'pending', 'user']));
+}
 
 public function buyersInformation(Request $request){
     $id = $request->view;

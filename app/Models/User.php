@@ -63,4 +63,16 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Picture');
     }
 
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
 }

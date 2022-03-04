@@ -13,6 +13,7 @@ use App\Models\Services;
 use App\Models\Setting;
 use App\Models\State;
 use App\Models\User;
+use App\Models\Vendor;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,11 @@ class PagesController extends Controller
          return view('pages.marketer-fee-payment');
      }
 
+     public function becomeAvendor(){
+         $vendors = Vendor::get();
+        
+return view('pages.how-to-vendor', compact(['vendors']));
+     }
      public function shop(){
         //  return State::get();
          $products =  Product::inRandomOrder()->where('status', 'active')->paginate(20);
@@ -154,13 +160,12 @@ class PagesController extends Controller
      }
 
      public function productDetails($product){
-         $products = Product::with(['picture', 'category'])->where('status', 'active')->firstOrfail()->where('slug', $product)->get();
-         $rel = '';
-         foreach($products as $id ){
-             $rel = $id->category_id;
-         }
+         $product = Product::with(['picture', 'category'])->where('status', 'active')->where('slug', $product)->firstOrfail();
+// return $product;
+         $rel = $product->category_id;
+
          $related = Product::with(['picture', 'category'])->orderBy('id','desc')->where('status', 'active')->where('category_id', $rel)->paginate(10);
-         return view('pages.shop-details', compact(['products','related']));
+         return view('pages.shop-details', compact(['product','related']));
      }
 
      public function shopCart(){

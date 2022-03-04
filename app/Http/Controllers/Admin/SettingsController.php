@@ -129,7 +129,7 @@ class SettingsController extends Controller
         $setting->address =ucwords($request->address);
         $setting->mission =ucwords($request->mission);
         $setting->vision =ucwords($request->vision);
-        $setting->services =ucwords($request->services);
+        $setting->services =ucwords($request->service);
         $setting->who  =ucwords($request->who);
         $setting->update();
         return redirect()->back()->with('success', 'Settings Updated Successfully');
